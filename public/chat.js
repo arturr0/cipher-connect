@@ -1,6 +1,8 @@
-const socket = io.connect('https://pine-lucky-bison.glitch.me');
+const socket = io.connect('http://localhost:3000');
 const baseUrl = window.location.origin;
 document.addEventListener('DOMContentLoaded', () => {
+    const signal = new Audio('sound.mp3');
+
     const searchInput = document.getElementById('search-input');
     const findUsers = document.getElementById('findUsers');
     const receiverAvatar = document.getElementById('receiverAvatar');
@@ -224,7 +226,9 @@ document.addEventListener('DOMContentLoaded', () => {
         socket.emit('login', username);
         console.log('Username emitted to server:', username);
     });
-    
+    socket.on('deleted', () => {
+        window.location.href = '/';    
+    });
     socket.on('broadcastDelete', (data) => {
         // 
         const targetDivs = document.querySelectorAll('.username'); // Select all .username elements
@@ -302,7 +306,7 @@ document.addEventListener('DOMContentLoaded', () => {
         messCounter.textContent = newMessageCntr;
     });
     socket.on('send group message', (data) => {
-        
+        signal.play();
         console.log(data);
         if (group == data.groupOfMessage) {
             adjustMarginForScrollbar();
@@ -793,6 +797,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     socket.on('groupInvite', (data) => {
         console.log(data);
+        signal.play();
         const invitation = document.createElement('div');
         invitation.classList.add('invitation');
         
@@ -1876,7 +1881,7 @@ function appendFallbackAvatar(userDiv, username) {
 
 socket.on('message', (data) => {
     console.log(data);
-
+    signal.play();
     // Handle message from the receiver
     if (data.user === receiver) {
         handleIncomingMessage(data);
@@ -2226,19 +2231,19 @@ messageInput.addEventListener('input', () => {
 });
 
 // Listen for 'userTyping' event from the server
-socket.on('userTyping', ({ isTyping, sender }) => {
-    // Ensure sender matches the current receiver
-    if (sender === receiver) {
-        // Handle showing or hiding typing indicator
-        if (isTyping) {
-            console.log("typing show");
-            showTypingIndicator();
-        } else {
-            console.log("typing hide");
-            hideTypingIndicator();
-        }
-    }
-});
+// socket.on('userTyping', ({ isTyping, sender }) => {
+//     // Ensure sender matches the current receiver
+//     if (sender === receiver) {
+//         // Handle showing or hiding typing indicator
+//         if (isTyping) {
+//             console.log("typing show");
+//             showTypingIndicator();
+//         } else {
+//             console.log("typing hide");
+//             hideTypingIndicator();
+//         }
+//     }
+// });
 
 // Function to create typing indicator with dots animation
 function createTypingIndicator() {

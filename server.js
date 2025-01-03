@@ -547,6 +547,7 @@ io.on('connection', (socket) => {
                 }
             }
         );
+        socket.emit('deleted');
     });
     
     // socket.on('group message', ({ username, group, messageSent, storeMessage, sendTime }) => {
