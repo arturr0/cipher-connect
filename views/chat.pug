@@ -1,0 +1,113 @@
+doctype html
+html(lang='en')
+    head
+        meta(charset='UTF-8')
+        meta(name='viewport' content='width=device-width, initial-scale=1.0')
+        title CipherConnect
+        script(src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.1/socket.io.js')
+        link(rel="shortcut icon" href="http://localhost:3000/chat2.ico")
+        script(src='https://code.jquery.com/jquery-3.6.0.min.js')
+        link(rel='preload' href='/css/fontello.css' as='style')
+        link(rel='stylesheet' href='/css/chat.css')
+        link(rel='stylesheet' href='/css/fontello.css')
+        link(rel='stylesheet' href='/css/animation.css')
+        style.
+            textarea[autoresize] {
+                display: block;
+                overflow: hidden;
+                resize: none;
+            }
+    body
+        div#mainContent
+            //- input(type="checkbox")
+            #friendsSearchBg
+            div#searchUsers
+                    input#search-input(type='text', placeholder='Find User')
+                    div#users
+            #friends
+                #friendsAndGroups
+                    #friendsContainer
+                    #groupsContainer
+            #menu
+                div#menuDiv
+                    div#messagesNotRead.dropdown-container
+                        #invitesDropdown.dropdownToggle
+                            div#messCounter(value="0").counter 0
+                            i.icon-mail.menuIcon
+                        #messagesContent.dropdown-content.dropdown(style="color: black;")
+                            div a
+                            div b 
+                    div#invitations.dropdown-container
+                        #invitationsDropdown.dropdownToggle
+                            div#invCounter.counter(value="0") 0
+                            i.icon-user-add.menuIcon
+                        #invitationContent.dropdown-content.dropdown(style="color: black;")
+                    div#groups.dropdown-container
+                        #groupsDropdown.dropdownToggle
+                            div#groupCounter.counter(value="0") 0
+                            i.icon-users.menuIcon
+                        #groupsContent.dropdown-content.dropdown(style="color: black;")
+                            #group
+                                | CREATE GROUP
+            div#chat_account
+                #chatContainer
+                    #chat
+                        #receiver
+                            #receiverAvatar
+                            #receiverName
+                            i.icon-keyboard.hidden
+                        div#message-container
+                    div#inputAndIcons
+                        #chatInput
+                            textarea#message(autoresize='' style='margin: auto; width: 40vw; min-height: 80px; max-height: 50vh; font-size: 16px;')
+                            //- #chatIcons
+                #accountContainer
+                    #account
+                        #avatarOrInitials
+                            #initials(style="visibility: hidden;")
+                        #accountContent
+                            div#crypto.accountContentText
+                                | No Storing Messages
+                                .icon-user-secret.accIon
+                            .accountContentText
+                                label(for="userAvatar" class="custom-file-label" style="color: inherit; cursor: pointer; display: flex; justify-content: space-between; align-items: center; width: 100%;")
+                                    span Upload Avatar
+                                    .icon-upload-1.accIon
+                                input(type="file" id="userAvatar" accept="image/*" style="display: none")
+                            #logOut.accountContentText
+                                | Log Out
+                                .icon-off.accIon
+                            #deleteAccount.accountContentText
+                                | Delete Account
+                                .icon-user-times.accIon
+                            div#findUsers.accountContentText
+                                | Find Users
+                                .icon-search-4.accIon
+            .modal#confirmModal
+                .modal-content
+                    p#confirmText
+                    .modalButtons
+                        button#yesBtn Yes
+                        button#noBtn No
+                        button#cancelBtn Cancel
+            .modal#deleteModal
+                .modal-content
+                    p#confirmText Do you want to delete account?
+                    .modalButtons
+                        button#confirmDelete Yes
+                        button#cancelDelete No
+            .modal#createGroup
+                .modal-content
+                    p#groupMessage(style="font-size: 22px;")
+                    #friendsToGroup
+                    .modalButtons#groupBtns(style="display: flex;")
+                        button#sendGroup(type='button', disabled, style="display: none; opacity: 0.5;") Create Group
+                        button#cancelGroup Quit
+        script(src='/chat.js' type='text/javascript')
+        script.
+            $(document).ready(function() {
+                $('textarea').on('input', function() {
+                    $(this).outerHeight(38).outerHeight(this.scrollHeight);
+                    if (typeof receiver !== 'undefined') scroll();
+                });
+            });
