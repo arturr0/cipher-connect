@@ -209,7 +209,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             friends.classList.remove('move-left');
             friends.classList.add('move-right');
-            document.getElementById('findUsers').textContent = "Find users";
+            document.getElementById('findUsersText').textContent = "Find users";
             switchUsers.style.display = 'block';
             switchFriends.style.display = 'none';
             
@@ -220,7 +220,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             friends.classList.remove('move-right');
             friends.classList.add('move-left');
-            document.getElementById('findUsers').textContent = "View friends";
+            document.getElementById('findUsersText').textContent = "View friends";
             switchUsers.style.display = 'none';
             switchFriends.style.display = 'block';
         }

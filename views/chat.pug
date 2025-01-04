@@ -78,11 +78,11 @@ html(lang='en')
                             #deleteAccount.accountContentText
                                 | Delete account
                                 .icon-user-times.accIon
-                            div#findUsers.accountContentText(style="justify-content: flex-start;")
-                                | Find users
-                                div(style="margin-left: auto;")
-                                    i#switchUsers.icon-search-4
-                                    i#switchFriends.icon-user-add(style="display: none;")
+                            div#findUsers.accountContentText
+                              span#findUsersText(style="margin-right: auto;") Find users
+                              div
+                                  i#switchUsers.icon-search-4.accIon
+                                  i#switchFriends.icon-user-add.accIon(style="display: none;")
             .modal#confirmModal
                 .modal-content
                     p#confirmText
