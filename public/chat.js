@@ -207,6 +207,10 @@ document.addEventListener('DOMContentLoaded', () => {
             
             friends.classList.remove('move-left');
             friends.classList.add('move-right');
+            document.getElementById('findUsers').textContent = "Find users";
+            document.getElementById('switchUsers').style.display = 'block';
+            document.getElementById('switchFriends').style.display = 'none';
+            
         } else {
             // Move both elements to the left
             searchUsers.classList.remove('move-right');
@@ -214,6 +218,9 @@ document.addEventListener('DOMContentLoaded', () => {
             
             friends.classList.remove('move-right');
             friends.classList.add('move-left');
+            document.getElementById('findUsers').textContent = "View friends";
+            document.getElementById('switchUsers').style.display = 'none';
+            document.getElementById('switchFriends').style.display = 'block';
         }
     });
 

@@ -65,22 +65,24 @@ html(lang='en')
                             #initials(style="visibility: hidden;")
                         #accountContent
                             div#crypto.accountContentText
-                                | No Storing Messages
+                                | No storing messages
                                 .icon-user-secret.accIon
                             .accountContentText
                                 label(for="userAvatar" class="custom-file-label" style="color: inherit; cursor: pointer; display: flex; justify-content: space-between; align-items: center; width: 100%;")
-                                    span Upload Avatar
+                                    span Upload avatar
                                     .icon-upload-1.accIon
                                 input(type="file" id="userAvatar" accept="image/*" style="display: none")
                             #logOut.accountContentText
-                                | Log Out
+                                | Log out
                                 .icon-off.accIon
                             #deleteAccount.accountContentText
-                                | Delete Account
+                                | Delete account
                                 .icon-user-times.accIon
                             div#findUsers.accountContentText
-                                | Find Users
-                                .icon-search-4.accIon
+                                | Find users
+                                div
+                                    i#switchUsers.icon-search-4.accIon
+                                    i#switchFriends.icon-user-add.accIon(style="display: none;")
             .modal#confirmModal
                 .modal-content
                     p#confirmText
