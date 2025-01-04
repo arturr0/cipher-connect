@@ -938,16 +938,17 @@ const handleFriendsToGroup = (data) => {
                         userImage.alt = `${friend.name}'s profile image`;
                         userImage.classList.add('profile-image');
                         initials.style.display = 'none';
-
+            
                         if (!profileContainer.querySelector('img.profile-image')) {
                             profileContainer.appendChild(userImage);
                         }
                     })
                     .catch((error) => {
+                        console.error(`Failed to load image for user: ${friend.name}`, error.message);
                         initials.style.visibility = 'visible';
                     });
             } else {
-                initials.style.visibility = 'visible';  
+                initials.style.visibility = 'visible';
             }
             
         });
@@ -1090,17 +1091,22 @@ socket.on('friendsToGroup', handleFriendsToGroup);
 
 
 // Function to load image asynchronously
-function loadImageAsync(imageUrl) {
+function loadImageAsync(src) {
     return new Promise((resolve, reject) => {
         const img = new Image();
-        img.src = imageUrl;
-        img.onload = () => resolve(img);
-        img.onerror = (error) => reject(error);
+
+        img.onload = () => {
+            resolve(img); // Resolve the promise when the image loads successfully
+        };
+
+        img.onerror = () => {
+            reject(new Error(`Image failed to load for ${src}`)); // Reject the promise if the image fails to load
+        };
+
+        img.src = src; // Set the source to start loading the image
     });
 }
 
-
-    
     socket.on('pendingInvitations', (pendingInvitations) => {
         let newMessageCntr = 0;
         pendingInvitations.forEach(newMessage => {
@@ -1280,28 +1286,23 @@ function loadImageAsync(imageUrl) {
                 
             
     if (friend.image) {
-    loadImageAsync(friend.image)
+        loadImageAsync(friend.image)
         .then((userImage) => {
-            console.log('Image loaded:', userImage);
-
             userImage.alt = `${friend.name}'s profile image`;
             userImage.classList.add('profile-image');
-            
-            initials.style.display = 'none';  // Hide initials when the image loads
-
-            // Check if the image is already appended
+            initials.style.display = 'none'; // Hide initials when the image loads
+    
+            // Append the image if not already present
             if (!profileContainer.querySelector('img.profile-image')) {
-                console.log('Appending image to profileContainer');
                 profileContainer.appendChild(userImage);
-            } else {
-                console.log('Image already exists in profileContainer');
             }
-            
         })
         .catch((error) => {
             console.error(`Failed to load image for user: ${friend.name}`, error.message);
-            initials.style.visibility = 'visible';  // Show initials if image fails to load
+            initials.style.visibility = 'visible'; // Show initials if the image fails
+            initials.textContent = friend.name.charAt(0); // Ensure initials are displayed
         });
+    
 } else {
     initials.style.visibility = 'visible';  // Show initials if there's no image
 }
@@ -1766,28 +1767,30 @@ socket.on('foundUsers', async (founded) => {
                 const foundUser = foundUsers.find(u => u.username === receiver);
                 if (foundUser) {
                     receiverElement.textContent = receiver;
-
+            
                     // Clear existing content in #receiverAvatar
-                    receiverAvatar.innerHTML = ''; 
+                    receiverAvatar.innerHTML = '';
                     const profileContainer = userDiv.querySelector('.profile-container');
-
-                    // Check for the presence of an img element
-                    const img = profileContainer.querySelector('img.profile-image');
-                    const initialsElement = profileContainer.querySelector('.initials');
-
-                    // Append the image or initials based on availability
-                    if (img) {
-                        const clonedImg = img.cloneNode();
-                        clonedImg.classList.remove('profile-image');
-                        clonedImg.id = 'receiverAvatar';
-                        receiverAvatar.appendChild(clonedImg);
-                    } else if (initialsElement) {
-                        const clonedInitials = initialsElement.cloneNode(true);
-                        clonedInitials.classList.remove('initials');
-                        clonedInitials.id = 'receiverInitials';
-                        receiverAvatar.appendChild(clonedInitials);
+            
+                    if (profileContainer) {
+                        const img = profileContainer.querySelector('img.profile-image');
+                        const initialsElement = profileContainer.querySelector('.initials');
+            
+                        if (img) {
+                            const clonedImg = img.cloneNode();
+                            clonedImg.classList.remove('profile-image');
+                            clonedImg.id = 'receiverAvatar';
+                            receiverAvatar.appendChild(clonedImg);
+                        } else if (initialsElement) {
+                            const clonedInitials = initialsElement.cloneNode(true);
+                            clonedInitials.classList.remove('initials');
+                            clonedInitials.id = 'receiverInitials';
+                            receiverAvatar.appendChild(clonedInitials);
+                        }
+                    } else {
+                        console.warn('Profile container not found.');
                     }
-
+            
                     socket.emit('sendMeMessages', username, receiver);
                 }
             });
