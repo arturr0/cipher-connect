@@ -1,0 +1,75 @@
+#mainContent #chat_account {
+	justify-content: flex-end;
+	flex-wrap: wrap;
+}
+#chatContainer {
+	height: auto;
+	width: calc(100% - 40vw);
+}
+#accountContainer {
+	width: calc(100% - 40vw);
+	height: 100%;
+}
+#searchUsers {
+	width: 40vw;
+}
+#message-container, #users, #searchUsers, #friendsAndGroups, #scrolledFriends {
+	width: 100%;
+}
+#friends.move-left {
+	left: 0;
+}
+#account {
+	border: none;
+	padding: 0;
+	margin: 0;
+	width: 100%;
+	height: 100%;
+}
+.left {
+	margin-right: 0;
+}
+#friends {
+	width: 40vw;
+	height: 100%;
+}
+.dropdownToggle {
+	height: auto;
+	width: 20vw;
+}
+.counter {
+	margin-top: 0;
+	left: 0;
+}
+#initials {
+	height: auto;
+	margin-top: 0;
+	display: none;
+}
+#accountContent {
+	margin-top: 0;
+	height: 100%;
+	width: 100%;
+}
+#avatarOrInitials {
+	margin-top: 0;
+}
+#friendsSearchBg {
+	height: 100vh;
+}
+#search-input {
+	width: 30vw;
+}
+#searchUsers {
+	width: 40vw;
+}
+
+#mainContent {
+	height: 100vh;
+}
+body {
+	height: 100%;
+}
+#message {
+	width: 100%;
+}

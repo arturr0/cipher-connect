@@ -15,7 +15,6 @@
 	#mainContent #accountContainer {
 		width: calc(100% - 40vw);
 		height: 100%;
-		border-top: solid 1px #2d343c;
 	}
 	#mainContent #searchUsers {
 		width: 40vw;

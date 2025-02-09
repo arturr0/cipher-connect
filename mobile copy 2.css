@@ -1,0 +1,79 @@
+#mainContent #chat_account {
+	justify-content: flex-end;
+	flex-wrap: wrap;
+}
+#mainContent #chatContainer {
+	height: auto;
+	width: calc(100% - 40vw);
+}
+#mainContent #accountContainer {
+	width: calc(100% - 40vw);
+	height: 100%;
+}
+#mainContent #searchUsers {
+	width: 40vw;
+}
+#mainContent #message-container, 
+#mainContent #users, 
+#mainContent #searchUsers, 
+#mainContent #friendsAndGroups, 
+#mainContent #scrolledFriends {
+	width: 100%;
+}
+#mainContent #friends.move-left {
+	left: 0;
+}
+#mainContent #account {
+	border: none;
+	padding: 0;
+	margin: 0;
+	width: 100%;
+	height: 100%;
+}
+#mainContent .left {
+	margin-right: 0;
+}
+#mainContent #friends {
+	width: 40vw;
+	height: 100%;
+}
+#mainContent .dropdownToggle {
+	height: auto;
+	width: 20vw;
+}
+#mainContent .counter {
+	margin-top: 0;
+	left: 0;
+}
+#mainContent #initials {
+	height: auto;
+	margin-top: 0;
+	display: none;
+}
+#mainContent #accountContent {
+	margin-top: 0;
+	height: 100%;
+	width: 100%;
+	background: #0d1117;
+}
+#mainContent #avatarOrInitials {
+	margin-top: 0;
+}
+#mainContent #friendsSearchBg {
+	height: 100vh;
+}
+#mainContent #search-input {
+	width: 30vw;
+}
+#mainContent #searchUsers {
+	width: 40vw;
+}
+#mainContent {
+	height: 100vh;
+}
+body {
+	height: 100%;
+}
+#mainContent #message {
+	width: 100%;
+}

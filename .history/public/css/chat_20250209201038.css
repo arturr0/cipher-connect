@@ -15,7 +15,6 @@
 	#mainContent #accountContainer {
 		width: calc(100% - 40vw);
 		height: 100%;
-		border-top: solid 1px #2d343c;
 	}
 	#mainContent #searchUsers {
 		width: 40vw;
@@ -81,11 +80,11 @@
 	/* body {
 		height: 100%;
 	} */
+	#mainContent #message {
+		width: 100%;
+	}
 	#chat #message-container {
 		height: 45vh;
-	}
-	#chatInput #message {
-		width: 100%;
 	}
 	
 }
@@ -508,7 +507,6 @@ h1 a {
 #message-container {
 	overflow: auto;
 }
-#message 
 #accountContainer {
 	width: 25vw;
 	height: 90vh;
@@ -739,7 +737,6 @@ h1 a {
 #message {
 	border: none;
 	outline: none;
-	width: 40vw;
 }
 .messSend {
 	align-self: flex-end;
@@ -963,7 +960,10 @@ h1 a {
 	margin-bottom: 10px;
 } */
 
-
+#message {
+	border: none;
+	outline: none;
+}
 .messSend {
 	align-self: flex-end;
 	padding: 10px;

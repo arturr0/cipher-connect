@@ -1,4 +1,4 @@
-const socket = io.connect('http://localhost:3000');
+const socket = io.connect('https://pine-lucky-bison.glitch.me');
 const baseUrl = window.location.origin;
 document.addEventListener('DOMContentLoaded', () => {
     const signal = new Audio('sound.mp3');
@@ -647,7 +647,7 @@ document.addEventListener('DOMContentLoaded', () => {
             sendButton.dataset.groupId = data.groupId;
             sendButton.dataset.groupName = data.groupName;
             const sendIcon = document.createElement('i');
-            sendIcon.classList.add('icon-chat');
+            sendIcon.classList.add('icon-comment');
             sendButton.appendChild(sendIcon);
             buttonsDiv.appendChild(sendButton);
     
@@ -1207,7 +1207,7 @@ function loadImageAsync(src) {
             sendButton.classList.add('send');
             sendButton.value = friend.name;
             const sendIcon = document.createElement('i');
-            sendIcon.classList.add('icon-chat');
+            sendIcon.classList.add('icon-comment');
             sendButton.appendChild(sendIcon);
             buttonsDiv.appendChild(sendButton);
     
@@ -1440,7 +1440,7 @@ function loadImageAsync(src) {
             sendButton.dataset.groupId = Mygroup.groupId;
             sendButton.dataset.groupName = Mygroup.groupName;
             const sendIcon = document.createElement('i');
-            sendIcon.classList.add('icon-chat');
+            sendIcon.classList.add('icon-comment');
             sendButton.appendChild(sendIcon);
             buttonsDiv.appendChild(sendButton);
     
@@ -1742,7 +1742,7 @@ socket.on('foundUsers', async (founded) => {
         sendButton.classList.add('send');
         sendButton.value = user.username;
         const sendIcon = document.createElement('i');
-        sendIcon.classList.add('icon-chat');
+        sendIcon.classList.add('icon-comment');
         sendButton.appendChild(sendIcon);
         buttonsDiv.appendChild(sendButton);
 
