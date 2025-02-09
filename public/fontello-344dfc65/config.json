@@ -1249,12 +1249,6 @@
       "src": "fontawesome"
     },
     {
-      "uid": "128d63150a41800e0beff55235269542",
-      "css": "up-circled2",
-      "code": 59564,
-      "src": "fontawesome"
-    },
-    {
       "uid": "a65ca48f3fe7d6e5c60edbd943f4fdb6",
       "css": "left-circled2",
       "code": 61840,
@@ -1889,6 +1883,198 @@
       "css": "users-3",
       "code": 61540,
       "src": "mfglabs"
+    },
+    {
+      "uid": "076f940ac56adee91dd43d6fd77dd0cf",
+      "css": "user-add",
+      "code": 59650,
+      "src": "typicons"
+    },
+    {
+      "uid": "6274e0601f2feef7eced89146e708de0",
+      "css": "user-add-1",
+      "code": 59651,
+      "src": "entypo"
+    },
+    {
+      "uid": "b9cd6e266f74ac97272b2fabbfbd0b85",
+      "css": "user-add-outline",
+      "code": 59652,
+      "src": "typicons"
+    },
+    {
+      "uid": "bf882b30900da12fca090d9796bc3030",
+      "css": "mail",
+      "code": 59653,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "17c21cd98db80e521e573eba247bd69b",
+      "css": "mail-squared",
+      "code": 61849,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "e335adbc2d898c7d85d40c507796e7b4",
+      "css": "mail-1",
+      "code": 59654,
+      "src": "entypo"
+    },
+    {
+      "uid": "wg849ixsobykxshs6efpc6fk4m0fq8bh",
+      "css": "mail-2",
+      "code": 59655,
+      "src": "typicons"
+    },
+    {
+      "uid": "937f4db8b6ff3348a1d9fcd5e12fd2fe",
+      "css": "mail-3",
+      "code": 59656,
+      "src": "iconic"
+    },
+    {
+      "uid": "ae3so8q0b0n2h8esv9flua2nmwswa8fd",
+      "css": "mail-4",
+      "code": 59657,
+      "src": "modernpics"
+    },
+    {
+      "uid": "a17986e457f3d85f26c9c240dfd6a4ba",
+      "css": "mail-5",
+      "code": 59658,
+      "src": "mfglabs"
+    },
+    {
+      "uid": "a58032f4aafd0eec54803075f5b320d4",
+      "css": "email",
+      "code": 59659,
+      "src": "zocial"
+    },
+    {
+      "uid": "b49fa3e57e92b38143e0fdcc5d9a904b",
+      "css": "gmail",
+      "code": 59660,
+      "src": "zocial"
+    },
+    {
+      "uid": "b6ef4443ecc502136135437837d9724b",
+      "css": "mail-6",
+      "code": 59661,
+      "src": "elusive"
+    },
+    {
+      "uid": "7cb7e246fd23672429db603c0077dc79",
+      "css": "mail-circled",
+      "code": 59662,
+      "src": "elusive"
+    },
+    {
+      "uid": "91bac16b22827347e9ee20477f0b44d2",
+      "css": "mail-7",
+      "code": 59663,
+      "src": "linecons"
+    },
+    {
+      "uid": "cba6018f5de17c76f70b7d2c06037e5a",
+      "css": "mail-8",
+      "code": 59664,
+      "src": "websymbols"
+    },
+    {
+      "uid": "f9c8ea86275ca16128235c6452b67b8e",
+      "css": "user-secret",
+      "code": 61979,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "eeec3208c90b7b48e804919d0d2d4a41",
+      "css": "upload",
+      "code": 59665,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "de2fc7a5c986ab8c622f63455d7cf814",
+      "css": "upload-cloud",
+      "code": 61678,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "44199a54057e6e264fde61a49b034171",
+      "css": "upload-1",
+      "code": 59564,
+      "src": "entypo"
+    },
+    {
+      "uid": "5d595124cecf472869d1cdc020da0ccc",
+      "css": "upload-cloud-1",
+      "code": 59666,
+      "src": "entypo"
+    },
+    {
+      "uid": "64691230b90991883f94c6dfb2afc90a",
+      "css": "up-circled",
+      "code": 59667,
+      "src": "entypo"
+    },
+    {
+      "uid": "9367acef93427f6301ee8ab42d45def7",
+      "css": "upload-outline",
+      "code": 59668,
+      "src": "typicons"
+    },
+    {
+      "uid": "f156d14a32cd7d5bc5a5f70382ab04ec",
+      "css": "upload-2",
+      "code": 59669,
+      "src": "typicons"
+    },
+    {
+      "uid": "e9bce795d01ef5a058c63cab0a03dc66",
+      "css": "upload-cloud-outline",
+      "code": 59670,
+      "src": "typicons"
+    },
+    {
+      "uid": "4e77fc7fc71e69ba520ffa3b4d898e55",
+      "css": "upload-cloud-2",
+      "code": 59671,
+      "src": "typicons"
+    },
+    {
+      "uid": "2dabd0ee753bedbc9c1c52990d204403",
+      "css": "upload-3",
+      "code": 59672,
+      "src": "iconic"
+    },
+    {
+      "uid": "efca324e399b7ce0e33c94090bb8784b",
+      "css": "upload-cloud-3",
+      "code": 59673,
+      "src": "iconic"
+    },
+    {
+      "uid": "4f3b31017c63ba04dc4f78ce7a8f02b1",
+      "css": "upload-4",
+      "code": 61487,
+      "src": "mfglabs"
+    },
+    {
+      "uid": "cb0d73e6d41217d85fc81cea45dd6e91",
+      "css": "upload-cloud-4",
+      "code": 61460,
+      "src": "mfglabs"
+    },
+    {
+      "uid": "4fc965c0a4abf27512ac06752c56b3b5",
+      "css": "upload-5",
+      "code": 59674,
+      "src": "elusive"
+    },
+    {
+      "uid": "fb1c59faa93eb6e2248c2456625b08a2",
+      "css": "user-times",
+      "code": 62005,
+      "src": "fontawesome"
     }
   ]
 }
