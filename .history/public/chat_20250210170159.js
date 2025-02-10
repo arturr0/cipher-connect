@@ -2636,7 +2636,7 @@ document.addEventListener("touchstart", function (event) {
         let content = dropdown.querySelector(".dropdown-content");
 
         // If the tap is inside this dropdown, mark it
-        if (true) {
+        if (dropdown.contains(event.target)) {
             clickedInsideDropdown = true;
 
             // Only toggle active if it's not already active
@@ -2648,7 +2648,6 @@ document.addEventListener("touchstart", function (event) {
                 content.classList.remove("active");
                 document.getElementById("groupsContent").classList.add("dropdown-content");
                 document.getElementById("groupsContent").classList.add("dropdown");
-                // document.getElementById("groupsContent").style.maxHeight = "0px";
             }
         } else {
             // Remove "active" from all other dropdowns
@@ -2660,13 +2659,11 @@ document.addEventListener("touchstart", function (event) {
     // If the user touched outside all dropdowns, remove active from everything
     if (!clickedInsideDropdown) {
         console.log("remove active");
-        document.getElementById("groupsContent").classList.add("noHeight");
-
         dropdowns.forEach(dropdown => {
             console.log("ra");
             dropdown.querySelector(".dropdown-content").classList.remove("active");
-            // document.getElementById("groupsContent").classList.add("dropdown-content");
-            // document.getElementById("groupsContent").classList.add("dropdown");
+            document.getElementById("groupsContent").classList.add("dropdown-content");
+            document.getElementById("groupsContent").classList.add("dropdown");
         });
     }
 });

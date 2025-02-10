@@ -2576,7 +2576,7 @@ function customConfirm(inviting, cntr, groupName, groupInvitingName) {
     });
 }
 
-// const dropdowns = document.querySelectorAll(".dropdown-container");
+ const dropdowns = document.querySelectorAll(".dropdown-container");
 
 //     dropdowns.forEach(dropdown => {
 //         dropdown.addEventListener("touchstart", function (event) {
@@ -2596,79 +2596,27 @@ function customConfirm(inviting, cntr, groupName, groupInvitingName) {
 //         });
 //     });
 
-// const dropdowns = document.querySelectorAll(".dropdown-container");
-
-//     dropdowns.forEach(dropdown => {
-//         dropdown.addEventListener("touchstart", function (event) {
-//             // event.stopPropagation(); // Prevent bubbling
-//             let content = this.querySelector(".dropdown-content");
-
-//             // Ensure proper behavior
-//             if (!content.classList.contains("active")) {
-//                 console.log("active");
-//                 content.classList.add("active");
-//             }
-//         });
-//     });
-
-//     // Close dropdown when touching outside
-//     document.addEventListener("touchstart", function (event) {
-//         dropdowns.forEach(dropdown => {
-//             let content = dropdown.querySelector(".dropdown-content");
-            
-//             // Ensure we only close if touching outside the dropdown
-//             if (!dropdown.contains(event.target)) {
-//                 console.log("remove active");
-//                 // content.classList.remove("active");
-//                 // document.querySelector('.dropdown-content').classList.add('hide');
-//                 // document.querySelector('.dropdown-content').classList.add('.dropdown-content');
-//                 document.getElementById("groupsContent").classList.remove("active");
-                
-//             }
-//         });
-//     });
-const dropdowns = document.querySelectorAll(".dropdown-container");
-
 document.addEventListener("touchstart", function (event) {
-    let clickedInsideDropdown = false;
-
     dropdowns.forEach(dropdown => {
         let content = dropdown.querySelector(".dropdown-content");
-
-        // If the tap is inside this dropdown, mark it
-        if (true) {
-            clickedInsideDropdown = true;
-
-            // Only toggle active if it's not already active
-            if (!content.classList.contains("active")) {
-                console.log("active");
-                content.classList.add("active");
-            } else {
-                console.log("remove active");
-                content.classList.remove("active");
-                document.getElementById("groupsContent").classList.add("dropdown-content");
-                document.getElementById("groupsContent").classList.add("dropdown");
-                // document.getElementById("groupsContent").style.maxHeight = "0px";
-            }
-        } else {
-            // Remove "active" from all other dropdowns
+        
+        // Close the dropdown only if the touch or click is outside the dropdown container
+        if (!dropdown.contains(event.target)) {
             content.classList.remove("active");
-            
         }
     });
+});
 
-    // If the user touched outside all dropdowns, remove active from everything
-    if (!clickedInsideDropdown) {
-        console.log("remove active");
-        document.getElementById("groupsContent").classList.add("noHeight");
-
-        dropdowns.forEach(dropdown => {
-            console.log("ra");
-            dropdown.querySelector(".dropdown-content").classList.remove("active");
-            // document.getElementById("groupsContent").classList.add("dropdown-content");
-            // document.getElementById("groupsContent").classList.add("dropdown");
-        });
-    }
+// To ensure compatibility with both touch and click events, also add a click listener:
+document.addEventListener("click", function (event) {
+    dropdowns.forEach(dropdown => {
+        let content = dropdown.querySelector(".dropdown-content");
+        
+        // Close the dropdown only if the click is outside the dropdown container
+        if (!dropdown.contains(event.target)) {
+            content.classList.remove("active");
+        }
+    });
 });
 
 });

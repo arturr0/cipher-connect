@@ -87,19 +87,6 @@
 	#chatInput #message {
 		width: 100%;
 	}
-  .dropdownToggle .dropdown-content {
-    max-height: 0;  /* Initially collapsed */
-    visibility: hidden;
-    opacity: 0;
-    transition: max-height 0.3s ease, opacity 0.3s ease;
-  }
-
-  /* .dropdownToggle .dropdown-content.active {
-      max-height: 200px;
-      visibility: visible;
-      opacity: 1;
-  } */
-
 	
 }
 @media only screen and (max-device-width: 1200px) and (orientation: landscape) {
@@ -977,7 +964,6 @@ h1 a {
 #message {
   border: none;
   outline: none;
-  width: 100%;
 }
 .messSend {
   align-self: flex-end;
@@ -1210,7 +1196,4 @@ input[type="checkbox"]:checked + label::after {
     max-height: 200px;
     visibility: visible;
     opacity: 1;
-}
-.noHeight {
-  max-height: 0px;
 }

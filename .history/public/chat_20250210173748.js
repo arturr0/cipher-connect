@@ -41,8 +41,8 @@ document.addEventListener('DOMContentLoaded', () => {
         socket.emit('give me friends to group', username);
         const modal = document.getElementById('createGroup');
         modal.style.visibility = 'visible'; // Make it visible immediately
-        menuGroups.classList.remove('dropdown-content');
-        menuGroups.classList.remove('dropdown');
+        // menuGroups.classList.remove('dropdown-content');
+        // menuGroups.classList.remove('dropdown');
         menuInvitation.classList.remove('dropdown-content');
         menuInvitation.classList.remove('dropdown');
         menuMessages.classList.remove('dropdown-content');
@@ -2636,7 +2636,7 @@ document.addEventListener("touchstart", function (event) {
         let content = dropdown.querySelector(".dropdown-content");
 
         // If the tap is inside this dropdown, mark it
-        if (true) {
+        if (dropdown.contains(event.target)) {
             clickedInsideDropdown = true;
 
             // Only toggle active if it's not already active

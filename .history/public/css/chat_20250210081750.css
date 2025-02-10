@@ -94,11 +94,11 @@
     transition: max-height 0.3s ease, opacity 0.3s ease;
   }
 
-  /* .dropdownToggle .dropdown-content.active {
+  .dropdownToggle .dropdown-content.active {
       max-height: 200px;
       visibility: visible;
       opacity: 1;
-  } */
+  }
 
 	
 }
@@ -1206,11 +1206,16 @@ input[type="checkbox"]:checked + label::after {
 #receiverAvatar, .profile-image {
   object-fit: cover;
 }
-.dropdown-content.active {
+/* .dropdown-content.active {
     max-height: 200px;
     visibility: visible;
     opacity: 1;
-}
-.noHeight {
-  max-height: 0px;
+} */
+.dropdown-content.active {
+  max-height: 200px;
+  visibility: visible;
+  opacity: 1;
+  transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  z-index: 20;
+  animation: setOverflow 0s ease 0.3s forwards;
 }

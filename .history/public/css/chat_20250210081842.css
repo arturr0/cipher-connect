@@ -94,11 +94,11 @@
     transition: max-height 0.3s ease, opacity 0.3s ease;
   }
 
-  /* .dropdownToggle .dropdown-content.active {
+  .dropdownToggle .dropdown-content.active {
       max-height: 200px;
       visibility: visible;
       opacity: 1;
-  } */
+  }
 
 	
 }
@@ -1210,7 +1210,4 @@ input[type="checkbox"]:checked + label::after {
     max-height: 200px;
     visibility: visible;
     opacity: 1;
-}
-.noHeight {
-  max-height: 0px;
 }

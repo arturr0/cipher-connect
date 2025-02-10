@@ -1843,9 +1843,7 @@ let isCreatingGroup = false; // Add a flag to track group creation state
 // Store the group creation status per user or socket
 const groupCreationStatus = new Map();  // A Map to track group creation status per socket ID
 
-
-
-socket.on('createGroup', ({ groupName, invited, username, avatar }) => {
+socket.on('createGroup', ({ groupName, invited, username, avatar }) => { 
     if (groupCreationStatus.get(socket.id)) {
         console.log("Group creation already in progress, ignoring duplicate request.");
         return;
@@ -1854,30 +1852,29 @@ socket.on('createGroup', ({ groupName, invited, username, avatar }) => {
     groupCreationStatus.set(socket.id, true);
     console.log(groupName, invited, username, avatar);
 
-    let relativePath = null;  // Default to null
+    const extension = avatar.fileType.split('/')[1];
+    const validExtensions = ['jpeg', 'jpg', 'png', 'gif', 'bmp', 'svg', 'webp'];
+    let relativePath = null;
 
-    if (avatar && avatar.fileType) {
-        const extension = avatar.fileType.split('/')[1];
-        const validExtensions = ['jpeg', 'jpg', 'png', 'gif', 'bmp', 'svg', 'webp'];
+    if (!avatar || !validExtensions.includes(extension)) {
+        console.error('No valid file type provided! Setting avatar to null.');
+        avatar = null; // Set avatar to null if invalid
+    }
 
-        if (validExtensions.includes(extension)) {
-            const uniqueFileName = `uploaded_image_${socket.id}_${Date.now()}.${extension}`;
-            const uploadsDir = path.join(__dirname, 'uploads');
-            const filePath = path.join(uploadsDir, uniqueFileName);
-            const base64Data = avatar.imageData;
+    if (avatar) {
+        const uniqueFileName = `uploaded_image_${socket.id}_${Date.now()}.${extension}`;
+        const uploadsDir = path.join(__dirname, 'uploads');
+        const filePath = path.join(uploadsDir, uniqueFileName);
+        const base64Data = avatar.imageData;
 
-            fs.writeFile(filePath, base64Data, 'base64', (err) => {
-                if (err) {
-                    console.error('Error saving the image:', err);
-                } else {
-                    console.log('Image saved successfully:', filePath);
-                }
-            });
-
+        fs.writeFile(filePath, base64Data, 'base64', (err) => {
+            if (err) {
+                console.error('Error saving the image:', err);
+                return;
+            }
+            console.log('Image saved successfully:', filePath);
             relativePath = `/uploads/${uniqueFileName}`;
-        } else {
-            console.error('Invalid file type provided! Avatar set to null.');
-        }
+        });
     } else {
         console.log('No valid avatar provided. Proceeding without an avatar.');
     }
@@ -1901,7 +1898,7 @@ socket.on('createGroup', ({ groupName, invited, username, avatar }) => {
     db.all(findUsersSQL, queryValues, (err, rows) => {
         if (err) {
             console.error("Error fetching user IDs:", err);
-            groupCreationStatus.delete(socket.id);
+            groupCreationStatus.delete(socket.id);  // Reset flag in case of error
             return;
         }
 
@@ -1914,7 +1911,7 @@ socket.on('createGroup', ({ groupName, invited, username, avatar }) => {
 
         if (!userIds[username]) {
             console.error("Creator not found in users table.");
-            groupCreationStatus.delete(socket.id);
+            groupCreationStatus.delete(socket.id);  // Reset flag in case of error
             return;
         }
 
@@ -1930,7 +1927,7 @@ socket.on('createGroup', ({ groupName, invited, username, avatar }) => {
             db.all(blockCheckSQL, [...allUserIds, ...allUserIds], (err, blockRows) => {
                 if (err) {
                     console.error("Error checking block status:", err);
-                    groupCreationStatus.delete(socket.id);
+                    groupCreationStatus.delete(socket.id);  // Reset flag in case of error
                     return;
                 }
 
@@ -1945,41 +1942,61 @@ socket.on('createGroup', ({ groupName, invited, username, avatar }) => {
                 console.log("Blocked users map: ", blockedUsers);
 
                 const validInvitedUsers = invited.filter(user => {
-                    const invitedUserId = userIds[user];
-                    const blockerId = userIds[username];
-
+                    const invitedUserId = userIds[user]; // Get the ID for the invited user
+                    const blockerId = userIds[username]; // Get the ID for the blocker (the creator)
+                
+                    // Debugging output
                     console.log(`Checking user ${user} (ID: ${invitedUserId}) against blocker ${username} (ID: ${blockerId})`);
-
+                
+                    // Ensure both IDs are valid
                     if (invitedUserId && blockerId) {
-                        if (blockedUsers.has(blockerId) && blockedUsers.get(blockerId).has(invitedUserId)) {
-                            console.log(`User ${user} is blocked by blocker ${username}.`);
-                            return false;
+                        // Check if the blocker has blocked this invited user
+                        if (blockedUsers.has(blockerId)) {
+                            const isBlockedByBlocker = blockedUsers.get(blockerId).has(invitedUserId);
+                            console.log(`User ${user} is blocked by blocker ${username}: ${isBlockedByBlocker}`);
+                
+                            // Exclude the user if they are blocked by the blocker
+                            if (isBlockedByBlocker) return false;
                         }
-
+                
+                        // Check if the invited user is blocked by any other invited users
                         for (const otherUser of invited) {
-                            if (otherUser !== user) {
+                            if (otherUser !== user) { // Skip self-comparison
                                 const otherUserId = userIds[otherUser];
+                
+                                // Check if this user has blocked the other invited user
                                 if (blockedUsers.has(invitedUserId) && blockedUsers.get(invitedUserId).has(otherUserId)) {
                                     console.log(`User ${user} is blocked by invited user ${otherUser}`);
-                                    return false;
+                                    return false; // Exclude this user if blocked by another invited user
                                 }
                             }
                         }
                     }
-
-                    return true;
+                
+                    // Include the user if they are not blocked by the blocker or other invited users
+                    return true; 
                 });
-
+                
                 console.log("Valid invited users after block filter: ", validInvitedUsers);
-                createGroup(validInvitedUsers, relativePath, userIds, socketIds);
+                
+                console.log("Valid invited users after block filter: ", validInvitedUsers);
+                
+                console.log("Valid invited users after block filter: ", validInvitedUsers);
+                
+                
+                console.log("Valid invited users after block filter: ", validInvitedUsers);
+                
+                console.log("Valid invited users after block filter: ", validInvitedUsers);
+
+                createGroup(validInvitedUsers, relativePath, userIds); // Pass userIds to createGroup
             });
         } else {
             console.log("No invited users or block-check not needed, proceeding to group creation.");
-            createGroup(invited, relativePath, userIds, socketIds);
+            createGroup(invited, relativePath, userIds); // Pass userIds to createGroup
         }
     });
 
-    function createGroup(validInvitedUsers, relativePath, userIds, socketIds) {
+    function createGroup(validInvitedUsers, relativePath, userIds) {
         if (!validInvitedUsers || validInvitedUsers.length === 0) {
             console.log("No valid invited users to add, only creating the group for the creator.");
         }
@@ -1988,7 +2005,7 @@ socket.on('createGroup', ({ groupName, invited, username, avatar }) => {
         db.run(insertGroupSQL, [userIds[username], groupName, relativePath], function (err) {
             if (err) {
                 console.error("Error inserting group:", err);
-                groupCreationStatus.delete(socket.id);
+                groupCreationStatus.delete(socket.id);  // Reset flag in case of error
                 return;
             }
 
@@ -2026,11 +2043,9 @@ socket.on('createGroup', ({ groupName, invited, username, avatar }) => {
 
             socket.emit('groupCreated', { groupId, groupName });
             groupCreationStatus.delete(socket.id);
-        });
+        })
     }
 });
-
-
 
 
 

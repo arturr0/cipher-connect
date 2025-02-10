@@ -2630,45 +2630,35 @@ function customConfirm(inviting, cntr, groupName, groupInvitingName) {
 const dropdowns = document.querySelectorAll(".dropdown-container");
 
 document.addEventListener("touchstart", function (event) {
-    let clickedInsideDropdown = false;
+    let clickedDropdown = null;
 
+    // Check if the user clicked inside a dropdown
     dropdowns.forEach(dropdown => {
-        let content = dropdown.querySelector(".dropdown-content");
-
-        // If the tap is inside this dropdown, mark it
-        if (true) {
-            clickedInsideDropdown = true;
-
-            // Only toggle active if it's not already active
-            if (!content.classList.contains("active")) {
-                console.log("active");
-                content.classList.add("active");
-            } else {
-                console.log("remove active");
-                content.classList.remove("active");
-                document.getElementById("groupsContent").classList.add("dropdown-content");
-                document.getElementById("groupsContent").classList.add("dropdown");
-                // document.getElementById("groupsContent").style.maxHeight = "0px";
-            }
-        } else {
-            // Remove "active" from all other dropdowns
-            content.classList.remove("active");
-            
+        if (dropdown.contains(event.target)) {
+            clickedDropdown = dropdown;
         }
     });
 
-    // If the user touched outside all dropdowns, remove active from everything
-    if (!clickedInsideDropdown) {
-        console.log("remove active");
-        document.getElementById("groupsContent").classList.add("noHeight");
+    // Remove "active" from all dropdowns first
+    dropdowns.forEach(dropdown => {
+        let content = dropdown.querySelector(".dropdown-content");
+        content.classList.remove("active");
+    });
 
-        dropdowns.forEach(dropdown => {
-            console.log("ra");
-            dropdown.querySelector(".dropdown-content").classList.remove("active");
-            // document.getElementById("groupsContent").classList.add("dropdown-content");
-            // document.getElementById("groupsContent").classList.add("dropdown");
-        });
+    console.log("remove active");
+
+    // If the touch was inside a dropdown, add "active" ONLY AFTER removal
+    if (clickedDropdown) {
+        let content = clickedDropdown.querySelector(".dropdown-content");
+        if (!content.classList.contains("active")) {
+            console.log("active");
+            content.classList.add("active");
+        }
+        event.stopPropagation(); // Prevent re-triggering document's event
     }
 });
+
+
+
 
 });

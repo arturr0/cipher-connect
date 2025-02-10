@@ -2636,7 +2636,7 @@ document.addEventListener("touchstart", function (event) {
         let content = dropdown.querySelector(".dropdown-content");
 
         // If the tap is inside this dropdown, mark it
-        if (true) {
+        if (dropdown.contains(event.target)) {
             clickedInsideDropdown = true;
 
             // Only toggle active if it's not already active

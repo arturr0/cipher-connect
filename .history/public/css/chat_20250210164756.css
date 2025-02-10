@@ -1212,5 +1212,5 @@ input[type="checkbox"]:checked + label::after {
     opacity: 1;
 }
 .noHeight {
-  max-height: 0px;
+  height: 0px;
 }

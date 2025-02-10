@@ -37,7 +37,6 @@ document.addEventListener('DOMContentLoaded', () => {
         window.location.href = '/';
     });
     document.getElementById("group").addEventListener('click', () => {
-        console.log("click");
         socket.emit('give me friends to group', username);
         const modal = document.getElementById('createGroup');
         modal.style.visibility = 'visible'; // Make it visible immediately
@@ -2576,99 +2575,79 @@ function customConfirm(inviting, cntr, groupName, groupInvitingName) {
     });
 }
 
-// const dropdowns = document.querySelectorAll(".dropdown-container");
+    // const dropdowns = document.querySelectorAll(".dropdown-container");
 
-//     dropdowns.forEach(dropdown => {
-//         dropdown.addEventListener("touchstart", function (event) {
-//             event.stopPropagation(); // Prevent bubbling
-//             let content = this.querySelector(".dropdown-content");
-//             content.classList.toggle("active");
-//         });
-//     });
+    // dropdowns.forEach(dropdown => {
+    //     dropdown.addEventListener("touchstart", function (event) {
+    //         event.stopPropagation(); // Prevent bubbling
+    //         let content = this.querySelector(".dropdown-content");
 
-//     // Close dropdown when touching outside
-//     document.addEventListener("touchstart", function (event) {
-//         dropdowns.forEach(dropdown => {
-//             let content = dropdown.querySelector(".dropdown-content");
-//             if (!dropdown.contains(event.target)) {
-//                 content.classList.remove("active");
-//             }
-//         });
-//     });
+    //         // Toggle active state
+    //         content.classList.toggle("active");
+    //     });
+    // });
 
-// const dropdowns = document.querySelectorAll(".dropdown-container");
+    // // Close dropdown when touching outside
+    // document.addEventListener("touchstart", function () {
+    //     document.querySelectorAll(".dropdown-content").forEach(content => {
+    //         content.classList.remove("active");
+    //     });
+    // });
 
-//     dropdowns.forEach(dropdown => {
-//         dropdown.addEventListener("touchstart", function (event) {
-//             // event.stopPropagation(); // Prevent bubbling
-//             let content = this.querySelector(".dropdown-content");
+    // const dropdowns = document.querySelectorAll(".dropdown-container");
 
-//             // Ensure proper behavior
-//             if (!content.classList.contains("active")) {
-//                 console.log("active");
-//                 content.classList.add("active");
-//             }
-//         });
-//     });
+    // dropdowns.forEach(dropdown => {
+    //     let content = dropdown.querySelector(".dropdown-content");
 
-//     // Close dropdown when touching outside
-//     document.addEventListener("touchstart", function (event) {
-//         dropdowns.forEach(dropdown => {
-//             let content = dropdown.querySelector(".dropdown-content");
-            
-//             // Ensure we only close if touching outside the dropdown
-//             if (!dropdown.contains(event.target)) {
-//                 console.log("remove active");
-//                 // content.classList.remove("active");
-//                 // document.querySelector('.dropdown-content').classList.add('hide');
-//                 // document.querySelector('.dropdown-content').classList.add('.dropdown-content');
-//                 document.getElementById("groupsContent").classList.remove("active");
-                
-//             }
-//         });
-//     });
-const dropdowns = document.querySelectorAll(".dropdown-container");
+    //     dropdown.addEventListener("touchstart", function (event) {
+    //         event.stopPropagation(); // Prevents event bubbling
+    //         content.classList.toggle("active");
+    //     });
+    // });
 
+    // // Close dropdown when touching outside
+    // document.addEventListener("touchstart", function (event) {
+    //     if (!event.target.closest(".dropdown-container")) {
+    //         document.querySelectorAll(".dropdown-content").forEach(content => {
+    //             content.classList.remove("active");
+    //         });
+    //     }
+    // }, { passive: true });
+
+    const dropdowns = document.querySelectorAll(".dropdown-container");
+
+dropdowns.forEach(dropdown => {
+    // Use touchstart event to trigger dropdown visibility
+    dropdown.addEventListener("touchstart", function (event) {
+        event.stopPropagation(); // Prevent event from bubbling up to the document
+
+        let content = this.querySelector(".dropdown-content");
+
+        // Trigger the function only on touchstart events
+        content.classList.toggle("active");
+    });
+});
+
+// Close dropdown when touching outside
 document.addEventListener("touchstart", function (event) {
-    let clickedInsideDropdown = false;
-
     dropdowns.forEach(dropdown => {
         let content = dropdown.querySelector(".dropdown-content");
 
-        // If the tap is inside this dropdown, mark it
-        if (true) {
-            clickedInsideDropdown = true;
-
-            // Only toggle active if it's not already active
-            if (!content.classList.contains("active")) {
-                console.log("active");
-                content.classList.add("active");
-            } else {
-                console.log("remove active");
-                content.classList.remove("active");
-                document.getElementById("groupsContent").classList.add("dropdown-content");
-                document.getElementById("groupsContent").classList.add("dropdown");
-                // document.getElementById("groupsContent").style.maxHeight = "0px";
-            }
-        } else {
-            // Remove "active" from all other dropdowns
+        // Close dropdown if touched outside of dropdown
+        if (!dropdown.contains(event.target)) {
             content.classList.remove("active");
-            
         }
     });
-
-    // If the user touched outside all dropdowns, remove active from everything
-    if (!clickedInsideDropdown) {
-        console.log("remove active");
-        document.getElementById("groupsContent").classList.add("noHeight");
-
-        dropdowns.forEach(dropdown => {
-            console.log("ra");
-            dropdown.querySelector(".dropdown-content").classList.remove("active");
-            // document.getElementById("groupsContent").classList.add("dropdown-content");
-            // document.getElementById("groupsContent").classList.add("dropdown");
-        });
-    }
 });
+
+// Prevent any touch events inside the dropdown content from closing the dropdown
+document.querySelectorAll('.dropdown-content').forEach(content => {
+    content.addEventListener('touchstart', function(event) {
+        event.stopPropagation(); // Prevent further event propagation when touching inside
+    });
+});
+
+
+
 
 });
