@@ -43,8 +43,6 @@ document.addEventListener('DOMContentLoaded', () => {
         modal.style.visibility = 'visible'; // Make it visible immediately
         // menuGroups.classList.remove('dropdown-content');
         // menuGroups.classList.remove('dropdown');
-        
-
         menuInvitation.classList.remove('dropdown-content');
         menuInvitation.classList.remove('dropdown');
         menuMessages.classList.remove('dropdown-content');
@@ -2631,50 +2629,46 @@ function customConfirm(inviting, cntr, groupName, groupInvitingName) {
 //     });
 const dropdowns = document.querySelectorAll(".dropdown-container");
 
-document.addEventListener("touchstart", function (event) {
-    let clickedInsideDropdown = false;
+// document.addEventListener("touchstart", function (event) {
+//     let clickedInsideDropdown = false;
 
-    dropdowns.forEach(dropdown => {
-        let content = dropdown.querySelector(".dropdown-content");
+//     dropdowns.forEach(dropdown => {
+//         let content = dropdown.querySelector(".dropdown-content");
 
-        // If the tap is inside this dropdown, mark it
-        if (true) {
-            clickedInsideDropdown = true;
+//         // If the tap is inside this dropdown, mark it
+//         if (true) {
+//             clickedInsideDropdown = true;
 
-            // Only toggle active if it's not already active
-            if (!content.classList.contains("active")) {
-                console.log("active");
-                content.classList.add("active");
-            } else {
-                console.log("remove active");
-                // content.classList.remove("active");
-                document.getElementById("groupsContent").classList.add("dropdown-content");
-                document.getElementById("groupsContent").classList.add("dropdown");
-                // document.getElementById("groupsContent").style.maxHeight = "0px";
-            }
-        } else {
-            // Remove "active" from all other dropdowns
-            content.classList.remove("active");
+//             // Only toggle active if it's not already active
+//             if (!content.classList.contains("active")) {
+//                 console.log("active");
+//                 content.classList.add("active");
+//             } else {
+//                 console.log("remove active");
+//                 content.classList.remove("active");
+//                 document.getElementById("groupsContent").classList.add("dropdown-content");
+//                 document.getElementById("groupsContent").classList.add("dropdown");
+//                 // document.getElementById("groupsContent").style.maxHeight = "0px";
+//             }
+//         } else {
+//             // Remove "active" from all other dropdowns
+//             content.classList.remove("active");
             
-        }
-    });
+//         }
+//     });
 
-    // If the user touched outside all dropdowns, remove active from everything
-    if (!clickedInsideDropdown) {
-        console.log("remove active");
-        // document.getElementById("groupsContent").classList.add("noHeight");
+//     // If the user touched outside all dropdowns, remove active from everything
+//     if (!clickedInsideDropdown) {
+//         console.log("remove active");
+//         document.getElementById("groupsContent").classList.add("noHeight");
 
-        dropdowns.forEach(dropdown => {
-            console.log("ra");
-            dropdown.querySelector(".dropdown-content").classList.remove("active");
-            // document.getElementById("groupsContent").classList.add("dropdown-content");
-            // document.getElementById("groupsContent").classList.add("dropdown");
-        });
-    }
-});
-    // Select all elements that need the click event
-document.querySelectorAll('.dropdown-content').forEach(element => element.addEventListener('click', function() {
-    element.classList.add('hide');
-}));
+//         dropdowns.forEach(dropdown => {
+//             console.log("ra");
+//             dropdown.querySelector(".dropdown-content").classList.remove("active");
+//             // document.getElementById("groupsContent").classList.add("dropdown-content");
+//             // document.getElementById("groupsContent").classList.add("dropdown");
+//         });
+//     }
+// });
 
 });

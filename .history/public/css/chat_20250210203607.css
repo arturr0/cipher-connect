@@ -339,7 +339,7 @@ h1 a {
 }
 
 /* Show dropdown on hover with smooth scroll down transition */
-.dropdown-container:hover .dropdown-content {
+.dropdown-container:hover {
   max-height: 200px;
   visibility: visible;
   opacity: 1;
@@ -460,10 +460,9 @@ h1 a {
 /* Hide dropdown with sliding effect */
 .dropdown-container .dropdown-content.hide {
   max-height: 0; /* Hide the content */
-  /* opacity: 0; Fade out */
-  /* visibility: hidden; Prevent interaction */
-  /* transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out, visibility 0s 0.3s; Smooth transition */
-  transition: max-height 0.7s ease;
+  opacity: 0; /* Fade out */
+  visibility: hidden; /* Prevent interaction */
+  transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out, visibility 0s 0.3s; /* Smooth transition */
 }
 
 /* #friends {

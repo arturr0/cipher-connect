@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
         modal.style.visibility = 'visible'; // Make it visible immediately
         // menuGroups.classList.remove('dropdown-content');
         // menuGroups.classList.remove('dropdown');
-        
+        document.getElementById('groupsContent').classList.add('hide');
 
         menuInvitation.classList.remove('dropdown-content');
         menuInvitation.classList.remove('dropdown');
@@ -2674,7 +2674,7 @@ document.addEventListener("touchstart", function (event) {
 });
     // Select all elements that need the click event
 document.querySelectorAll('.dropdown-content').forEach(element => element.addEventListener('click', function() {
-    element.classList.add('hide');
+    console.log('Element clicked');
 }));
 
 });

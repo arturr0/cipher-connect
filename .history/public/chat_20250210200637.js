@@ -43,8 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
         modal.style.visibility = 'visible'; // Make it visible immediately
         // menuGroups.classList.remove('dropdown-content');
         // menuGroups.classList.remove('dropdown');
-        
-
+        menuGroups.classList.add('noHeight');
         menuInvitation.classList.remove('dropdown-content');
         menuInvitation.classList.remove('dropdown');
         menuMessages.classList.remove('dropdown-content');
@@ -2647,9 +2646,9 @@ document.addEventListener("touchstart", function (event) {
                 content.classList.add("active");
             } else {
                 console.log("remove active");
-                // content.classList.remove("active");
-                document.getElementById("groupsContent").classList.add("dropdown-content");
-                document.getElementById("groupsContent").classList.add("dropdown");
+                content.classList.remove("active");
+                // document.getElementById("groupsContent").classList.add("dropdown-content");
+                // document.getElementById("groupsContent").classList.add("dropdown");
                 // document.getElementById("groupsContent").style.maxHeight = "0px";
             }
         } else {
@@ -2662,7 +2661,7 @@ document.addEventListener("touchstart", function (event) {
     // If the user touched outside all dropdowns, remove active from everything
     if (!clickedInsideDropdown) {
         console.log("remove active");
-        // document.getElementById("groupsContent").classList.add("noHeight");
+        document.getElementById("groupsContent").classList.add("noHeight");
 
         dropdowns.forEach(dropdown => {
             console.log("ra");
@@ -2672,9 +2671,5 @@ document.addEventListener("touchstart", function (event) {
         });
     }
 });
-    // Select all elements that need the click event
-document.querySelectorAll('.dropdown-content').forEach(element => element.addEventListener('click', function() {
-    element.classList.add('hide');
-}));
 
 });

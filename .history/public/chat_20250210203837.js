@@ -41,10 +41,8 @@ document.addEventListener('DOMContentLoaded', () => {
         socket.emit('give me friends to group', username);
         const modal = document.getElementById('createGroup');
         modal.style.visibility = 'visible'; // Make it visible immediately
-        // menuGroups.classList.remove('dropdown-content');
-        // menuGroups.classList.remove('dropdown');
-        
-
+        menuGroups.classList.remove('dropdown-content');
+        menuGroups.classList.remove('dropdown');
         menuInvitation.classList.remove('dropdown-content');
         menuInvitation.classList.remove('dropdown');
         menuMessages.classList.remove('dropdown-content');
@@ -2672,9 +2670,5 @@ document.addEventListener("touchstart", function (event) {
         });
     }
 });
-    // Select all elements that need the click event
-document.querySelectorAll('.dropdown-content').forEach(element => element.addEventListener('click', function() {
-    element.classList.add('hide');
-}));
 
 });

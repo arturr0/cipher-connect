@@ -41,8 +41,8 @@ document.addEventListener('DOMContentLoaded', () => {
         socket.emit('give me friends to group', username);
         const modal = document.getElementById('createGroup');
         modal.style.visibility = 'visible'; // Make it visible immediately
-        // menuGroups.classList.remove('dropdown-content');
-        // menuGroups.classList.remove('dropdown');
+        menuGroups.classList.remove('dropdown-content');
+        menuGroups.classList.remove('dropdown');
         
 
         menuInvitation.classList.remove('dropdown-content');

@@ -329,11 +329,11 @@ h1 a {
   width: 10vw;
   max-height: 0;
   overflow: hidden;
-  /* visibility: hidden; */
-  /* opacity: 0; */
-  /* transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out, visibility 0s 0.3s; */
+  visibility: hidden;
+  opacity: 0;
+  transition: 200px 0.3s ease-in-out, opacity 0.3s ease-in-out, visibility 0s 0.3s;
   z-index: 20;
-  transition: max-height 0.7s ease;
+  /* transition: max-height 0.7s ease; */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   background: #0483c9;
 }
@@ -460,10 +460,9 @@ h1 a {
 /* Hide dropdown with sliding effect */
 .dropdown-container .dropdown-content.hide {
   max-height: 0; /* Hide the content */
-  /* opacity: 0; Fade out */
-  /* visibility: hidden; Prevent interaction */
-  /* transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out, visibility 0s 0.3s; Smooth transition */
-  transition: max-height 0.7s ease;
+  opacity: 0; /* Fade out */
+  visibility: hidden; /* Prevent interaction */
+  transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out, visibility 0s 0.3s; /* Smooth transition */
 }
 
 /* #friends {
@@ -1212,6 +1211,6 @@ input[type="checkbox"]:checked + label::after {
     visibility: visible;
     opacity: 1;
 }
-.noHeight {
+/* .noHeight {
   max-height: 0px;
-}
+} */

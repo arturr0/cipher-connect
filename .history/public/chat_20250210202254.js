@@ -37,14 +37,11 @@ document.addEventListener('DOMContentLoaded', () => {
         window.location.href = '/';
     });
     document.getElementById("group").addEventListener('click', () => {
-        console.log("click");
         socket.emit('give me friends to group', username);
         const modal = document.getElementById('createGroup');
         modal.style.visibility = 'visible'; // Make it visible immediately
-        // menuGroups.classList.remove('dropdown-content');
-        // menuGroups.classList.remove('dropdown');
-        
-
+        menuGroups.classList.remove('dropdown-content');
+        menuGroups.classList.remove('dropdown');
         menuInvitation.classList.remove('dropdown-content');
         menuInvitation.classList.remove('dropdown');
         menuMessages.classList.remove('dropdown-content');
@@ -650,7 +647,7 @@ document.addEventListener('DOMContentLoaded', () => {
             sendButton.dataset.groupId = data.groupId;
             sendButton.dataset.groupName = data.groupName;
             const sendIcon = document.createElement('i');
-            sendIcon.classList.add('icon-chat');
+            sendIcon.classList.add('icon-comment');
             sendButton.appendChild(sendIcon);
             buttonsDiv.appendChild(sendButton);
     
@@ -1210,7 +1207,7 @@ function loadImageAsync(src) {
             sendButton.classList.add('send');
             sendButton.value = friend.name;
             const sendIcon = document.createElement('i');
-            sendIcon.classList.add('icon-chat');
+            sendIcon.classList.add('icon-comment');
             sendButton.appendChild(sendIcon);
             buttonsDiv.appendChild(sendButton);
     
@@ -1443,7 +1440,7 @@ function loadImageAsync(src) {
             sendButton.dataset.groupId = Mygroup.groupId;
             sendButton.dataset.groupName = Mygroup.groupName;
             const sendIcon = document.createElement('i');
-            sendIcon.classList.add('icon-chat');
+            sendIcon.classList.add('icon-comment');
             sendButton.appendChild(sendIcon);
             buttonsDiv.appendChild(sendButton);
     
@@ -1745,7 +1742,7 @@ socket.on('foundUsers', async (founded) => {
         sendButton.classList.add('send');
         sendButton.value = user.username;
         const sendIcon = document.createElement('i');
-        sendIcon.classList.add('icon-chat');
+        sendIcon.classList.add('icon-comment');
         sendButton.appendChild(sendIcon);
         buttonsDiv.appendChild(sendButton);
 
@@ -2578,103 +2575,33 @@ function customConfirm(inviting, cntr, groupName, groupInvitingName) {
     });
 }
 
-// const dropdowns = document.querySelectorAll(".dropdown-container");
+// Example usage
+// document.getElementById('showConfirm').onclick = async function() {
+//     const data = { from: 'John' }; // Example data
+//     const result = await customConfirm(`${data.from} wants to be your friend. Do you accept?`);
 
-//     dropdowns.forEach(dropdown => {
-//         dropdown.addEventListener("touchstart", function (event) {
-//             event.stopPropagation(); // Prevent bubbling
-//             let content = this.querySelector(".dropdown-content");
-//             content.classList.toggle("active");
-//         });
-//     });
-
-//     // Close dropdown when touching outside
-//     document.addEventListener("touchstart", function (event) {
-//         dropdowns.forEach(dropdown => {
-//             let content = dropdown.querySelector(".dropdown-content");
-//             if (!dropdown.contains(event.target)) {
-//                 content.classList.remove("active");
-//             }
-//         });
-//     });
-
-// const dropdowns = document.querySelectorAll(".dropdown-container");
-
-//     dropdowns.forEach(dropdown => {
-//         dropdown.addEventListener("touchstart", function (event) {
-//             // event.stopPropagation(); // Prevent bubbling
-//             let content = this.querySelector(".dropdown-content");
-
-//             // Ensure proper behavior
-//             if (!content.classList.contains("active")) {
-//                 console.log("active");
-//                 content.classList.add("active");
-//             }
-//         });
-//     });
-
-//     // Close dropdown when touching outside
-//     document.addEventListener("touchstart", function (event) {
-//         dropdowns.forEach(dropdown => {
-//             let content = dropdown.querySelector(".dropdown-content");
+//     if (result === 'yes') {
+//         console.log("User accepted the friend request.");
+//     } else if (result === 'no') {
+//         console.log("User declined the friend request.");
+//     } else {
+//         console.log("User canceled the action.");
+//     }
+// };
+// document.querySelector('.dropdownToggle').addEventListener('click', function() {
+//     const dropdownContent = this.nextElementSibling; // Get the next sibling (.dropdown-content)
+    
+//     if (dropdownContent.classList.contains('hide')) {
+//         dropdownContent.classList.remove('hide'); // Show the content
+//     } else {
+//         dropdownContent.classList.add('hide'); // Hide the content
+//         document.querySelector('.dropdown-content').addEventListener('transitionend', function(event) {
+//             // Check which property has finished transitioning
+//             document.querySelector('.dropdown-content').classList.remove('hide');
             
-//             // Ensure we only close if touching outside the dropdown
-//             if (!dropdown.contains(event.target)) {
-//                 console.log("remove active");
-//                 // content.classList.remove("active");
-//                 // document.querySelector('.dropdown-content').classList.add('hide');
-//                 // document.querySelector('.dropdown-content').classList.add('.dropdown-content');
-//                 document.getElementById("groupsContent").classList.remove("active");
-                
-//             }
 //         });
-//     });
-const dropdowns = document.querySelectorAll(".dropdown-container");
-
-document.addEventListener("touchstart", function (event) {
-    let clickedInsideDropdown = false;
-
-    dropdowns.forEach(dropdown => {
-        let content = dropdown.querySelector(".dropdown-content");
-
-        // If the tap is inside this dropdown, mark it
-        if (true) {
-            clickedInsideDropdown = true;
-
-            // Only toggle active if it's not already active
-            if (!content.classList.contains("active")) {
-                console.log("active");
-                content.classList.add("active");
-            } else {
-                console.log("remove active");
-                // content.classList.remove("active");
-                document.getElementById("groupsContent").classList.add("dropdown-content");
-                document.getElementById("groupsContent").classList.add("dropdown");
-                // document.getElementById("groupsContent").style.maxHeight = "0px";
-            }
-        } else {
-            // Remove "active" from all other dropdowns
-            content.classList.remove("active");
-            
-        }
-    });
-
-    // If the user touched outside all dropdowns, remove active from everything
-    if (!clickedInsideDropdown) {
-        console.log("remove active");
-        // document.getElementById("groupsContent").classList.add("noHeight");
-
-        dropdowns.forEach(dropdown => {
-            console.log("ra");
-            dropdown.querySelector(".dropdown-content").classList.remove("active");
-            // document.getElementById("groupsContent").classList.add("dropdown-content");
-            // document.getElementById("groupsContent").classList.add("dropdown");
-        });
-    }
-});
-    // Select all elements that need the click event
-document.querySelectorAll('.dropdown-content').forEach(element => element.addEventListener('click', function() {
-    element.classList.add('hide');
-}));
+        
+//     }
+// });
 
 });
