@@ -1275,9 +1275,8 @@ function loadImageAsync(src) {
                             clonedInitials.id = 'receiverInitials';
                             receiverAvatar.appendChild(clonedInitials);
                         }
-                        const messagesReqtype = 'button';
-
-                        socket.emit('sendMeMessages', username, receiver, messagesReqtype);
+    
+                        socket.emit('sendMeMessages', username, receiver);
                     
                 
             });
@@ -1813,8 +1812,8 @@ socket.on('foundUsers', async (founded) => {
                     } else {
                         console.warn('Profile container not found.');
                     }
-                    const messagesReqtype = 'button';
-                    socket.emit('sendMeMessages', username, receiver, messagesReqtype);
+            
+                    socket.emit('sendMeMessages', username, receiver);
                 }
             });
         });
@@ -2057,7 +2056,7 @@ messagesContent.addEventListener('click', (event) => {
         
         group = null;
         const messagesReqtype = 'menu';
-        socket.emit('sendMeMessages', username, receiver, messagesReqtype);
+        socket.emit('sendMeMessages', username, receiver);
     } else if (unreadMessage.hasAttribute('group')) {
         const groupId = unreadMessage.getAttribute('group');
         console.log('Clicked group:', groupId);
@@ -2404,7 +2403,6 @@ function adjustMarginForScrollbar() {
 
 socket.on('messagesResponse', (decryptedMessages) => {
     console.log(decryptedMessages);
-
     if (decryptedMessages.unreadCount > 0) {
         // Select all divs with the class "yourClassName"
         document.querySelectorAll('.unreadMessages').forEach(div => {
@@ -2527,9 +2525,6 @@ socket.on('messagesResponse', (decryptedMessages) => {
         }, { once: true }); 
         
     });
-    if (decryptedMessages.type == 'button') document.querySelector(`.unreadMessages[data-username="${decryptedMessages.receiverUsername}"]`)?.remove();
-
-
 })
 function closeModal() {
     console.log("click");

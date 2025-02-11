@@ -692,6 +692,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 //socket.emit('findUsers', searchUser); // This might be adjusted based on your logic
                 const groupId = group;
                 //socket.emit('group selected', username, group);
+                document.querySelector(`.unreadMessages[group="${groupId}"]`)?.remove();
                 socket.emit('requestGroupMessages', groupId);
                 // Assume that the server will respond with found users
                 console.log("click", groupId);
@@ -1275,9 +1276,10 @@ function loadImageAsync(src) {
                             clonedInitials.id = 'receiverInitials';
                             receiverAvatar.appendChild(clonedInitials);
                         }
-                        const messagesReqtype = 'button';
+    
+                        socket.emit('sendMeMessages', username, receiver);
+                        document.querySelector(`.unreadMessages[data-username="${receiver}"]`)?.remove();
 
-                        socket.emit('sendMeMessages', username, receiver, messagesReqtype);
                     
                 
             });
@@ -1482,7 +1484,8 @@ function loadImageAsync(src) {
                 group = sendButton.dataset.groupId;
                 const groupId = sendButton.dataset.groupId;
                 socket.emit('requestGroupMessages', groupId);
-                
+                document.querySelector(`.unreadMessages[group="${groupId}"]`)?.remove();
+
                 
             });
             
@@ -1813,8 +1816,10 @@ socket.on('foundUsers', async (founded) => {
                     } else {
                         console.warn('Profile container not found.');
                     }
-                    const messagesReqtype = 'button';
-                    socket.emit('sendMeMessages', username, receiver, messagesReqtype);
+            
+                    socket.emit('sendMeMessages', username, receiver);
+                    document.querySelector(`.unreadMessages[data-username="${receiver}"]`)?.remove();
+
                 }
             });
         });
@@ -2057,7 +2062,7 @@ messagesContent.addEventListener('click', (event) => {
         
         group = null;
         const messagesReqtype = 'menu';
-        socket.emit('sendMeMessages', username, receiver, messagesReqtype);
+        socket.emit('sendMeMessages', username, receiver);
     } else if (unreadMessage.hasAttribute('group')) {
         const groupId = unreadMessage.getAttribute('group');
         console.log('Clicked group:', groupId);
@@ -2404,7 +2409,6 @@ function adjustMarginForScrollbar() {
 
 socket.on('messagesResponse', (decryptedMessages) => {
     console.log(decryptedMessages);
-
     if (decryptedMessages.unreadCount > 0) {
         // Select all divs with the class "yourClassName"
         document.querySelectorAll('.unreadMessages').forEach(div => {
@@ -2527,9 +2531,6 @@ socket.on('messagesResponse', (decryptedMessages) => {
         }, { once: true }); 
         
     });
-    if (decryptedMessages.type == 'button') document.querySelector(`.unreadMessages[data-username="${decryptedMessages.receiverUsername}"]`)?.remove();
-
-
 })
 function closeModal() {
     console.log("click");

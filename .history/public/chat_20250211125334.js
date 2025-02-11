@@ -2404,6 +2404,7 @@ function adjustMarginForScrollbar() {
 
 socket.on('messagesResponse', (decryptedMessages) => {
     console.log(decryptedMessages);
+    if (decryptedMessages.type == 'button') document.querySelector(`.unreadMessages[data-username="${decryptedMessages.username}"]`)?.remove();
 
     if (decryptedMessages.unreadCount > 0) {
         // Select all divs with the class "yourClassName"
@@ -2527,8 +2528,6 @@ socket.on('messagesResponse', (decryptedMessages) => {
         }, { once: true }); 
         
     });
-    if (decryptedMessages.type == 'button') document.querySelector(`.unreadMessages[data-username="${decryptedMessages.receiverUsername}"]`)?.remove();
-
 
 })
 function closeModal() {
