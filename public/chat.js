@@ -1,4 +1,4 @@
-const socket = io.connect('https://pine-lucky-bison.glitch.me');
+const socket = io.connect('https://cipherconnect-1.onrender.com');
 const baseUrl = window.location.origin;
 document.addEventListener('DOMContentLoaded', () => {
     const signal = new Audio('sound.mp3');
