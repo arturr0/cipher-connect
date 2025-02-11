@@ -2039,22 +2039,21 @@ messagesContent.addEventListener('click', (event) => {
     // messCounter.textContent = updatedCounter;
 
     // Check if the element has `data-username` or `group` attributes and handle accordingly
-    if (unreadMessage.hasAttribute('data-username')) {
-        isTypingVisible = false;
-        receiver = unreadMessage.getAttribute('data-username');
-        console.log('Clicked username:', receiver);
+    // if (unreadMessage.hasAttribute('data-username')) {
+    //     isTypingVisible = false;
+    //     receiver = unreadMessage.getAttribute('data-username');
+    //     console.log('Clicked username:', receiver);
         
-        group = null;
-        const messagesReqtype = 'menu';
-        socket.emit('sendMeMessages', username, receiver);
-    } else if (unreadMessage.hasAttribute('group')) {
-        const groupId = unreadMessage.getAttribute('group');
-        console.log('Clicked group:', groupId);
-        isTypingVisible = false;
-        receiver = '';
-        group = groupId;
-        socket.emit('requestGroupMessages', groupId);
-    }
+    //     group = null;
+    //     socket.emit('sendMeMessages', username, receiver);
+    // } else if (unreadMessage.hasAttribute('group')) {
+    //     const groupId = unreadMessage.getAttribute('group');
+    //     console.log('Clicked group:', groupId);
+    //     isTypingVisible = false;
+    //     receiver = '';
+    //     group = groupId;
+    //     socket.emit('requestGroupMessages', groupId);
+    // }
 });
 
 // Define the common function to handle clicks
@@ -2404,7 +2403,7 @@ socket.on('messagesResponse', (decryptedMessages) => {
                 //console.log(messageValue);
                 messCounter.setAttribute('value', messageValue);
                 messCounter.textContent = messageValue; 
-                // div.remove();
+                div.remove();
             }
         });
     }
@@ -2502,18 +2501,7 @@ socket.on('messagesResponse', (decryptedMessages) => {
             chat.appendChild(recDiv);
             jQuery("#message-container").scrollTop(jQuery("#message-container")[0].scrollHeight);
         }
-        document.getElementById("messagesContent").addEventListener("transitionend", function(event) {
-            const parent = event.target;
-            const child = parent.querySelector(`[data-username="${decryptedMessages.receiverUsername}"]`);
-            if (child) {
-                console.log("remove");
-                child.remove();
-                document.querySelectorAll('.dropdown-content').forEach(element => {
-                    element.classList.remove('hide');
-                });
-            }
-        }, { once: true }); // Removes the listener after it fires once
-        
+
     });
 })
 function closeModal() {

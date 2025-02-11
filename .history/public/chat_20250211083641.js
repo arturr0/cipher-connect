@@ -2504,7 +2504,7 @@ socket.on('messagesResponse', (decryptedMessages) => {
         }
         document.getElementById("messagesContent").addEventListener("transitionend", function(event) {
             const parent = event.target;
-            const child = parent.querySelector(`[data-username="${decryptedMessages.receiverUsername}"]`);
+            const child = parent.querySelector(`[data-username="${decryptedMessages.receiverUsername}"]`); // Match specific attribute value
             if (child) {
                 console.log("remove");
                 child.remove();
@@ -2512,9 +2512,9 @@ socket.on('messagesResponse', (decryptedMessages) => {
                     element.classList.remove('hide');
                 });
             }
-        }, { once: true }); // Removes the listener after it fires once
-        
+        });
     });
+    
 })
 function closeModal() {
     console.log("click");

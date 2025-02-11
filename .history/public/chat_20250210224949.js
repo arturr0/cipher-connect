@@ -2023,7 +2023,7 @@ messagesContent.addEventListener('click', (event) => {
 
     // Hide dropdown menu and reset after transition
     const dropdownContent = document.querySelector('.dropdown-content');
-    dropdownContent.classList.add('hide');
+    //dropdownContent.classList.add('hide');
     dropdownContent.addEventListener('transitionend', function transitionEnd(event) {
         if (event.propertyName === 'opacity') { // Ensure we're tracking the opacity transition
             //dropdownContent.classList.remove('hide');
@@ -2045,7 +2045,6 @@ messagesContent.addEventListener('click', (event) => {
         console.log('Clicked username:', receiver);
         
         group = null;
-        const messagesReqtype = 'menu';
         socket.emit('sendMeMessages', username, receiver);
     } else if (unreadMessage.hasAttribute('group')) {
         const groupId = unreadMessage.getAttribute('group');
@@ -2404,7 +2403,7 @@ socket.on('messagesResponse', (decryptedMessages) => {
                 //console.log(messageValue);
                 messCounter.setAttribute('value', messageValue);
                 messCounter.textContent = messageValue; 
-                // div.remove();
+                div.remove();
             }
         });
     }
@@ -2502,18 +2501,7 @@ socket.on('messagesResponse', (decryptedMessages) => {
             chat.appendChild(recDiv);
             jQuery("#message-container").scrollTop(jQuery("#message-container")[0].scrollHeight);
         }
-        document.getElementById("messagesContent").addEventListener("transitionend", function(event) {
-            const parent = event.target;
-            const child = parent.querySelector(`[data-username="${decryptedMessages.receiverUsername}"]`);
-            if (child) {
-                console.log("remove");
-                child.remove();
-                document.querySelectorAll('.dropdown-content').forEach(element => {
-                    element.classList.remove('hide');
-                });
-            }
-        }, { once: true }); // Removes the listener after it fires once
-        
+
     });
 })
 function closeModal() {
