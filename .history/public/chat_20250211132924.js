@@ -538,7 +538,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }, { once: true });    
         });
-        if (data.type == 'button') document.querySelector(`.unreadMessages[group="${groupId}"]`)?.remove();
+
     });
     socket.on('disconnectedUserGroups', (data) => {
         
