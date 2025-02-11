@@ -2,20 +2,6 @@
 
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
-@media (hover: hover) {
-	button:hover {
-		opacity: 0.5;
-	}
-	.dropdown-container:hover .dropdown-content {
-		max-height: 200px;
-		visibility: visible;
-		opacity: 1;
-		transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
-		/* z-index: 20;
-		animation: setOverflow 0s ease 0.3s forwards; */
-	}
-}
-  
 @media only screen and (max-device-width: 768px) and (orientation: portrait) {
 	body {
 		height: 100%;
@@ -28,9 +14,6 @@
 	#mainContent #chatContainer {
 		height: auto;
 		width: calc(100% - 40vw);
-	}
-	#chat #message-container {
-		justify-content: flex-end;
 	}
 	#mainContent #accountContainer {
 		width: calc(100% - 40vw);
@@ -77,12 +60,9 @@
 		margin-top: 0;
 		left: 0;
 	}
-	#account #avatarOrInitials {
+	#mainContent #initials {
 		height: auto;
 		margin-top: 0;
-		display: none;
-	}
-	#avatarOrInitials #avatar {
 		display: none;
 	}
 	#mainContent #accountContent {
@@ -128,7 +108,7 @@
 	opacity: 1;
 	} */
 	.dropdown-container #invitationContent, .dropdown-container #messagesContent, .dropdown-container #groupsContent {
-		width: 20vw;
+		width: auto;
 	}
 }
 @media only screen and (max-device-width: 1200px) and (orientation: landscape) {
@@ -164,7 +144,9 @@ button {
 	transition: opacity 0.3s ease;
 	
 }
-
+button:hover {
+	opacity: 0.5;
+}
 .icon-user-plus, .icon-comment, .icon-block-1 {
 	color: black;
 }
@@ -367,10 +349,10 @@ h1 a {
 
 /* Show dropdown on hover with smooth scroll down transition */
 .dropdown-container:hover .dropdown-content {
-	/* max-height: 200px; */
-	/* visibility: visible; */
-	/* opacity: 1; */
-	/* transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out; */
+	max-height: 200px;
+	visibility: visible;
+	opacity: 1;
+	transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
 	z-index: 20;
 	animation: setOverflow 0s ease 0.3s forwards;
 }

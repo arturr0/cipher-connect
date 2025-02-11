@@ -77,12 +77,9 @@
 		margin-top: 0;
 		left: 0;
 	}
-	#account #avatarOrInitials {
+	#mainContent #initials {
 		height: auto;
 		margin-top: 0;
-		display: none;
-	}
-	#avatarOrInitials #avatar {
 		display: none;
 	}
 	#mainContent #accountContent {
@@ -128,7 +125,7 @@
 	opacity: 1;
 	} */
 	.dropdown-container #invitationContent, .dropdown-container #messagesContent, .dropdown-container #groupsContent {
-		width: 20vw;
+		width: auto;
 	}
 }
 @media only screen and (max-device-width: 1200px) and (orientation: landscape) {

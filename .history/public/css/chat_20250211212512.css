@@ -128,7 +128,7 @@
 	opacity: 1;
 	} */
 	.dropdown-container #invitationContent, .dropdown-container #messagesContent, .dropdown-container #groupsContent {
-		width: 20vw;
+		width: auto;
 	}
 }
 @media only screen and (max-device-width: 1200px) and (orientation: landscape) {
