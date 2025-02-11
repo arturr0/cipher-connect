@@ -27,9 +27,9 @@
 	#mainContent #scrolledFriends {
 		width: 100%;
 	}
-	/* #mainContent #friends.move-left {
+	#mainContent #friends.move-left {
 		left: 0;
-	} */
+	}
 	#mainContent #account {
 		border: none;
 		padding: 0;
@@ -42,12 +42,7 @@
 	}
 	#mainContent #friends {
 		width: 40vw;
-		background: none;
 		/* height: 100%; */
-	}
-	#mainContent #friends.move-left {
-		/* left: +25vw; */
-		left: +40vw;
 	}
 	#mainContent .dropdownToggle {
 		height: auto;
@@ -77,9 +72,9 @@
 	#mainContent #search-input {
 		width: 30vw;
 	}
-	/* #mainContent #searchUsers {
-		width: auto;
-	} */
+	#mainContent #searchUsers {
+		width: 40vw;
+	}
 	#mainContent {
 		height: 100vh;
 	}
@@ -104,8 +99,18 @@
 	visibility: visible;
 	opacity: 1;
 	} */
-	.dropdown-container #invitationContent, .dropdown-container #messagesContent, .dropdown-container #groupsContent {
+	.dropdown-container .dropdown-content {
+		position: absolute;
 		width: auto;
+		max-height: 0;
+		overflow: hidden;
+		visibility: hidden;
+		opacity: 0;
+		transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out, visibility 0s 0.3s;
+		z-index: 20;
+		transition: max-height 0.7s ease;
+		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+		background: #0483c9;
 	}
 }
 @media only screen and (max-device-width: 1200px) and (orientation: landscape) {

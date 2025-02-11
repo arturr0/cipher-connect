@@ -41,8 +41,7 @@
 		margin-right: 0;
 	}
 	#mainContent #friends {
-		width: 40vw;
-		background: none;
+		width: auto;
 		/* height: 100%; */
 	}
 	#mainContent #friends.move-left {
@@ -77,9 +76,9 @@
 	#mainContent #search-input {
 		width: 30vw;
 	}
-	/* #mainContent #searchUsers {
+	#mainContent #searchUsers {
 		width: auto;
-	} */
+	}
 	#mainContent {
 		height: 100vh;
 	}

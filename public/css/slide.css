@@ -1,0 +1,36 @@
+
+/* chat.css | http://localhost:3000/css/chat.css */
+
+@media only screen and (max-device-width: 768px) and (orientation: portrait) {
+    #mainContent #accountContent {
+        z-index: 999;
+    }
+    #mainContent #friends {
+        /* width: 40vw; */
+    }
+}
+
+#friendsSearchBg {
+    /* background: #0d1117; */
+}
+
+#friends {
+    /* width: 25vw; */
+    /* background: #0d1117; */
+    width: auto;
+}
+
+#searchUsers {
+    /* width: 25vw; */
+}
+
+#friends.move-left {
+    /* left: +25vw; */
+    left: +40vw;
+}
+
+/* Element | http://localhost:3000/chat */
+
+#searchUsers {
+    /* width: 165px; */
+}

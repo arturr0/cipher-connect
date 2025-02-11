@@ -4,6 +4,10 @@
 		height: 100%;
 		background: #0d1117;
 	}
+	
+	#mainContent #friendsSearchBg {
+		background: none;
+	}
 	#mainContent #chat_account {
 		justify-content: flex-end;
 		flex-wrap: wrap;
@@ -41,8 +45,7 @@
 		margin-right: 0;
 	}
 	#mainContent #friends {
-		width: 40vw;
-		background: none;
+		width: auto;
 		/* height: 100%; */
 	}
 	#mainContent #friends.move-left {

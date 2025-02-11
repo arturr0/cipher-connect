@@ -41,13 +41,8 @@
 		margin-right: 0;
 	}
 	#mainContent #friends {
-		width: 40vw;
-		background: none;
+		width: auto;
 		/* height: 100%; */
-	}
-	#mainContent #friends.move-left {
-		/* left: +25vw; */
-		left: +40vw;
 	}
 	#mainContent .dropdownToggle {
 		height: auto;
@@ -77,9 +72,9 @@
 	#mainContent #search-input {
 		width: 30vw;
 	}
-	/* #mainContent #searchUsers {
-		width: auto;
-	} */
+	#mainContent #searchUsers {
+		width: 40vw;
+	}
 	#mainContent {
 		height: 100vh;
 	}

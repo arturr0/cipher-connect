@@ -41,7 +41,7 @@
 		margin-right: 0;
 	}
 	#mainContent #friends {
-		width: 40vw;
+		width: auto;
 		background: none;
 		/* height: 100%; */
 	}
