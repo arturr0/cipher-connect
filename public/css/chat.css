@@ -6,9 +6,6 @@
 	button:hover {
 		opacity: 0.5;
 	}
-	#mainContent #searchUsers {
-		height: auto;
-	}
 	.dropdown-container:hover .dropdown-content {
 		max-height: 200px;
 		visibility: visible;
@@ -32,6 +29,9 @@
 	body {
 		height: 100%;
 		background: #0d1117;
+	}
+	#mainContent #searchUsers {
+		height: auto;
 	}
 	#mainContent .modal-content {
 		width: 80vw;
