@@ -30,7 +30,7 @@
 		height: 100%;
 		background: #0d1117;
 	}
-	#mainContent .modal-content {
+	#modal .modal-content {
 		width: 80vw;
 	}
 	#mainContent #chat_account {
@@ -39,9 +39,6 @@
 	}
 	.accountContentText i {
 		display: none;
-	}
-	#accountContent .accountContentText {
-		justify-content: flex-start;
 	}
 	#mainContent #chatContainer {
 		height: auto;
@@ -128,7 +125,7 @@
 	height: 100%;
 	} */
 	#chat #message-container {
-		height: 43vh;
+		height: 45vh;
 	}
 	#chatInput #message {
 		width: 100%;
