@@ -20,8 +20,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const createGroupBtn = document.getElementById('sendGroup');
     const switchUsers = document.getElementById('switchUsers');
     const switchFriends = document.getElementById('switchFriends');
-    const searchUsers = document.getElementById('searchUsers');
-    const friends = document.getElementById('friends');
     
     const deleteAccount = document.getElementById('deleteAccount');
     let messageValue = 0;
@@ -193,7 +191,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-    
+    const searchUsers = document.getElementById('searchUsers');
+    const friends = document.getElementById('friends');
 
     function updatesearchUsersWidth() {
         // Calculate the width of the #friends div
@@ -210,9 +209,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Move both elements to the right
             searchUsers.classList.remove('move-left');
             searchUsers.classList.add('move-right');
-            searchUsers.addEventListener("transitionend", () => {
-                document.getElementById('friends').style.zIndex = '0';
-            }, { once: true });
+            document.getElementById('friends').style.zIndex = '0';
             friends.classList.remove('move-left');
             friends.classList.add('move-right');
             document.getElementById('findUsersText').textContent = "Find users";
