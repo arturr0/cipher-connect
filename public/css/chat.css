@@ -1153,7 +1153,10 @@ scrollbar-gutter: stable;
 	/* background: linear-gradient(0deg, rgba(4,13,37,1) 12%, rgba(16,82,144,1) 85%); */
 	background: #0d1117;
 }
-
+#friends {
+	transform: translateX(-100%); /* Start off-screen to the left */
+	transition: transform 0.5s ease, opacity 0.5s ease;
+}
 #friends.left, #searchUsers.move-left {
 	transform: translateX(0); /* Fully in view */
 }
