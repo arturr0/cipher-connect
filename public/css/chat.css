@@ -1130,13 +1130,13 @@ scrollbar-gutter: stable;
 #groupsContainer, #friendsContainer {
 	background-color: transparent;
 }
-#friends.move-left {
-	left: +25vw; /* Move friends left by 25% of the viewport */
+/* #friends.move-left {
+	left: +25vw; 
 }
 
 #friends.move-right {
-	left: 0; /* Back to original position (fully visible) */
-}
+	left: 0;
+} */
 
 #searchUsers {
 	position: absolute;
