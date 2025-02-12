@@ -159,27 +159,17 @@
 	#accountContent .accountContentText {
 		justify-content: flex-start;
 	}
-	#account #accountContent {
-		margin: 0;
-		place-content: center;
-	}
-	#accountContainer #account {
-		place-content: center;
-	}
 	#accountContent .accountContentText {
-		font-size: clamp(10px, 2vw, 2rem);
+		font-size: clamp(10px, 5vw, 2rem);
     	white-space: nowrap; /* Prevents text from wrapping */
-    	 /* overflow: hidden;Hides overflow text if it gets too big */
+    	overflow: hidden; /* Hides overflow text if it gets too big */
     	text-overflow: ellipsis; /* Optional: Adds "..." if text overflows */
 	}
 	#account #avatarOrInitials {
 		height: auto;
 		margin-top: 0;
 		display: none;
-	}
-	.user .profile-container {
-		margin-left: 0;
-	}
+	}	
 }
 body {
 	/* background: rgb(4,13,37);
