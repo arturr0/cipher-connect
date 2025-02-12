@@ -62,9 +62,7 @@
 		height: 100%;
 		border-top: solid 1px #2d343c;
 	}
-/* 	#mainContent #searchUsers {
-		width: 40vw;
-	} */
+
 	#mainContent #message-container, 
 	#mainContent #users, 
 	#mainContent #searchUsers, 
@@ -72,9 +70,7 @@
 	#mainContent #scrolledFriends {
 		width: 100%;
 	}
-	/* #mainContent #friends.move-left {
-		left: 0;
-	} */
+	
 	#mainContent #account {
 		border: none;
 		padding: 0;
@@ -86,14 +82,11 @@
 		margin-right: 0;
 	}
 	#mainContent #friends {
-/* 		width: 40vw; */
+
 		background: none;
 		/* height: 100%; */
 	}
-/* 	#mainContent #friends.move-left {
-		
-		left: +40vw;
- 	} */
+
 	#mainContent .dropdownToggle {
 		height: auto;
 		width: 20vw;
