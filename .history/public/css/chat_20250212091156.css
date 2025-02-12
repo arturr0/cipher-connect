@@ -152,12 +152,6 @@
 @media only screen and (max-device-width: 1200px) and (orientation: landscape) {
 	#account #avatarOrInitials, #account #accountContent {
 		margin-top: 0;
-	}
-	.accountContentText i {
-		display: none;
-	}
-	#accountContent .accountContentText {
-		justify-content: flex-start;
 	}	
 }
 body {

@@ -155,9 +155,6 @@
 	}
 	.accountContentText i {
 		display: none;
-	}
-	#accountContent .accountContentText {
-		justify-content: flex-start;
 	}	
 }
 body {
