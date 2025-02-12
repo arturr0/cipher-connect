@@ -1,5 +1,6 @@
-const socket = io.connect('http://localhost:3000');
 const baseUrl = window.location.origin;
+const socket = io.connect(baseUrl);
+
 document.addEventListener('DOMContentLoaded', () => {
     const signal = new Audio('sound.mp3');
 
