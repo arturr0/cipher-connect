@@ -1,4 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+@media (hover: hover) and (pointer: fine) {
+	.pulsate {
+		animation: pulsate 1.5s infinite alternate;     
+	 }
+}
 
 html, body {
     margin: 0; /* Remove default margin */
@@ -55,9 +60,7 @@ font-weight: 400;
   font-size: 4.2rem;
 } */
 
-.pulsate {
-   animation: pulsate 1.5s infinite alternate;     
-}
+
 
 /* h2 {
   font-size: 1.8rem;
