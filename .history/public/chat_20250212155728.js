@@ -211,11 +211,11 @@ document.addEventListener('DOMContentLoaded', () => {
             // Move both elements to the right
             searchUsers.classList.remove('move-left');
             searchUsers.classList.add('move-right');
-            // searchUsers.addEventListener("transitionend", () => {
-            //     document.getElementById('friends').style.zIndex = '0';
-            // }, { once: true });
-            friends.classList.remove('move-left2');
-            friends.classList.add('move-right2');
+            searchUsers.addEventListener("transitionend", () => {
+                document.getElementById('friends').style.zIndex = '0';
+            }, { once: true });
+            friends.classList.remove('move-left');
+            friends.classList.add('move-right');
             document.getElementById('findUsersText').textContent = "Find users";
             switchUsers.style.display = 'block';
             switchFriends.style.display = 'none';
@@ -224,10 +224,10 @@ document.addEventListener('DOMContentLoaded', () => {
             // Move both elements to the left
             searchUsers.classList.remove('move-right');
             searchUsers.classList.add('move-left');
-            // document.getElementById('friends').style.zIndex = '-10';
+            document.getElementById('friends').style.zIndex = '-10';
 
-            friends.classList.remove('move-right2');
-            friends.classList.add('move-left2');
+            friends.classList.remove('move-right');
+            friends.classList.add('move-left');
             document.getElementById('findUsersText').textContent = "View friends";
             switchUsers.style.display = 'none';
             switchFriends.style.display = 'block';

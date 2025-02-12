@@ -1087,8 +1087,7 @@ margin-bottom: 10px;
 	left: 0; /* Start fully visible */
 	top: 10vh;
 	height: 90vh;
-	transform: translateX(0);
-	transition: transform 0.5s ease, opacity 0.5s ease;
+	transition: left 0.5s ease; /* Animate horizontal movement */
 	z-index: 0;
 	display: flex;
 	flex-direction: column;
@@ -1154,23 +1153,16 @@ scrollbar-gutter: stable;
 	/* background: linear-gradient(0deg, rgba(4,13,37,1) 12%, rgba(16,82,144,1) 85%); */
 	background: #0d1117;
 }
-/* #friends {
-	transform: translateX(-100%); /* Start off-screen to the left */
-	/* transition: transform 0.5s ease, opacity 0.5s ease; */
-/* } */
-#searchUsers.move-left {
+#friends {
+	transform: translateX(0); /* Start off-screen to the left */
+	transition: transform 0.5s ease, opacity 0.5s ease; */
+}
+#friends.move-left, #searchUsers.move-left {
 	transform: translateX(0); /* Fully in view */
 }
 
-#searchUsers.move-right {
+#friends.move-right, #searchUsers.move-right {
 	transform: translateX(-100%); /* Move back off-screen */
-}
-#friends.move-left2 {
-	transform: translateX(+100%); /* Fully in view */
-}
-
-#friends.move-right2 {
-	transform: translateX(0); /* Move back off-screen */
 }
 
 #searchUsers.hidden {

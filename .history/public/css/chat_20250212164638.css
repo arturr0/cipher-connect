@@ -90,10 +90,10 @@
 		background: none;
 		/* height: 100%; */
 	}
-/* 	#mainContent #friends.move-left {
-		
+	#mainContent #friends.move-left {
+		/* left: +25vw; */
 		left: +40vw;
- 	} */
+	}
 	#mainContent .dropdownToggle {
 		height: auto;
 		width: 20vw;
@@ -1087,8 +1087,7 @@ margin-bottom: 10px;
 	left: 0; /* Start fully visible */
 	top: 10vh;
 	height: 90vh;
-	transform: translateX(0);
-	transition: transform 0.5s ease, opacity 0.5s ease;
+	transition: left 0.5s ease; /* Animate horizontal movement */
 	z-index: 0;
 	display: flex;
 	flex-direction: column;
@@ -1131,13 +1130,13 @@ scrollbar-gutter: stable;
 #groupsContainer, #friendsContainer {
 	background-color: transparent;
 }
-/* #friends.move-left {
-	left: +25vw; 
+#friends.move-left {
+	left: +25vw; /* Move friends left by 25% of the viewport */
 }
 
 #friends.move-right {
-	left: 0;
-} */
+	left: 0; /* Back to original position (fully visible) */
+}
 
 #searchUsers {
 	position: absolute;
@@ -1154,23 +1153,13 @@ scrollbar-gutter: stable;
 	/* background: linear-gradient(0deg, rgba(4,13,37,1) 12%, rgba(16,82,144,1) 85%); */
 	background: #0d1117;
 }
-/* #friends {
-	transform: translateX(-100%); /* Start off-screen to the left */
-	/* transition: transform 0.5s ease, opacity 0.5s ease; */
-/* } */
+
 #searchUsers.move-left {
 	transform: translateX(0); /* Fully in view */
 }
 
 #searchUsers.move-right {
 	transform: translateX(-100%); /* Move back off-screen */
-}
-#friends.move-left2 {
-	transform: translateX(+100%); /* Fully in view */
-}
-
-#friends.move-right2 {
-	transform: translateX(0); /* Move back off-screen */
 }
 
 #searchUsers.hidden {

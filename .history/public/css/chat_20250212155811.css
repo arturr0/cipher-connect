@@ -31,9 +31,6 @@
 		height: 100%;
 		background: #0d1117;
 	}
-	#friends #friendsAndGroups {
-		overflow: auto;
-	}
 	#mainContent #searchUsers {
 		height: auto;
 	}
@@ -90,10 +87,10 @@
 		background: none;
 		/* height: 100%; */
 	}
-/* 	#mainContent #friends.move-left {
-		
+	#mainContent #friends.move-left {
+		/* left: +25vw; */
 		left: +40vw;
- 	} */
+	}
 	#mainContent .dropdownToggle {
 		height: auto;
 		width: 20vw;
@@ -159,9 +156,6 @@
 @media only screen and (max-device-width: 1200px) and (orientation: landscape) {
 	#account #avatarOrInitials, #account #accountContent {
 		margin-top: 0;
-	}
-	#friends #friendsAndGroups {
-		overflow: auto;
 	}
 	.accountContentText i {
 		display: none;
@@ -1087,9 +1081,8 @@ margin-bottom: 10px;
 	left: 0; /* Start fully visible */
 	top: 10vh;
 	height: 90vh;
-	transform: translateX(0);
-	transition: transform 0.5s ease, opacity 0.5s ease;
-	z-index: 0;
+	transition: left 0.5s ease; /* Animate horizontal movement */
+	z-index: -10;
 	display: flex;
 	flex-direction: column;
 	/* background: rgb(4,13,37);
@@ -1131,13 +1124,13 @@ scrollbar-gutter: stable;
 #groupsContainer, #friendsContainer {
 	background-color: transparent;
 }
-/* #friends.move-left {
-	left: +25vw; 
+#friends.move-left {
+	left: +25vw; /* Move friends left by 25% of the viewport */
 }
 
 #friends.move-right {
-	left: 0;
-} */
+	left: 0; /* Back to original position (fully visible) */
+}
 
 #searchUsers {
 	position: absolute;
@@ -1148,29 +1141,19 @@ scrollbar-gutter: stable;
 	transition: transform 0.5s ease, opacity 0.5s ease;
 	opacity: 1;
 	visibility: visible;
-	z-index: 10;
+	z-index: 1;
 	display: flex;
 	flex-direction: column;
 	/* background: linear-gradient(0deg, rgba(4,13,37,1) 12%, rgba(16,82,144,1) 85%); */
 	background: #0d1117;
 }
-/* #friends {
-	transform: translateX(-100%); /* Start off-screen to the left */
-	/* transition: transform 0.5s ease, opacity 0.5s ease; */
-/* } */
+
 #searchUsers.move-left {
 	transform: translateX(0); /* Fully in view */
 }
 
 #searchUsers.move-right {
 	transform: translateX(-100%); /* Move back off-screen */
-}
-#friends.move-left2 {
-	transform: translateX(+100%); /* Fully in view */
-}
-
-#friends.move-right2 {
-	transform: translateX(0); /* Move back off-screen */
 }
 
 #searchUsers.hidden {
