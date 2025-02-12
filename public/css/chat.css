@@ -90,10 +90,10 @@
 		background: none;
 		/* height: 100%; */
 	}
-	#mainContent #friends.move-left {
-		/* left: +25vw; */
+/* 	#mainContent #friends.move-left {
+		
 		left: +40vw;
-	}
+ 	} */
 	#mainContent .dropdownToggle {
 		height: auto;
 		width: 20vw;
