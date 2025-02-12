@@ -1154,11 +1154,11 @@ scrollbar-gutter: stable;
 	background: #0d1117;
 }
 
-#searchUsers.move-left {
+#friends.move-right, #searchUsers.move-left {
 	transform: translateX(0); /* Fully in view */
 }
 
-#searchUsers.move-right {
+#friends.move-right, #searchUsers.move-right {
 	transform: translateX(-100%); /* Move back off-screen */
 }
 
