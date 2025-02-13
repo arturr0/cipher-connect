@@ -141,7 +141,7 @@
 	#chatInput #message {
 		width: 100%;
 	}
-	.dropdown-container .dropdown-content {
+	.dropdownToggle .dropdown-content {
 		max-height: 0;  /* Initially collapsed */
 		visibility: hidden;
 		opacity: 0;
