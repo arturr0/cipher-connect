@@ -1,13 +1,6 @@
 
 
-
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
-@media (hover: hover) and (pointer: fine) {
-	button:hover {
-		opacity: 0.5;
-	}
-	
-	.dropdown-container:hover .dropdown-content {
+.dropdown-container:hover .dropdown-content {
 		max-height: 200px;
 		visibility: visible;
 		opacity: 1;
@@ -15,6 +8,13 @@
 		/* z-index: 20;
 		animation: setOverflow 0s ease 0.3s forwards; */
 	}
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+@media (hover: hover) and (pointer: fine) {
+	button:hover {
+		opacity: 0.5;
+	}
+	
+	
 	.dropdown-container:hover .dropdownToggle::before,
 	.dropdownToggle:hover::before {
 		width: 100%; /* Full width on hover */
