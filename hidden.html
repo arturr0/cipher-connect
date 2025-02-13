@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toggle Two Elements</title>
+    <style>
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <button id="toggleBtn">Toggle</button>
+    <div id="content1">Content 1</div>
+    <div id="content2" class="hidden">Content 2</div>
+
+    <script>
+        document.getElementById("toggleBtn").addEventListener("click", function() {
+            document.getElementById("content1").classList.toggle("hidden");
+            document.getElementById("content2").classList.toggle("hidden");
+        });
+    </script>
+
+</body>
+</html>

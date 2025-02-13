@@ -62,9 +62,9 @@
 		height: 100%;
 		border-top: solid 1px #2d343c;
 	}
-	/* #mainContent #searchUsers {
+	#mainContent #searchUsers {
 		width: 40%;
-	} */
+	}
 	#mainContent #message-container, 
 	#mainContent #users, 
 	#mainContent #searchUsers, 
@@ -86,7 +86,7 @@
 		margin-right: 0;
 	}
 	#mainContent #friends {
-		width: 40%;
+		/* width: 40vw; */
 		background: none;
 		/* height: 100%; */
 	}
