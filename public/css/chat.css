@@ -31,14 +31,7 @@
 		height: 100%;
 		background: #0d1117;
 	}
-	.dropdown-container:hover .dropdown-content {
-		max-height: 200px;
-		visibility: visible;
-		opacity: 1;
-		transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
-		/* z-index: 20;
-		animation: setOverflow 0s ease 0.3s forwards; */
-	}
+	
 	#friends #friendsAndGroups {
 		overflow: auto;
 	}
