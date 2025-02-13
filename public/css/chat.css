@@ -143,6 +143,7 @@
 	.dropdownToggle .dropdown-content {
 		max-height: 0;  /* Initially collapsed */
 		visibility: hidden;
+
 		opacity: 0;
 		transition: max-height 0.3s ease, opacity 0.3s ease;
 	}
@@ -1299,6 +1300,7 @@ input[type="checkbox"]:checked + label::after {
 	visibility: visible;
 	opacity: 1;
 	transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+	animation: setOverflow 0s ease 0.3s forwards;
 }
 .noHeight {
 	max-height: 0px;
