@@ -31,9 +31,9 @@
 		height: 100%;
 		background: #0d1117;
 	}
-	#friends #friendsAndGroups {
+/* 	#friends #friendsAndGroups {
 		overflow: auto;
-	}
+	} */
 	#mainContent #searchUsers {
 		height: auto;
 	}
