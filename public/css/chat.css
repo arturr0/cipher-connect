@@ -143,7 +143,7 @@
 	.dropdownToggle .dropdown-content {
 		max-height: 0;  /* Initially collapsed */
 		visibility: hidden;
-
+		overflow: hidden;
 		opacity: 0;
 		transition: max-height 0.3s ease, opacity 0.3s ease;
 	}
@@ -612,6 +612,7 @@ background: linear-gradient(0deg, rgba(4,13,37,1) 12%, rgba(16,82,144,1) 85%);
 	background: linear-gradient(0deg, rgba(4,13,37,1) 12%, rgba(16,82,144,1) 85%); */
 	background: #000a00;
 	border-top: solid 1px #2d343c;
+	z-index: 99999;
 	
 }
 #account {
