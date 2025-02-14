@@ -209,7 +209,7 @@ document.addEventListener('DOMContentLoaded', () => {
     findUsers.addEventListener('click', () => {
         console.log("search");
         if (searchUsers.classList.contains('move-left')) {
-            usersDiv.style.overflowX
+            usersDiv.style.overflowX = 'auto';
             // Move both elements to the right
             searchUsers.classList.remove('move-left');
             searchUsers.classList.add('move-right');
