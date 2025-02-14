@@ -21,6 +21,8 @@
 	}
 	.counter {
 		margin-top: 10px;
+		left: calc(22%);
+
 	}
 	.dropdown-container:hover .dropdown-content {
 		/* max-height: 200px; */
@@ -60,6 +62,11 @@
 	body {
 		height: 100%;
 		background: #0d1117;
+	}
+	.counter {
+		margin-top: 10px;
+		left: calc(22%);
+
 	}
 	#friends #friendsAndGroups {
 		overflow: auto;
@@ -193,6 +200,7 @@
 	}
 	.counter {
 		margin-top: 0;
+		left: 0;
 	}
 	#friends #friendsAndGroups {
 		overflow: auto;
@@ -418,7 +426,6 @@ h1 a {
 	z-index: 2;
 	position: absolute;  
 	top: 0;
-	left: calc(22%);
 	font-weight: bolder; 
 }
 
