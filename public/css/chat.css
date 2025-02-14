@@ -198,8 +198,11 @@
 	#account #avatarOrInitials, #account #accountContent {
 		margin-top: 0;
 	}
+	.menuIcon {
+    		font-size: 30px;
+	}
 	.counter {
-		margin-top: 0;
+		margin-top: 3px;
 		left: 0;
 	}
 	#friends #friendsAndGroups {
