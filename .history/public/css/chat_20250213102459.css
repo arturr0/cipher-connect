@@ -1,37 +1,10 @@
+
+
+
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
-.dropdown-container .dropdown-content {
-	animation: hideOverflow 0s ease 0.3s forwards;
-}
-#friendsAndGroups, #users {
-	scrollbar-gutter: stable;
-}
-/* Keyframes to hide overflow after collapsing */
-@keyframes hideOverflow {
-	0% {
-		overflow: auto;
-	}
-	100% {
-		overflow: hidden;
-	}
-}
 @media (hover: hover) and (pointer: fine) {
 	button:hover {
 		opacity: 0.5;
-	}
-	
-	.dropdown-container:hover .dropdown-content {
-		/* max-height: 200px; */
-		/* visibility: visible; */
-		/* opacity: 1; */
-		/* transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out; */
-		z-index: 20;
-		animation: setOverflow 0s ease 0.3s forwards;
-	}
-	/* Animation to set overflow to auto after expand */
-	@keyframes setOverflow {
-		to {
-			overflow: auto;
-		}
 	}
 	
 	.dropdown-container:hover .dropdown-content {
@@ -170,7 +143,6 @@
 	.dropdownToggle .dropdown-content {
 		max-height: 0;  /* Initially collapsed */
 		visibility: hidden;
-		overflow: hidden;
 		opacity: 0;
 		transition: max-height 0.3s ease, opacity 0.3s ease;
 	}
@@ -264,7 +236,7 @@ button {
 #users {
 	display: flex;
 	flex-direction: column;
-	/* scrollbar-gutter: stable; */
+	scrollbar-gutter: stable;
 	overflow-y: auto;
 	height: 90%;
 	overflow-x: hidden;
@@ -450,12 +422,24 @@ h1 a {
 }
 
 /* Show dropdown on hover with smooth scroll down transition */
+.dropdown-container:hover .dropdown-content {
+	/* max-height: 200px; */
+	/* visibility: visible; */
+	/* opacity: 1; */
+	/* transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out; */
+	z-index: 20;
+	animation: setOverflow 0s ease 0.3s forwards;
+}
+
+/* Animation to set overflow to auto after expand */
+@keyframes setOverflow {
+	to {
+		overflow: auto;
+	}
+}
 
 /* Smooth scroll up when not hovered */
 .dropdown-container .dropdown-content {
-	animation: hideOverflow 0s ease 0.3s forwards;
-}
-.dropdown-container .dropdown-content.active {
 	animation: hideOverflow 0s ease 0.3s forwards;
 }
 
@@ -555,8 +539,6 @@ h1 a {
 	/* visibility: hidden; Prevent interaction */
 	/* transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out, visibility 0s 0.3s; Smooth transition */
 	transition: max-height 0.7s ease;
-	animation: hideOverflow 0s ease 0.3s forwards;
-	
 }
 
 /* #friends {
@@ -627,7 +609,6 @@ background: linear-gradient(0deg, rgba(4,13,37,1) 12%, rgba(16,82,144,1) 85%);
 	background: linear-gradient(0deg, rgba(4,13,37,1) 12%, rgba(16,82,144,1) 85%); */
 	background: #000a00;
 	border-top: solid 1px #2d343c;
-	z-index: 99999;
 	
 }
 #account {
@@ -1138,8 +1119,8 @@ scrollbar-gutter: stable;
 } */
 #friendsAndGroups {
 	height: 96%;
-	/* overflow: hidden; */
-	/* scrollbar-gutter: stable; */
+	overflow: hidden;
+	scrollbar-gutter: stable;
 	
 }
 #friendsAndGroups:hover {
@@ -1317,8 +1298,6 @@ input[type="checkbox"]:checked + label::after {
 	max-height: 200px;
 	visibility: visible;
 	opacity: 1;
-	transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
-	animation: setOverflow 0s ease 0.3s forwards;
 }
 .noHeight {
 	max-height: 0px;

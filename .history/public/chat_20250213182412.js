@@ -2736,7 +2736,6 @@ document.addEventListener("touchstart", function (event) {
             }
         } else {
             // Remove active from all other dropdowns
-            console.log("remove active 1");
             content.classList.remove("active");
         }
     });

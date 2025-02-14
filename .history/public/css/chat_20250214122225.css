@@ -2,9 +2,6 @@
 .dropdown-container .dropdown-content {
 	animation: hideOverflow 0s ease 0.3s forwards;
 }
-#friendsAndGroups, #users {
-	scrollbar-gutter: stable;
-}
 /* Keyframes to hide overflow after collapsing */
 @keyframes hideOverflow {
 	0% {
@@ -264,7 +261,7 @@ button {
 #users {
 	display: flex;
 	flex-direction: column;
-	/* scrollbar-gutter: stable; */
+	scrollbar-gutter: stable;
 	overflow-y: auto;
 	height: 90%;
 	overflow-x: hidden;
@@ -1139,7 +1136,7 @@ scrollbar-gutter: stable;
 #friendsAndGroups {
 	height: 96%;
 	/* overflow: hidden; */
-	/* scrollbar-gutter: stable; */
+	scrollbar-gutter: stable;
 	
 }
 #friendsAndGroups:hover {

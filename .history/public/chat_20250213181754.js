@@ -2733,11 +2733,13 @@ document.addEventListener("touchstart", function (event) {
             } else {
                 console.log("remove active");
                 content.classList.remove("active");
+                content.style.overflow = "hidden";
+
             }
         } else {
             // Remove active from all other dropdowns
-            console.log("remove active 1");
             content.classList.remove("active");
+            content.style.overflow = "hidden";
         }
     });
 });

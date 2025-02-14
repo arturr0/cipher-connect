@@ -1,0 +1,47 @@
+element {
+    color: black;
+  }
+  @media only screen and (max-device-width: 768px) and (orientation: portrait) {
+    .dropdown-container #invitationContent, .dropdown-container #messagesContent, .dropdown-container #groupsContent {
+      width: 20vw;
+    }
+  }
+  #invitationContent, #messagesContent, #groupsContent {
+    width: 10vw;
+  }
+  .dropdown-container .dropdown-content {
+    animation: hideOverflow 0s ease 0.3s forwards;
+  }
+  .dropdown-container .dropdown-content {
+    position: absolute;
+    width: 10vw;
+    max-height: 0;
+    overflow: hidden;
+    visibility: hidden;
+    opacity: 0;
+    transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out, visibility 0s 0.3s;
+    z-index: 20;
+    transition: max-height 0.7s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background: #0483c9;
+  }
+  .dropdown-content {
+    scrollbar-width: thin;
+    scrollbar-color: #888 #f1f1f1;
+  }
+  * {
+    box-sizing: border-box;
+  }
+  .dropdown-container {
+    cursor: pointer;
+  }
+  body {
+    color: white;
+    font-family: 'Roboto', sans-serif;
+  }
+  0% {
+    overflow: auto;
+  }
+  100% {
+    overflow: hidden;
+  }
