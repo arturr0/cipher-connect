@@ -2,9 +2,7 @@
 .dropdown-container .dropdown-content {
 	animation: hideOverflow 0s ease 0.3s forwards;
 }
-#friendsAndGroups, #users {
-	scrollbar-gutter: stable;
-}
+
 /* Keyframes to hide overflow after collapsing */
 @keyframes hideOverflow {
 	0% {
@@ -15,6 +13,9 @@
 	}
 }
 @media (hover: hover) and (pointer: fine) {
+	#friendsAndGroups, #users {
+	scrollbar-gutter: stable;
+	}
 	button:hover {
 		opacity: 0.5;
 	}
@@ -188,6 +189,9 @@
 	#account #avatarOrInitials, #account #accountContent {
 		margin-top: 0;
 	}
+	.counter {
+		margin-top: 0;
+	}
 	#friends #friendsAndGroups {
 		overflow: auto;
 	}
@@ -267,7 +271,7 @@ button {
 	/* scrollbar-gutter: stable; */
 	overflow-y: auto;
 	height: 90%;
-	overflow-x: hidden;
+/* 	overflow-x: hidden; */
 }
 /* For WebKit browsers (Chrome, Safari, newer Edge) */
 #message-container::-webkit-scrollbar, #friendsAndGroups::-webkit-scrollbar, #users::-webkit-scrollbar, #scrolledFriends::-webkit-scrollbar {
