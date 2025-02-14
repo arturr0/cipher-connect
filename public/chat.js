@@ -209,6 +209,7 @@ document.addEventListener('DOMContentLoaded', () => {
     findUsers.addEventListener('click', () => {
         console.log("search");
         if (searchUsers.classList.contains('move-left')) {
+            usersDiv.style.overflowX
             // Move both elements to the right
             searchUsers.classList.remove('move-left');
             searchUsers.classList.add('move-right');
@@ -224,6 +225,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
         } else {
             // Move both elements to the left
+            usersDiv.style.overflowX = 'hidden';
             searchUsers.classList.remove('move-right');
             searchUsers.classList.add('move-left');
             // document.getElementById('friends').style.zIndex = '-10';
