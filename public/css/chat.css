@@ -101,7 +101,7 @@
 	} */
 	#mainContent #accountContainer {
 		width: calc(100% - 40vw);
-		height: 100%;
+		height: calc(47vh - 40px);
 		border-top: solid 1px #2d343c;
 	}
 /* 	#mainContent #searchUsers {
