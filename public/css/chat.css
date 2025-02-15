@@ -46,7 +46,7 @@
 		height: 200px;
 		visibility: visible;
 		opacity: 1;
-		transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+		transition: height 0.3s ease-in-out, opacity 0.3s ease-in-out;
 		/* z-index: 20;
 		animation: setOverflow 0s ease 0.3s forwards; */
 	}
