@@ -2746,33 +2746,11 @@ document.addEventListener("touchstart", function (event) {
 
 
     // Select all elements that need the click event
-    // document.querySelectorAll('.dropdown-content').forEach(element => {
-    //     element.addEventListener('click', function() {
-    //         document.querySelectorAll('.dropdown-content').forEach(dropdown => {
-    //             dropdown.classList.add('hide'); 
-    //         });
-    //     });
-    // });
-    const dropd = document.querySelectorAll(".dropdown-content");
-
-    document.addEventListener("click", (event) => {
-        let isInsideDropdown = false;
-
-        dropd.forEach((dropdown) => {
-            if (dropdown.contains(event.target)) {
-                isInsideDropdown = true; // User clicked inside, don't hide
-            }
-        });
-
-        if (!isInsideDropdown) {
-            dropd.forEach((dropdown) => dropdown.classList.add("hide"));
-        }
-    });
-
-    // Allow scrolling within dropdown
-    dropd.forEach((dropdown) => {
-        dropdown.addEventListener("touchstart", (e) => {
-            e.stopPropagation(); // Prevent closing when touching inside
+    document.querySelectorAll('.dropdown-content').forEach(element => {
+        element.addEventListener('click', function() {
+            document.querySelectorAll('.dropdown-content').forEach(dropdown => {
+                dropdown.classList.add('hide'); 
+            });
         });
     });
     
