@@ -43,7 +43,7 @@
 	}
 	
 	.dropdown-container:hover .dropdown-content {
-		max-height: auto;
+		height: 200px;
 		visibility: visible;
 		opacity: 1;
 		transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
