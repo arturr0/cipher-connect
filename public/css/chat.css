@@ -43,10 +43,10 @@
 	}
 	
 	.dropdown-container:hover .dropdown-content {
-/* 		height: 200px; */
+		max-height: 200px;
 		visibility: visible;
 		opacity: 1;
-    		grid-template-rows: 1fr;
+		transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
 		/* z-index: 20;
 		animation: setOverflow 0s ease 0.3s forwards; */
 	}
@@ -456,14 +456,13 @@ h1 a {
 .dropdown-container .dropdown-content {
 	position: absolute;
 	width: 10vw;
-	display: grid;
-    	grid-template-rows: 0fr;
+	max-height: 0;
 	overflow: hidden;
 	/* visibility: hidden; */
 	/* opacity: 0; */
 	/* transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out, visibility 0s 0.3s; */
 	z-index: 20;
-    	transition: grid-template-rows 0.3s ease-in-out, opacity 0.3s ease-in-out;
+	transition: max-height 0.7s ease;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 	background: #0483c9;
 }
