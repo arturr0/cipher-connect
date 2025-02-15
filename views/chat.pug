@@ -112,9 +112,13 @@ html(lang='en')
                 });
             });
             window.addEventListener("orientationchange", function () {
-                document.body.style.display = "none";
+                document.body.style.transition = "none"; // Disable transitions
+                document.body.style.display = "none";    // Hide body temporarily
+            
                 setTimeout(() => {
-                    document.body.style.display = "block";
-                }, 50);
+                    document.body.style.display = "block"; // Show body again
+                    document.body.style.transition = "";  // Re-enable transitions
+                }, 50); // Short delay for reflow
             });
+
 
