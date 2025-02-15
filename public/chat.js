@@ -2755,7 +2755,7 @@ document.addEventListener("touchstart", function (event) {
     // });
     const dropd = document.querySelectorAll(".dropdown-content");
 
-    document.addEventListener("click", (event) => {
+    dropd.addEventListener("click", (event) => {
         let isInsideDropdown = false;
 
         dropd.forEach((dropdown) => {
