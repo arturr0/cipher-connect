@@ -2715,7 +2715,7 @@ function customConfirm(inviting, cntr, groupName, groupInvitingName) {
 
     const dropdowns = document.querySelectorAll(".dropdown-container");
 
-document.addEventListener("touchstart", function (event) {
+document.addEventListener("touchend", function (event) {
     let clickedDropdown = null;
 
     dropdowns.forEach(dropdown => {
