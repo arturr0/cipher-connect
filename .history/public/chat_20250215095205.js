@@ -2713,36 +2713,36 @@ function customConfirm(inviting, cntr, groupName, groupInvitingName) {
     //     }
     // });
 
-//     const dropdowns = document.querySelectorAll(".dropdown-container");
+    const dropdowns = document.querySelectorAll(".dropdown-container");
 
-// document.addEventListener("touchstart", function (event) {
-//     let clickedDropdown = null;
+document.addEventListener("touchend", function (event) {
+    let clickedDropdown = null;
 
-//     dropdowns.forEach(dropdown => {
-//         if (dropdown.contains(event.target)) {
-//             clickedDropdown = dropdown;
-//         }
-//     });
+    dropdowns.forEach(dropdown => {
+        if (dropdown.contains(event.target)) {
+            clickedDropdown = dropdown;
+        }
+    });
 
-//     dropdowns.forEach(dropdown => {
-//         let content = dropdown.querySelector(".dropdown-content");
+    dropdowns.forEach(dropdown => {
+        let content = dropdown.querySelector(".dropdown-content");
 
-//         if (dropdown === clickedDropdown) {
-//             // Toggle active only for the clicked dropdown
-//             if (!content.classList.contains("active")) {
-//                 console.log("active");
-//                 content.classList.add("active");
-//             } else {
-//                 console.log("remove active");
-//                 content.classList.remove("active");
-//             }
-//         } else {
-//             // Remove active from all other dropdowns
-//             console.log("remove active 1");
-//             content.classList.remove("active");
-//         }
-//     });
-// });
+        if (dropdown === clickedDropdown) {
+            // Toggle active only for the clicked dropdown
+            if (!content.classList.contains("active")) {
+                console.log("active");
+                content.classList.add("active");
+            } else {
+                console.log("remove active");
+                content.classList.remove("active");
+            }
+        } else {
+            // Remove active from all other dropdowns
+            console.log("remove active 1");
+            content.classList.remove("active");
+        }
+    });
+});
 
 
     // Select all elements that need the click event
@@ -2753,42 +2753,26 @@ function customConfirm(inviting, cntr, groupName, groupInvitingName) {
     //         });
     //     });
     // });
-    const dropdowns = document.querySelectorAll(".dropdown-container");
+    const dropd = document.querySelectorAll(".dropdown-content");
 
-    document.addEventListener("touchstart", function (event) {
-        let clickedDropdown = null;
+    dropd.addEventListener("click", (event) => {
+        let isInsideDropdown = false;
 
-        dropdowns.forEach(dropdown => {
+        dropd.forEach((dropdown) => {
             if (dropdown.contains(event.target)) {
-                clickedDropdown = dropdown;
+                isInsideDropdown = true; // User clicked inside, don't hide
             }
         });
 
-        dropdowns.forEach(dropdown => {
-            let content = dropdown.querySelector(".dropdown-content");
-
-            if (dropdown === clickedDropdown) {
-                // Toggle active only for the clicked dropdown
-                if (!content.classList.contains("active")) {
-                    content.classList.add("active");
-                } else {
-                    content.classList.remove("active");
-                }
-            } else {
-                // Remove active from all other dropdowns
-                content.classList.remove("active");
-            }
-        });
+        if (!isInsideDropdown) {
+            dropd.forEach((dropdown) => dropdown.classList.add("hide"));
+        }
     });
 
-    // Enable scrolling inside dropdown
-    document.querySelectorAll(".dropdown-content").forEach((dropdown) => {
+    // Allow scrolling within dropdown
+    dropd.forEach((dropdown) => {
         dropdown.addEventListener("touchstart", (e) => {
-            e.stopPropagation(); // Prevent dropdown from closing when touched
-        });
-
-        dropdown.addEventListener("touchmove", (e) => {
-            e.stopPropagation(); // Allow scrolling
+            e.stopPropagation(); // Prevent closing when touching inside
         });
     });
     
