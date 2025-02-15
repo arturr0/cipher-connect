@@ -63,7 +63,7 @@
   
 @media only screen and (max-device-width: 768px) and (orientation: portrait) {
 	body {
-		height: 100vh;
+/* 		height: 100vh; */
 		background: #0d1117;
 	}
 	.counter {
