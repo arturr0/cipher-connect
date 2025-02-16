@@ -12,7 +12,6 @@ document.addEventListener('DOMContentLoaded', () => {
 		console.log('click');
 		socket.emit('give me friends to group', username);
 		const modal = document.getElementById('createGroup');
-		modal.style.visibility = 'visible'; // Make it visible immediately
 		
 		// Trigger the animation
 		setTimeout(() => {

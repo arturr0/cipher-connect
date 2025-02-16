@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	deleteAccount.addEventListener('click', () => {
 		
 		const modal = document.getElementById('deleteModal');
-		modal.style.visibility = 'visible'; 
+		// modal.style.visibility = 'visible'; 
 		
 		// Trigger the animation
 		setTimeout(() => {

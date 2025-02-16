@@ -4,12 +4,12 @@ const signal = new Audio('sound.mp3');
 
 document.addEventListener('DOMContentLoaded', () => {
 	
-	document.getElementById('logOut').addEventListener('click', () => {
+	document.getElementById("logOut").addEventListener('click', () => {
 		window.location.href = '/';
 	});
 	
-	document.getElementById('group').addEventListener('click', () => {
-		console.log('click');
+	document.getElementById("group").addEventListener('click', () => {
+		console.log("click");
 		socket.emit('give me friends to group', username);
 		const modal = document.getElementById('createGroup');
 		modal.style.visibility = 'visible'; // Make it visible immediately
@@ -61,11 +61,11 @@ document.addEventListener('DOMContentLoaded', () => {
 	const createGroupBtn = document.getElementById('sendGroup');
 	let avatar = null;
 	
-	document.getElementById('cancelGroup').addEventListener('click', () => {
+	document.getElementById("cancelGroup").addEventListener('click', () => {
 		createGroupBtn.style.opacity = '0.5';
 		createGroupBtn.style.display = 'none';
 		createGroupBtn.disabled = true;
-		document.getElementById('createGroup').classList.remove('show');
+		document.getElementById("createGroup").classList.remove("show");
 		avatar = null;
 		menuGroups.classList.add('dropdown-content');
 		menuGroups.classList.add('dropdown');
@@ -77,22 +77,22 @@ document.addEventListener('DOMContentLoaded', () => {
 	});
 	
 	let storeMessage = true;
-	const cryptoDiv = document.getElementById('crypto');
+	const cryptoDiv = document.getElementById("crypto");
 	const originalWidth = cryptoDiv.offsetWidth;
 	
-	document.getElementById('crypto').addEventListener('click', () => {
+	document.getElementById("crypto").addEventListener('click', () => {
 		storeMessage = !storeMessage;
 		cryptoDiv.style.width = `${originalWidth}px`
-		if(document.getElementById('crypto').textContent.includes('No Storing Messages')) {
+		if(document.getElementById("crypto").textContent.includes("No Storing Messages")) {
 			
 			
-			document.getElementById('crypto').textContent = 'Store Messages';
+			document.getElementById("crypto").textContent = 'Store Messages';
 		}
-		else document.getElementById('crypto').textContent = 'No Storing Messages';
+		else document.getElementById("crypto").textContent = 'No Storing Messages';
 		const icon = document.createElement('i')
 		icon.classList.add('icon-user-secret');
 		icon.classList.add('accIon');
-		document.getElementById('crypto').appendChild(icon); // Change only the text in the crypto div
+		document.getElementById("crypto").appendChild(icon); // Change only the text in the crypto div
 	});
 	
 	const username = localStorage.getItem('username');
@@ -100,19 +100,19 @@ document.addEventListener('DOMContentLoaded', () => {
 	let receiver = '';
 	let group = null;
 	
-	if (document.getElementById('message')) {
-		document.getElementById('message').addEventListener('keydown', function(e) {
+	if (document.getElementById("message")) {
+		document.getElementById("message").addEventListener("keydown", function(e) {
 			
-			let messageSent = document.getElementById('message').value;
+			let messageSent = document.getElementById("message").value;
 			const inputValString = String(messageSent);
 			
 			if (e.key === 'Enter') {
 				console.log(receiver, group);
 				e.preventDefault();
 				if (messageSent !== null && messageSent.trim() !== '' && ((receiver == '' && group != null) || (receiver != '' && group == null))) {
-					//const chat = document.getElementById('chat');
+					//const chat = document.getElementById("chat");
 					//const receiver = 'art2';
-					console.log('my mess');
+					console.log("my mess");
 					const sendTime = new Date().toISOString();;
 					console.log(sendTime);
 					const hours = new Date().getHours();
@@ -152,10 +152,10 @@ document.addEventListener('DOMContentLoaded', () => {
 					if (receiver != '') socket.emit('chatMessage', { username, messageSent, receiver, sendTime, storeMessage });
 					else if (group != null)
 						socket.emit('group message', { username, group, messageSent, storeMessage, sendTime });
-					document.getElementById('message').value = '';
-					document.getElementById('message').style.height = '80px';
+					document.getElementById("message").value = "";
+					document.getElementById("message").style.height = '80px';
 					console.log(messageSent);
-					jQuery('#messageContainer').scrollTop(jQuery('#messageContainer')[0].scrollHeight);
+					jQuery("#messageContainer").scrollTop(jQuery("#messageContainer")[0].scrollHeight);
 				}
 			}
 		});
@@ -180,7 +180,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	const switchFriends = document.getElementById('switchFriends');
 	
 	findUsers.addEventListener('click', () => {
-		console.log('search');
+		console.log("search");
 		if (searchUsers.classList.contains('move-left')) {
 			usersDiv.style.overflowX = 'hidden';
 			// Move both elements to the right
@@ -189,7 +189,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			
 			friends.classList.remove('move-left2');
 			friends.classList.add('move-right2');
-			document.getElementById('findUsersText').textContent = 'Find users';
+			document.getElementById('findUsersText').textContent = "Find users";
 			switchUsers.style.display = 'block';
 			switchFriends.style.display = 'none';
 			
@@ -201,7 +201,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			
 			friends.classList.remove('move-right2');
 			friends.classList.add('move-left2');
-			document.getElementById('findUsersText').textContent = 'View friends';
+			document.getElementById('findUsersText').textContent = "View friends";
 			switchUsers.style.display = 'none';
 			switchFriends.style.display = 'block';
 		}
@@ -282,7 +282,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			unreadMessage.setAttribute('value', `${newMessage.unreadCount}`);
 			unreadMessage.setAttribute('group', newMessage.groupId); 
 			unreadMessage.textContent = `${newMessage.groupName} ${newMessage.unreadCount}`;
-			document.getElementById('messagesContent').appendChild(unreadMessage);
+			document.getElementById("messagesContent").appendChild(unreadMessage);
 			newMessageCntr += newMessage.unreadCount  
 		});
 		messCounter.setAttribute('value', newMessageCntr);
@@ -339,10 +339,10 @@ document.addEventListener('DOMContentLoaded', () => {
 			chat.appendChild(recDiv);
 			
 			// Scroll to the bottom of the chat
-			jQuery('#messageContainer').scrollTop(jQuery('#messageContainer')[0].scrollHeight);    
+			jQuery("#messageContainer").scrollTop(jQuery("#messageContainer")[0].scrollHeight);    
 		}
 		else {
-			let existingMessage = document.querySelector(`.unreadMessages[group='${data.groupOfMessage}']`);
+			let existingMessage = document.querySelector(`.unreadMessages[group="${data.groupOfMessage}"]`);
 			
 			// Check if the user's unread message div already exists
 			if (!existingMessage) {
@@ -354,7 +354,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				unreadMessage.textContent = `${data.groupName} 1`; // Display initial unread count
 				
 				// Append to the messages content
-				document.getElementById('messagesContent').appendChild(unreadMessage);
+				document.getElementById("messagesContent").appendChild(unreadMessage);
 			} else {
 				// If the element exists, update its value
 				let currentValue = parseInt(existingMessage.getAttribute('value'), 10) || 0; // Default to 0 if NaN
@@ -378,9 +378,9 @@ document.addEventListener('DOMContentLoaded', () => {
 		const { messages, groupAvatar, groupName, groupId, unreadGroupCount } = data;
 		console.log(data);
 		if (unreadGroupCount > 0) {
-			// Select all divs with the class 'yourClassName'
+			// Select all divs with the class "yourClassName"
 			document.querySelectorAll('.unreadMessages').forEach(div => {
-				// Check if the attribute 'data-attribute' has the desired value
+				// Check if the attribute "data-attribute" has the desired value
 				if (parseInt(div.getAttribute('group'), 10) == groupId) {
 					// Remove the div if it matches the attribute value
 					let messageValue = parseInt(messCounter.getAttribute('value'), 10) || 0; // Default to 0 if NaN
@@ -459,7 +459,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				chat.appendChild(recDiv);
 				
 				// Scroll to the bottom of the chat
-				jQuery('#messageContainer').scrollTop(jQuery('#messageContainer')[0].scrollHeight);
+				jQuery("#messageContainer").scrollTop(jQuery("#messageContainer")[0].scrollHeight);
 			}
 			else {
 				const sendDiv = document.createElement('div');
@@ -489,16 +489,16 @@ document.addEventListener('DOMContentLoaded', () => {
 				chat.appendChild(sendDiv);
 				
 				adjustMarginForScrollbar();
-				jQuery('#messageContainer').scrollTop(jQuery('#messageContainer')[0].scrollHeight);
+				jQuery("#messageContainer").scrollTop(jQuery("#messageContainer")[0].scrollHeight);
 				
 			}
-			document.getElementById('messagesContent').addEventListener('transitionend', function(event) {
+			document.getElementById("messagesContent").addEventListener("transitionend", function(event) {
 				
 				const parent = event.target;
-				const child = parent.querySelector(`[group='${groupId}']`);
+				const child = parent.querySelector(`[group="${groupId}"]`);
 				
 				if (child) {
-					console.log('remove');
+					console.log("remove");
 					child.remove();
 					document.querySelectorAll('.dropdown-content').forEach(element => {
 						element.classList.remove('hide');
@@ -506,7 +506,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				}
 			}, { once: true });    
 		});
-		if (data.type == 'button') document.querySelector(`.unreadMessages[group='${groupId}']`)?.remove();
+		if (data.type == 'button') document.querySelector(`.unreadMessages[group="${groupId}"]`)?.remove();
 	});
 	
 	socket.on('disconnectedUserGroups', (data) => {
@@ -603,22 +603,22 @@ document.addEventListener('DOMContentLoaded', () => {
 			const buttonsDiv = document.createElement('div');
 			buttonsDiv.classList.add('buttons');
 			// Create send message button
-			const svgNS = 'http://www.w3.org/2000/svg';
+			const svgNS = "http://www.w3.org/2000/svg";
 			
 			// Create the <svg> element
-			const svgElement = document.createElementNS(svgNS, 'svg');
-			svgElement.setAttribute('width', '16');
-			svgElement.setAttribute('height', '16');
-			svgElement.setAttribute('group', data.groupId);
+			const svgElement = document.createElementNS(svgNS, "svg");
+			svgElement.setAttribute("width", "16");
+			svgElement.setAttribute("height", "16");
+			svgElement.setAttribute("group", data.groupId);
 			svgElement.setAttribute('viewBox', '0 0 16 16');
 			svgElement.classList.add('svg-circle')
 			// Create the <circle> element
-			const circle = document.createElementNS(svgNS, 'circle');
-			circle.setAttribute('cx', '8');
-			circle.setAttribute('cy', '8');
-			circle.setAttribute('r', '8');
-			if (data.lineStatus == 1) circle.setAttribute('fill', 'green');
-			else circle.setAttribute('fill', 'red');
+			const circle = document.createElementNS(svgNS, "circle");
+			circle.setAttribute("cx", "8");
+			circle.setAttribute("cy", "8");
+			circle.setAttribute("r", "8");
+			if (data.lineStatus == 1) circle.setAttribute("fill", "green");
+			else circle.setAttribute("fill", "red");
 			// Append the circle to the SVG
 			svgElement.appendChild(circle);
 			
@@ -661,7 +661,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				receiver = '';
 				
 				const groupId = group;
-				const type = 'button'
+				const type = "button"
 				socket.emit('requestGroupMessages', groupId, type);
 							
 				receiverElement.textContent = groupName;
@@ -690,7 +690,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			
 			blockButton.addEventListener('click', () => {
 				blockButton.disabled = true;
-				console.log('click');
+				console.log("click");
 				const blockedUser = blockButton.value;
 				if (group == blockedUser) {
 					group = null;
@@ -751,13 +751,13 @@ document.addEventListener('DOMContentLoaded', () => {
 			invitation.textContent = `${invite.invitingUsername}`; // Display initial unread count
 			
 			// Append to the messages content
-			document.getElementById('groupsContent').appendChild(invitation);
+			document.getElementById("groupsContent").appendChild(invitation);
 			let invitationValue = parseInt(groupCounter.getAttribute('value'), 10) || 0; // Default to 0 if NaN
 			invitationValue++;
 			console.log(invitationValue);
 			groupCounter.setAttribute('value', invitationValue);
 			groupCounter.textContent = invitationValue;
-			document.getElementById('groupsContent').appendChild(invitation);
+			document.getElementById("groupsContent").appendChild(invitation);
 		})
 	});
 	
@@ -773,13 +773,13 @@ document.addEventListener('DOMContentLoaded', () => {
 		invitation.textContent = `${data.creator}`; // Display initial unread count
 		
 		// Append to the messages content
-		document.getElementById('groupsContent').appendChild(invitation);
+		document.getElementById("groupsContent").appendChild(invitation);
 		let invitationValue = parseInt(groupCounter.getAttribute('value'), 10) || 0; // Default to 0 if NaN
 		invitationValue++;
 		console.log(invitationValue);
 		groupCounter.setAttribute('value', invitationValue);
 		groupCounter.textContent = invitationValue;
-		document.getElementById('groupsContent').appendChild(invitation);
+		document.getElementById("groupsContent").appendChild(invitation);
 	});
 	
 	function setEqualUserDivWidth() {
@@ -808,7 +808,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		const modalContent = document.getElementById('friendsToGroup');
 		modalContent.innerHTML = ''; // Clear previous content
 		const friends = document.createElement('div');
-		friends.id = 'scrolledFriends';
+		friends.id = "scrolledFriends";
 		modalContent.appendChild(friends);
 		if (data.length > 0) {
 			// Create the .accountContentText div
@@ -969,7 +969,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			});
 			
 			// Ensure the click handler for sending the group is only added once
-			const sendGroupButton = document.getElementById('sendGroup');
+			const sendGroupButton = document.getElementById("sendGroup");
 			sendGroupButton.removeEventListener('click', sendGroupButton.clickListener); // Clear previous listeners
 			const clickListener = () => {
 				if (!avatar) {
@@ -994,11 +994,11 @@ document.addEventListener('DOMContentLoaded', () => {
 					createGroupBtn.style.opacity = '1';
 					createGroupBtn.disabled = false;
 					
-					console.log('block');
+					console.log("block");
 				} else {
 					createGroupBtn.style.opacity = '0.5';
 					createGroupBtn.disabled = true; // Hide the button
-					console.log('none');
+					console.log("none");
 				}
 			}
 			
@@ -1010,7 +1010,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	};
 	
 	socket.on('groupCreated', ({ groupId, groupName }) => {
-		console.log('created');
+		console.log("created");
 		
 		const createGroupElement = document.getElementById('createGroup');
 		createGroupElement.classList.remove('show');
@@ -1030,7 +1030,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		};
 		
 		// Add the transitionend event listener
-		createGroupElement.addEventListener('transitionend', handleTransitionEnd);
+		createGroupElement.addEventListener("transitionend", handleTransitionEnd);
 		
 		// Update the button styles and disable it
 		const createGroupBtn = document.getElementById('sendGroup');
@@ -1072,13 +1072,13 @@ document.addEventListener('DOMContentLoaded', () => {
 			invitation.textContent = `${newMessage.username}`; // Display initial unread count
 			
 			// Append to the messages content
-			document.getElementById('invitationContent').appendChild(invitation);
+			document.getElementById("invitationContent").appendChild(invitation);
 			let invitationValue = parseInt(invCounter.getAttribute('value'), 10) || 0; // Default to 0 if NaN
 			invitationValue++;
 			console.log(invitationValue);
 			invCounter.setAttribute('value', invitationValue);
 			invCounter.textContent = invitationValue;
-			document.getElementById('invitationContent').appendChild(invitation);
+			document.getElementById("invitationContent").appendChild(invitation);
 			
 		});
 	});
@@ -1119,21 +1119,21 @@ document.addEventListener('DOMContentLoaded', () => {
 			const buttonsDiv = document.createElement('div');
 			buttonsDiv.classList.add('buttons');
 			// Create send message button
-			const svgNS = 'http://www.w3.org/2000/svg';
+			const svgNS = "http://www.w3.org/2000/svg";
 			
 			// Create the <svg> element
-			const svgElement = document.createElementNS(svgNS, 'svg');
-			svgElement.setAttribute('width', '16');
-			svgElement.setAttribute('height', '16');
+			const svgElement = document.createElementNS(svgNS, "svg");
+			svgElement.setAttribute("width", "16");
+			svgElement.setAttribute("height", "16");
 			svgElement.setAttribute('viewBox', '0 0 16 16');
 			svgElement.classList.add('svg-circle')
 			// Create the <circle> element
-			const circle = document.createElementNS(svgNS, 'circle');
-			circle.setAttribute('cx', '8');
-			circle.setAttribute('cy', '8');
-			circle.setAttribute('r', '8');
-			if(friend.online == 1) circle.setAttribute('fill', 'green');
-			else circle.setAttribute('fill', 'red');
+			const circle = document.createElementNS(svgNS, "circle");
+			circle.setAttribute("cx", "8");
+			circle.setAttribute("cy", "8");
+			circle.setAttribute("r", "8");
+			if(friend.online == 1) circle.setAttribute("fill", "green");
+			else circle.setAttribute("fill", "red");
 			// Append the circle to the SVG
 			svgElement.appendChild(circle);
 			
@@ -1200,7 +1200,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			
 			blockButton.addEventListener('click', () => {
 				blockButton.disabled = true;
-				console.log('click');
+				console.log("click");
 				const blockedUser = blockButton.value;
 				if (receiver == blockedUser) {
 					receiver = '';
@@ -1251,7 +1251,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			unreadMessage.setAttribute('value', `${newMessage.unreadCount}`);
 			unreadMessage.setAttribute('data-username', newMessage.username); // Set data-username for this user
 			unreadMessage.textContent = `${newMessage.username} ${newMessage.unreadCount}`;
-			document.getElementById('messagesContent').appendChild(unreadMessage);
+			document.getElementById("messagesContent").appendChild(unreadMessage);
 			newMessageCntr += newMessage.unreadCount// Set initial value to 1    
 		});
 		messCounter.setAttribute('value', newMessageCntr);
@@ -1304,21 +1304,21 @@ document.addEventListener('DOMContentLoaded', () => {
 			const buttonsDiv = document.createElement('div');
 			buttonsDiv.classList.add('buttons');
 			// Create send message button
-			const svgNS = 'http://www.w3.org/2000/svg';
+			const svgNS = "http://www.w3.org/2000/svg";
 			
 			// Create the <svg> element
-			const svgElement = document.createElementNS(svgNS, 'svg');
-			svgElement.setAttribute('width', '16');
-			svgElement.setAttribute('height', '16');
-			svgElement.setAttribute('group', Mygroup.groupId);
+			const svgElement = document.createElementNS(svgNS, "svg");
+			svgElement.setAttribute("width", "16");
+			svgElement.setAttribute("height", "16");
+			svgElement.setAttribute("group", Mygroup.groupId);
 			svgElement.classList.add('svg-circle')
 			// Create the <circle> element
-			const circle = document.createElementNS(svgNS, 'circle');
-			circle.setAttribute('cx', '8');
-			circle.setAttribute('cy', '8');
-			circle.setAttribute('r', '8');
-			if (Mygroup.online == 1) circle.setAttribute('fill', 'green');
-			else circle.setAttribute('fill', 'red');
+			const circle = document.createElementNS(svgNS, "circle");
+			circle.setAttribute("cx", "8");
+			circle.setAttribute("cy", "8");
+			circle.setAttribute("r", "8");
+			if (Mygroup.online == 1) circle.setAttribute("fill", "green");
+			else circle.setAttribute("fill", "red");
 			// Append the circle to the SVG
 			svgElement.appendChild(circle);
 			
@@ -1356,7 +1356,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				group = sendButton.dataset.groupId;
 				
 				const groupId = sendButton.dataset.groupId;
-				const type = 'button';
+				const type = "button";
 				
 				socket.emit('requestGroupMessages', groupId, type);
 			});
@@ -1366,7 +1366,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			
 			blockButton.addEventListener('click', () => {
 				blockButton.disabled = true;
-				console.log('click');
+				console.log("click");
 				const blockedUser = blockButton.value;
 				if (group == blockedUser) {
 					//group = null;
@@ -1415,15 +1415,15 @@ document.addEventListener('DOMContentLoaded', () => {
 	
 	socket.on('user info', ({ id, profileImage }) => {
 		console.log(`User ID: ${id}`);
-		if (profileImage != null) document.getElementById('initials').remove();
+		if (profileImage != null) document.getElementById("initials").remove();
 		else {
-			document.getElementById('initials').classList.remove('display');
-			document.getElementById('initials').style.visibility = 'visible';
+			document.getElementById("initials").classList.remove('display');
+			document.getElementById("initials").style.visibility = 'visible';
 		}
 		// Check if profile image exists
 		if (profileImage) {
 			
-			const avatarContainer = document.getElementById('avatarOrInitials');
+			const avatarContainer = document.getElementById("avatarOrInitials");
 			const existingAvatar = document.getElementById('avatar');
 			const avatar = document.createElement('div');
 			avatar.id = 'avatar';
@@ -1451,7 +1451,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		// Removes the div from the DOM
 		const avatar = document.createElement('div');
 		avatar.id = 'avatar';
-		document.getElementById('avatarOrInitials').appendChild(avatar);
+		document.getElementById("avatarOrInitials").appendChild(avatar);
 		
 		const img = new Image();
 		img.src = relativePath;
@@ -1730,7 +1730,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		chat.appendChild(recDiv);
 		
 		// Scroll to the bottom of the chat
-		jQuery('#messageContainer').scrollTop(jQuery('#messageContainer')[0].scrollHeight);
+		jQuery("#messageContainer").scrollTop(jQuery("#messageContainer")[0].scrollHeight);
 	}
 	
 	function formatDateComparison(targetDate) {
@@ -1753,7 +1753,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			const minutes = targetDate.getMinutes();
 			return `${hours < 10 ? '0' : ''}${hours}:${minutes < 10 ? '0' : ''}${minutes}`; // Add leading zero to minutes if needed
 		} else {
-			// If different, return full date in 'year-month-day' format
+			// If different, return full date in "year-month-day" format
 			return `${targetYear}.${(targetMonth + 1).toString().padStart(2, '0')}.${targetDay.toString().padStart(2, '0')}`;
 		}
 	}
@@ -1761,7 +1761,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	// Main function for handling new messages
 	function handleOtherMessage(user) {
 		// Use a selector to check if there's a div with data-username matching the user
-		let existingMessage = document.querySelector(`.unreadMessages[data-username='${user}']`);
+		let existingMessage = document.querySelector(`.unreadMessages[data-username="${user}"]`);
 		
 		// Check if the user's unread message div already exists
 		if (!existingMessage) {
@@ -1773,7 +1773,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			unreadMessage.textContent = `${user} 1`; // Display initial unread count
 			
 			// Append to the messages content
-			document.getElementById('messagesContent').appendChild(unreadMessage);
+			document.getElementById("messagesContent").appendChild(unreadMessage);
 		} else {
 			// If the element exists, update its value
 			let currentValue = parseInt(existingMessage.getAttribute('value'), 10) || 0; // Default to 0 if NaN
@@ -1793,7 +1793,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	}
 	
 	// Attach the global click event listener to the parent container
-	const messagesContent = document.getElementById('messagesContent');
+	const messagesContent = document.getElementById("messagesContent");
 	
 	messagesContent.addEventListener('click', (event) => {
 		const unreadMessage = event.target.closest('.unreadMessages');
@@ -1821,7 +1821,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			isTypingVisible = false;
 			receiver = '';
 			group = groupId;
-			const type = 'menu';
+			const type = "menu";
 			
 			socket.emit('requestGroupMessages', groupId, type);
 		}
@@ -1868,8 +1868,8 @@ document.addEventListener('DOMContentLoaded', () => {
 	});
 	
 	// Add event listeners with the custom function for groups
-	document.getElementById('groupsContent').addEventListener('click', (event) => {
-		console.log('click');
+	document.getElementById("groupsContent").addEventListener('click', (event) => {
+		console.log("click");
 		confirmInvitation('group', event, 'confirm group', 'groupCounter');
 	});
 	
@@ -1883,13 +1883,13 @@ document.addEventListener('DOMContentLoaded', () => {
 		invitation.textContent = `${data.from}`; // Display initial unread count
 		
 		// Append to the messages content
-		document.getElementById('invitationContent').appendChild(invitation);
+		document.getElementById("invitationContent").appendChild(invitation);
 		let invitationValue = parseInt(invCounter.getAttribute('value'), 10) || 0; // Default to 0 if NaN
 		invitationValue++;
 		console.log(invitationValue);
 		invCounter.setAttribute('value', invitationValue);
 		invCounter.textContent = invitationValue;
-		document.getElementById('invitationContent').appendChild(invitation);
+		document.getElementById("invitationContent").appendChild(invitation);
 		
 	});
 	
@@ -1942,14 +1942,14 @@ document.addEventListener('DOMContentLoaded', () => {
 	});
 	
 	// Listen for server confirmation of avatar upload
-	socket.on('avatar', (relativePath) => {
-		console.log('Avatar updated:', relativePath);
-		document.getElementById('profileImg').src = relativePath; // Update profile image in UI
+	socket.on("avatar", (relativePath) => {
+		console.log("Avatar updated:", relativePath);
+		document.getElementById("profileImg").src = relativePath; // Update profile image in UI
 	});
 	
 	const currentUsername = localStorage.getItem('username'); // Get the current user's username
 	
-	document.getElementById('initials').textContent = currentUsername.charAt(0).toUpperCase();
+	document.getElementById("initials").textContent = currentUsername.charAt(0).toUpperCase();
 	const messageInput = document.getElementById('message');
 	let typingTimer;
 	let typingDelay = 2000; // Set a delay for stopping typing event (in ms)
@@ -1959,7 +1959,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	
 	// Handle input event for typing
 	messageInput.addEventListener('input', () => {
-		console.log('type');
+		console.log("type");
 		console.log(receiver);
 		
 		// Ensure receiver is set before emitting typing event
@@ -2022,7 +2022,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	socket.on('userTyping', ({ isTyping, sender }) => {
 		if (sender === receiver) {
 			if (isTyping) {
-				console.log('typing show');
+				console.log("typing show");
 				if (!isTypingVisible) {
 					// Show typing indicator and scroll only once
 					showTypingIndicator();
@@ -2030,11 +2030,11 @@ document.addEventListener('DOMContentLoaded', () => {
 					
 					// Scroll down after ensuring the typing indicator is added
 					setTimeout(() => {
-						jQuery('#messageContainer').scrollTop(jQuery('#messageContainer')[0].scrollHeight);
+						jQuery("#messageContainer").scrollTop(jQuery("#messageContainer")[0].scrollHeight);
 					}, 0);
 				}
 			} else {
-				console.log('typing hide');
+				console.log("typing hide");
 				if (isTypingVisible) {
 					// Hide typing indicator and update flag
 					hideTypingIndicator();
@@ -2098,7 +2098,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		// Adjust right margin of messages based on scrollbar presence
 		messages.forEach(message => {
 			if (hasScrollbar) {
-				console.log('marg')
+				console.log("marg")
 				message.style.marginRight = '10px'; // Adjust margin when scrollbar is present
 			} 
 		});
@@ -2108,9 +2108,9 @@ document.addEventListener('DOMContentLoaded', () => {
 		console.log(decryptedMessages);
 		
 		if (decryptedMessages.unreadCount > 0) {
-			// Select all divs with the class 'yourClassName'
+			// Select all divs with the class "yourClassName"
 			document.querySelectorAll('.unreadMessages').forEach(div => {
-				// Check if the attribute 'data-attribute' has the desired value
+				// Check if the attribute "data-attribute" has the desired value
 				if (div.getAttribute('data-username') == decryptedMessages.receiverUsername) {
 					// Remove the div if it matches the attribute value
 					let messageValue = parseInt(messCounter.getAttribute('value'), 10) || 0; // Default to 0 if NaN
@@ -2175,11 +2175,11 @@ document.addEventListener('DOMContentLoaded', () => {
 				
 				
 				adjustMarginForScrollbar();
-				jQuery('#messageContainer').scrollTop(jQuery('#messageContainer')[0].scrollHeight);
+				jQuery("#messageContainer").scrollTop(jQuery("#messageContainer")[0].scrollHeight);
 			}
 			else {
-				// chat.innerHTML += (`<div class='bubble right' style='word-break: break-word'>${message.message}</div>`);
-				// jQuery('#messageContainer').scrollTop(jQuery('#messageContainer')[0].scrollHeight);
+				// chat.innerHTML += (`<div class="bubble right" style="word-break: break-word">${message.message}</div>`);
+				// jQuery("#messageContainer").scrollTop(jQuery("#messageContainer")[0].scrollHeight);
 				adjustMarginForScrollbar();
 				const timeAndIcon = document.createElement('div');
 				timeAndIcon.classList.add('timeAndIcon');
@@ -2212,13 +2212,13 @@ document.addEventListener('DOMContentLoaded', () => {
 				
 				// Append the message div to the chat container
 				chat.appendChild(recDiv);
-				jQuery('#messageContainer').scrollTop(jQuery('#messageContainer')[0].scrollHeight);
+				jQuery("#messageContainer").scrollTop(jQuery("#messageContainer")[0].scrollHeight);
 			}
-			document.getElementById('messagesContent').addEventListener('transitionend', function(event) {
+			document.getElementById("messagesContent").addEventListener("transitionend", function(event) {
 				const parent = event.target;
-				const child = parent.querySelector(`[data-username='${decryptedMessages.receiverUsername}']`);
+				const child = parent.querySelector(`[data-username="${decryptedMessages.receiverUsername}"]`);
 				if (child) {
-					console.log('remove');
+					console.log("remove");
 					child.remove();
 					document.querySelectorAll('.dropdown-content').forEach(element => {
 						element.classList.remove('hide');
@@ -2227,13 +2227,13 @@ document.addEventListener('DOMContentLoaded', () => {
 			}, { once: true }); 
 			
 		});
-		if (decryptedMessages.type == 'button') document.querySelector(`.unreadMessages[data-username='${decryptedMessages.receiverUsername}']`)?.remove();
+		if (decryptedMessages.type == 'button') document.querySelector(`.unreadMessages[data-username="${decryptedMessages.receiverUsername}"]`)?.remove();
 		
 		
 	})
 	
 	function closeModal() {
-		console.log('click');
+		console.log("click");
 		const modal = document.querySelector('.modal');
 		modal.classList.remove('show'); // Trigger shrink
 		menuGroups.classList.add('dropdown-content');
@@ -2296,9 +2296,9 @@ document.addEventListener('DOMContentLoaded', () => {
 		});
 	});
 	
-	const dropdowns = document.querySelectorAll('.dropdown-container');
+	const dropdowns = document.querySelectorAll(".dropdown-container");
 	
-	document.addEventListener('touchstart', function (event) {
+	document.addEventListener("touchstart", function (event) {
 		let clickedDropdown = null;
 		
 		dropdowns.forEach(dropdown => {
@@ -2308,30 +2308,30 @@ document.addEventListener('DOMContentLoaded', () => {
 		});
 		
 		dropdowns.forEach(dropdown => {
-			let content = dropdown.querySelector('.dropdown-content');
+			let content = dropdown.querySelector(".dropdown-content");
 			
 			if (dropdown === clickedDropdown) {
 				// Toggle active only for the clicked dropdown
-				if (!content.classList.contains('active')) {
-					content.classList.add('active');
+				if (!content.classList.contains("active")) {
+					content.classList.add("active");
 				} else {
-					content.classList.remove('active');
+					content.classList.remove("active");
 				}
 			} else {
 				// Remove active from all other dropdowns
-				content.classList.remove('active');
+				content.classList.remove("active");
 			}
 		});
 	});
 	
 	// Enable scrolling inside dropdown
-	document.querySelectorAll('.dropdown-content').forEach((dropdown) => {
+	document.querySelectorAll(".dropdown-content").forEach((dropdown) => {
 		
-		dropdown.addEventListener('touchstart', (e) => {
+		dropdown.addEventListener("touchstart", (e) => {
 			e.stopPropagation(); // Prevent dropdown from closing when touched
 		});
 		
-		dropdown.addEventListener('touchmove', (e) => {
+		dropdown.addEventListener("touchmove", (e) => {
 			e.stopPropagation(); // Allow scrolling
 		});
 	});
