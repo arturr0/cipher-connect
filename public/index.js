@@ -133,15 +133,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
     usernameInput.addEventListener('click', () => { 
-        passwordCharInfo.textContent = 'Between 1-20 characters.'
+        passwordCharInfo.textContent = 'Between 1-20 characters'
     }); 
     usernameInput.addEventListener('focus', () => {
-        passwordCharInfo.textContent = 'Between 1-20 characters.'
+        passwordCharInfo.textContent = 'Between 1-20 characters'
 
     }); 
     usernameInput.addEventListener('keydown', (event) => {
         if (event.key === 'Tab') {
-            passwordCharInfo.textContent = 'Between 1-20 characters.'
+            passwordCharInfo.textContent = 'Between 1-20 characters'
         }
     });
 
