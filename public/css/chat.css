@@ -663,7 +663,6 @@ h1 a {
 	position: relative; /* Ensures proper stacking and layout */
 	min-height: 0; /* Prevents overflow issues */
 	padding: 0; /* Optional padding around chat */
-	overflow: hidden;
 	
 	background: #151b23;;
 	margin: 10px;
