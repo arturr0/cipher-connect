@@ -36,6 +36,7 @@
 		z-index: 20;
 		animation: setOverflow 0s ease 0.3s forwards;
 	}
+	/* Animation to set overflow to auto after expand */
 	
 	
 	.dropdown-container:hover .dropdown-content {
@@ -58,7 +59,7 @@
   
 @media only screen and (max-width: 768px) and (orientation: portrait) and (pointer: coarse) {
 	body {
-/* 		height: 100vh; */
+
 		background: #0d1117;
 	}
 	.counter {
@@ -147,7 +148,7 @@
 		margin-top: 0;
 	}
 	
-	#mainContent #search-input {
+	#mainContent #searchInput {
 		width: 30vw;
 	}
 	
@@ -201,7 +202,7 @@
 	#accountContent .accountContentText {
 		font-size: clamp(10px, 2vw, 2rem);
     	white-space: nowrap; /* Prevents text from wrapping */
-    	text-overflow: ellipsis; /* Optional: Adds "..." if text overflows */
+    	text-overflow: ellipsis; 
 	}
 	#account #avatarOrInitials {
 		height: auto;
@@ -231,9 +232,11 @@ button {
 	background-image: radial-gradient(93% 87% at 87% 89%, rgba(0, 0, 0, 0.23) 0%, transparent 86.18%), radial-gradient(66% 66% at 26% 20%, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0) 69.79%, rgba(255, 255, 255, 0) 100%);
 	box-shadow: inset -3px -3px 9px rgba(255, 255, 255, 0.25), inset 0px 3px 9px rgba(255, 255, 255, 0.3), inset 0px 1px 1px rgba(255, 255, 255, 0.6), inset 0px -8px 36px rgba(0, 0, 0, 0.3), inset 0px 1px 5px rgba(255, 255, 255, 0.6), 2px 19px 31px rgba(0, 0, 0, 0.2);
 	border-radius: 14px;
+	/* font-weight: bold; */
 	border: 0;
 	user-select: none;
 	cursor: pointer;
+	/* padding: 5px; */
 	opacity: 1;
 	transition: opacity 0.3s ease;
 	
@@ -265,7 +268,7 @@ button {
 .display {
 	display: none;
 }
-#search-input {
+#searchInput {
 	align-self: center;
 	margin: 10px;
 	width: 15vw;
@@ -273,19 +276,19 @@ button {
 
 .user {
 	display: flex;
-	align-items: center; /* Center vertically */
-	justify-content: center; /* Center horizontally */
+	align-items: center; 
+	justify-content: center; 
 	margin-top: 10px;
 	position: relative;
 }
 
 .profile-container {
-	position: relative; 
+	position: relative; /* Establish a positioning context */
 	display: flex;
-	align-items: center; 
-	justify-content: center; 
-	width: 40px; 
-	height: 40px; 
+	align-items: center; /* Center items vertically */
+	justify-content: center; /* Center items horizontally */
+	width: 40px; /* Fixed width for alignment */
+	height: 40px; /* Fixed height for alignment */
 	margin-left: 10px;
 }
 .loading-placeholder, .initials, .profile-image {
@@ -300,34 +303,36 @@ button {
 	display: flex; /* Flexbox for centering text */
 	align-items: center; /* Center vertically */
 	justify-content: center; /* Center horizontally */
-	width: 40px; 
-	height: 40px; 
+	width: 40px; /* Same size as the image */
+	height: 40px; /* Same size as the image */
 	background: rgb(63,94,251);
 	background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(67,97,110,1) 100%);
-	border-radius: 50%; 
-	font-weight: bold; 
-	color: white; 
+	border-radius: 50%; /* Make it a circle */
+	font-weight: bold; /* Make initials bold */
+	color: white; /* Change color as needed */
 	font-size: 25px;
 	font-weight: bolder;
 }
 
 
 .initials {
-	align-items: center; 
-	justify-content: center; 
-	font-weight: bold; 
-	color: white; 
+	/* display: flex; Flexbox for centering text */
+	align-items: center; /* Center vertically */
+	justify-content: center; /* Center horizontally */
+	font-weight: bold; /* Make initials bold */
+	color: white; /* Change color as needed */
 }
 .user-info {
 	display: flex;
-	flex-direction: column; 
+	flex-direction: column; /* Stack username and buttons vertically */
 	
 	margin-left: 10px;
 }
 
 .buttons {
 	display: flex;
-	gap: 5px; 
+	
+	gap: 5px;
 }
 /* 
 
@@ -474,6 +479,7 @@ h1 a {
 }
 
 
+/* Scrollbar Styling for Dropdowns */
 .dropdown-content::-webkit-scrollbar {
 	width: 12px;
 }
@@ -518,19 +524,13 @@ h1 a {
 	animation: hideOverflow 0s ease 0.3s forwards;
 	
 }
-.hide {
-	max-height: 0; /* Hide the content */
-	
-	transition: max-height 0.7s ease;
-	animation: hideOverflow 0s ease 0.3s forwards;
-	
-}
 
 
 
 #friends.hidden {
 	opacity: 0;
 	visibility: hidden;
+	/* transition: opacity 0.5s ease, visibility 0s linear 0s; Ensure visibility is instant when shown */
 	transition: right 0.5s ease, opacity 0.5s ease;
 }
 #typingIndicator {
@@ -670,6 +670,7 @@ h1 a {
 	position: relative; /* Ensures proper stacking and layout */
 	min-height: 0; /* Prevents overflow issues */
 	padding: 0; /* Optional padding around chat */
+	overflow: hidden;
 	
 	background: #151b23;;
 	margin: 10px;
@@ -734,8 +735,8 @@ h1 a {
 	transition: opacity 0.5s ease, visibility 0s linear 0s;  
 }
 .message {
-	padding: 10px; /* Example padding */
-	border-radius: 5px; /* Optional rounded corners */
+	padding: 10px; 
+	border-radius: 5px; 
 }
 
 .bu:last-child {
@@ -762,11 +763,12 @@ h1 a {
 
 #messages {
 	flex-grow: 1;
-	overflow-y: auto; 
+	overflow-y: auto; /* Enable vertical scrolling */
 	width: 100%;
 	display: flex;
 	flex-direction: column;
 }
+
 
 
 
@@ -805,8 +807,8 @@ h1 a {
 
 
 #searchUsers.animate {
-	left: 0; 
-	opacity: 1; 
+	left: 0; /* Move into view */
+	opacity: 1; /* Make visible */
 	visibility: visible; 
 }
 
@@ -857,7 +859,6 @@ h1 a {
 }
 #mainContent {
 	position: relative;
-	/* z-index: 0; */
 }
 .vericalBorder {
 	width: 2px;
@@ -866,14 +867,13 @@ h1 a {
 	margin-bottom: 20px;
 	background-color: lightblue; /* Example background color */
 	
-	/* Box shadow with white border effect */
+	
 	box-shadow: 0 0 5px 7px white;
 }
 
 #chat_account {
 	display: flex;
-	/* height: 90vh; */
-	/* background-color: aquamarine; */
+	
 }
 
 #typingIndicator {
@@ -912,11 +912,10 @@ h1 a {
 
 
 
+
 .message {
-	/* background-color: white; Example background color */
-	padding: 10px; /* Example padding */
-	border-radius: 5px; /* Optional rounded corners */
-	/* No margin for spacing */
+	padding: 10px; 
+	border-radius: 5px; 
 }
 
 .bu:last-child {
@@ -1060,7 +1059,6 @@ h1 a {
 	background-color: transparent;
 }
 
-
 #searchUsers {
 	position: absolute;
 	transform: translateX(-100%); /* Start off-screen to the left */
@@ -1101,8 +1099,9 @@ h1 a {
 #content {
 	width: 100vw;
 	height: 100vh;
-	
-	position: relative; 
+	/* background: #007BFF; */
+	/* z-index: 0; */
+	position: relative; /* Position for stacking context */
 }
 
 #mainContent .modal, #createGroup .modal {
@@ -1110,13 +1109,15 @@ h1 a {
 	position: absolute; /* Absolute positioning within the parent */
 	left: 50%; /* Center horizontally */
 	top: 50%; /* Center vertically */
+	
 	background-color: rgba(0, 0, 0, 0.5);
 	z-index: 15;
+	
 	transform: translate(-50%, -50%) scale(0); /* Start hidden with scale 0 */
 	transition: transform 0.3s ease; /* Transition effect for scaling */
 }
 
-#mainContent .modal.show, #createGroup .modal.show, .modal.show{
+#mainContent .modal.show, #createGroup .modal.show{
 	display: flex; /* Show the modal */
 	transform: translate(-50%, -50%) scale(1); /* Grow modal */
 }
@@ -1126,10 +1127,12 @@ h1 a {
 	border-radius: 5px;
 }
 .modal-content {
+	
 	background: #0d1117;
 	border: solid 1px #2d343c;
 	border-radius: 5px;
 	padding: 20px;
+	
 	display: flex;
 	flex-direction: column;
 	align-content: center;
@@ -1160,25 +1163,28 @@ input[type="radio"], input[type="checkbox"] {
 	content: none;
 	outline: none;
 	margin: 0;
-	position: relative; 
-}
-input[type="checkbox"], input[type="radio"] {
-	appearance: none; /* Remove default checkbox/radio */
-	width: 20px;
-	height: 20px;
-	border: 1px solid #999;
-	display: inline-block;
 	position: relative;
-  }
-input[type="checkbox"]:checked::before, 
-input[type="radio"]:checked::before {
+}
+
+/* Styles for checked state */
+input[type="radio"]:checked::before, input[type="checkbox"]:checked::before {
 	content: "\2713";
-	font-size: 16px;
-	color: black;
+	font-size: 16px; 
 	position: absolute;
 	top: 50%;
 	left: 50%;
-	transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%); 
+	color: white !important;
+}
+
+
+/* Styles for checked state's label and icon */
+input[type="checkbox"]:checked + label::after {
+	content: "\2713";
+	position: absolute;
+	font-size: 16px;
+	color: green;
+	border: 1px solid #d3d3d3;
 }
 #friendsToGroup {
 	display: flex;
@@ -1187,8 +1193,8 @@ input[type="radio"]:checked::before {
 	align-items: center;
 }
 .svg-circle {
-	width: 16px;     
-	height: 16px;   
+	width: 16px;      
+	height: 16px;    
 	position: absolute;
 	bottom: 0;
 	right: 0;
@@ -1207,11 +1213,4 @@ input[type="radio"]:checked::before {
 }
 .noHeight {
 	max-height: 0px;
-}
-#searchInput {
-	width: 80%;
-	margin: 0 auto 0 auto;
-}
-input {
-	background: white;
 }

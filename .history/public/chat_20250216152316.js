@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		// Trigger the animation
 		setTimeout(() => {
 			modal.classList.add('show');
-		}, 20); 
+		}, 10); 
 		
 		document.getElementById('confirmDelete').onclick = function() {
 			menuGroups.classList.add('dropdown-content');
@@ -2308,7 +2308,6 @@ document.addEventListener('DOMContentLoaded', () => {
 	document.querySelectorAll('.dropdown-content').forEach(element => {
 		element.addEventListener('click', function() {
 			document.querySelectorAll('.dropdown-content').forEach(dropdown => {
-				console.log('hide')
 				dropdown.classList.add('hide'); 
 			});
 		});

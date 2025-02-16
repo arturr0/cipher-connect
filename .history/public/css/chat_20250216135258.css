@@ -32,10 +32,14 @@
 		font-size: 40px;;
 	}
 	.dropdown-container:hover .dropdown-content {
-		
+		/* max-height: 200px; */
+		/* visibility: visible; */
+		/* opacity: 1; */
+		/* transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out; */
 		z-index: 20;
 		animation: setOverflow 0s ease 0.3s forwards;
 	}
+	/* Animation to set overflow to auto after expand */
 	
 	
 	.dropdown-container:hover .dropdown-content {
@@ -43,7 +47,8 @@
 		visibility: visible;
 		opacity: 1;
 		transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
-		
+		/* z-index: 20;
+		animation: setOverflow 0s ease 0.3s forwards; */
 	}
 	.dropdown-container:hover .dropdownToggle::before,
 	.dropdownToggle:hover::before {
@@ -91,13 +96,17 @@
 		height: calc(43vh + 40px);
 		width: calc(100% - 40vw);
 	}
-	
+	/* #chat #messageContainer {
+		justify-content: flex-end;
+	} */
 	#mainContent #accountContainer {
 		width: calc(100% - 40vw);
 		height: calc(47vh - 40px);
 		border-top: solid 1px #2d343c;
 	}
-
+/* 	#mainContent #searchUsers {
+		width: 40%;
+	} */
 	#mainContent #messageContainer, 
 	#mainContent #users, 
 	#mainContent #searchUsers, 
@@ -105,7 +114,9 @@
 	#mainContent #scrolledFriends {
 		width: 100%;
 	}
-	
+	/* #mainContent #friends.move-left {
+		left: 0;
+	} */
 	#mainContent #account {
 		border: none;
 		padding: 0;
@@ -120,8 +131,12 @@
 	#mainContent #friends {
 		width: 40%;
 		background: none;
+		/* height: 100%; */
 	}
-
+/* 	#mainContent #friends.move-left {
+		
+		left: +40vw;
+ 	} */
 	#mainContent .dropdownToggle {
 		height: auto;
 		width: 20vw;
@@ -140,21 +155,31 @@
 	}
 	#mainContent #accountContent {
 		margin-top: 0;
+		/* height: 100%; */
 		width: 100%;
 		background: #0d1117;
 	}
 	#mainContent #avatarOrInitials {
 		margin-top: 0;
 	}
-	
-	#mainContent #search-input {
+	/* #mainContent #friendsSearchBg {
+	height: 100vh;
+	} */
+	#mainContent #searchInput {
 		width: 30vw;
 	}
-	
+	/* #mainContent #searchUsers {
+		width: auto;
+	} */
 	#mainContent {
 		height: 100vh;
 	}
-	
+	/* body {
+	height: 100%;
+	} */
+	/* #chat #messageContainer {
+		height: 43vh;
+	} */
 	#chatInput #message {
 		width: 100%;
 	}
@@ -166,7 +191,11 @@
 		transition: max-height 0.3s ease, opacity 0.3s ease;
 	}
 	
-	
+	/* .dropdownToggle .dropdown-content.active {
+	max-height: 200px;
+	visibility: visible;
+	opacity: 1;
+	} */
 	.dropdown-container #invitationContent, .dropdown-container #messagesContent, .dropdown-container #groupsContent {
 		width: 20vw;
 	}
@@ -201,6 +230,7 @@
 	#accountContent .accountContentText {
 		font-size: clamp(10px, 2vw, 2rem);
     	white-space: nowrap; /* Prevents text from wrapping */
+    	 /* overflow: hidden;Hides overflow text if it gets too big */
     	text-overflow: ellipsis; /* Optional: Adds "..." if text overflows */
 	}
 	#account #avatarOrInitials {
@@ -213,7 +243,8 @@
 	}
 }
 body {
-	
+	/* background: rgb(4,13,37);
+	background: linear-gradient(0deg, rgba(4,13,37,1) 40%, rgba(14,51,85,1) 85%); */
 	padding: 0;
 	margin: 0;
 	color: white;
@@ -231,9 +262,11 @@ button {
 	background-image: radial-gradient(93% 87% at 87% 89%, rgba(0, 0, 0, 0.23) 0%, transparent 86.18%), radial-gradient(66% 66% at 26% 20%, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0) 69.79%, rgba(255, 255, 255, 0) 100%);
 	box-shadow: inset -3px -3px 9px rgba(255, 255, 255, 0.25), inset 0px 3px 9px rgba(255, 255, 255, 0.3), inset 0px 1px 1px rgba(255, 255, 255, 0.6), inset 0px -8px 36px rgba(0, 0, 0, 0.3), inset 0px 1px 5px rgba(255, 255, 255, 0.6), 2px 19px 31px rgba(0, 0, 0, 0.2);
 	border-radius: 14px;
+	/* font-weight: bold; */
 	border: 0;
 	user-select: none;
 	cursor: pointer;
+	/* padding: 5px; */
 	opacity: 1;
 	transition: opacity 0.3s ease;
 	
@@ -254,8 +287,10 @@ button {
 #users {
 	display: flex;
 	flex-direction: column;
+	/* scrollbar-gutter: stable; */
 	overflow-y: auto;
 	height: 90%;
+/* 	overflow-x: hidden; */
 }
 /* For WebKit browsers (Chrome, Safari, newer Edge) */
 #messageContainer::-webkit-scrollbar, #friendsAndGroups::-webkit-scrollbar, #users::-webkit-scrollbar, #scrolledFriends::-webkit-scrollbar {
@@ -265,7 +300,7 @@ button {
 .display {
 	display: none;
 }
-#search-input {
+#searchInput {
 	align-self: center;
 	margin: 10px;
 	width: 15vw;
@@ -275,17 +310,18 @@ button {
 	display: flex;
 	align-items: center; /* Center vertically */
 	justify-content: center; /* Center horizontally */
+	/* margin: 10px 0;  */
 	margin-top: 10px;
 	position: relative;
 }
 
 .profile-container {
-	position: relative; 
+	position: relative; /* Establish a positioning context */
 	display: flex;
-	align-items: center; 
-	justify-content: center; 
-	width: 40px; 
-	height: 40px; 
+	align-items: center; /* Center items vertically */
+	justify-content: center; /* Center items horizontally */
+	width: 40px; /* Fixed width for alignment */
+	height: 40px; /* Fixed height for alignment */
 	margin-left: 10px;
 }
 .loading-placeholder, .initials, .profile-image {
@@ -300,34 +336,39 @@ button {
 	display: flex; /* Flexbox for centering text */
 	align-items: center; /* Center vertically */
 	justify-content: center; /* Center horizontally */
-	width: 40px; 
-	height: 40px; 
+	width: 40px; /* Same size as the image */
+	height: 40px; /* Same size as the image */
 	background: rgb(63,94,251);
 	background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(67,97,110,1) 100%);
-	border-radius: 50%; 
-	font-weight: bold; 
-	color: white; 
+	border-radius: 50%; /* Make it a circle */
+	font-weight: bold; /* Make initials bold */
+	color: white; /* Change color as needed */
 	font-size: 25px;
 	font-weight: bolder;
 }
 
-
+/* .loading-placeholder {
+background-color: #ccc; /* Placeholder background color */
+/* } */
 .initials {
-	align-items: center; 
-	justify-content: center; 
-	font-weight: bold; 
-	color: white; 
+	/* display: flex; Flexbox for centering text */
+	align-items: center; /* Center vertically */
+	justify-content: center; /* Center horizontally */
+	font-weight: bold; /* Make initials bold */
+	color: white; /* Change color as needed */
 }
 .user-info {
 	display: flex;
-	flex-direction: column; 
-	
+	flex-direction: column; /* Stack username and buttons vertically */
+	/* align-items: center; Center buttons horizontally */
+	/* width: 100px; */
 	margin-left: 10px;
 }
 
 .buttons {
 	display: flex;
-	gap: 5px; 
+	/* justify-content: center; Center buttons horizontally */
+	gap: 5px; /* Space between buttons */
 }
 /* 
 
@@ -367,7 +408,9 @@ h1 a {
 #menu {
 	width: 100vw;
 	height: 10vh;
+	/* background: #000a00; */
 	display: flex;
+	/* background: linear-gradient(0deg, rgba(4, 13, 37, 1) 12%, rgba(23, 104, 112, 1) 85%); */
 	background: #0d1117;
 }
 #menuDiv {
@@ -377,6 +420,7 @@ h1 a {
 }
 
 .counter {
+/* 	margin-top: 10px; */
 	margin-bottom: auto;
 	background: radial-gradient(circle, rgba(63, 94, 251, 1) 0%, rgba(70, 199, 252, 1) 100%);
 	border-radius: 50%;
@@ -415,19 +459,24 @@ h1 a {
 	width: 10vw;
 	max-height: 0;
 	overflow: hidden;
-	
+	/* visibility: hidden; */
+	/* opacity: 0; */
+	/* transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out, visibility 0s 0.3s; */
 	z-index: 20;
 	transition: max-height 0.7s ease;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 	background: #0483c9;
 }
 
+/* Show dropdown on hover with smooth scroll down transition */
 
 /* Smooth scroll up when not hovered */
 .dropdown-container .dropdown-content {
 	animation: hideOverflow 0s ease 0.3s forwards;
 }
-
+/* .dropdown-container .dropdown-content.active {
+	animation: hideOverflow 0s ease 0.3s forwards;
+} */
 
 /* Keyframes to hide overflow after collapsing */
 @keyframes hideOverflow {
@@ -473,7 +522,15 @@ h1 a {
 	transition: width 0.4s ease; /* Animate width only */
 }
 
+/* Show sliding line when hovering over the dropdown container or toggle */
 
+
+/* Remove active state behavior that moves the line */
+
+
+
+/* Enable scrolling only when necessary */
+/* Scrollbar Styling for Dropdowns */
 .dropdown-content::-webkit-scrollbar {
 	width: 12px;
 }
@@ -513,24 +570,28 @@ h1 a {
 /* Hide dropdown with sliding effect */
 .dropdown-container .dropdown-content.hide {
 	max-height: 0; /* Hide the content */
-	
-	transition: max-height 0.7s ease;
-	animation: hideOverflow 0s ease 0.3s forwards;
-	
-}
-.hide {
-	max-height: 0; /* Hide the content */
-	
+	/* opacity: 0; Fade out */
+	/* visibility: hidden; Prevent interaction */
+	/* transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out, visibility 0s 0.3s; Smooth transition */
 	transition: max-height 0.7s ease;
 	animation: hideOverflow 0s ease 0.3s forwards;
 	
 }
 
+/* #friends {
+width: calc(25vw - 1px);
 
+opacity: 1;
+visibility: visible;
+transition: opacity 0.5s ease, visibility 0s linear 0s;
+background: rgb(4,13,37);
+background: linear-gradient(0deg, rgba(4,13,37,1) 12%, rgba(16,82,144,1) 85%);
+} */
 
 #friends.hidden {
 	opacity: 0;
 	visibility: hidden;
+	/* transition: opacity 0.5s ease, visibility 0s linear 0s; Ensure visibility is instant when shown */
 	transition: right 0.5s ease, opacity 0.5s ease;
 }
 #typingIndicator {
@@ -549,15 +610,21 @@ h1 a {
 }
 #chatContainer {
 	display: flex;
+	/* align-items: center; */
 	justify-content: center;
 	height: 100%;
 	flex-direction: column;
 	height: 90vh;
 	width: 50vw;
-	
+	/* border-right: solid 1px #3f5efb;
+	border-left: solid 1px #3f5efb;
+	box-shadow: 
+	-4px 0px 6px 0px rgba(63, 94, 251, 0.5), 
+	4px 0px 6px 0px rgba(63, 94, 251, 0.5) inset;  */
 	margin-left: auto;
 	z-index: 10;
-	
+	/* border-top: solid 1px #1cd679;
+	border-left: solid 1px #1cd679; */
 	border-top: solid 1px #2d343c;
 	border-left: solid 1px #2d343c;
 	background: #000a00;
@@ -570,16 +637,20 @@ h1 a {
 #accountContainer {
 	width: 25vw;
 	height: 90vh;
+	/* background: #ccc; */
 	display: flex;
+	/* justify-content: center; */
 	align-items: center;
 	flex-direction: column;
-	
+	/* background: rgb(4,13,37);
+	background: linear-gradient(0deg, rgba(4,13,37,1) 12%, rgba(16,82,144,1) 85%); */
 	background: #000a00;
 	border-top: solid 1px #2d343c;
 	z-index: 0;
 	
 }
 #account {
+	/* gap: 10px; */
 	border: solid 1px #2d343c;
 	border-radius: 5px;
 	margin: auto;
@@ -612,7 +683,7 @@ h1 a {
 }
 .accountContentText:hover {
 	text-decoration: underline;
-	cursor: pointer; 
+	cursor: pointer; /* Optional: adds a pointer cursor for better UX */
 }
 .accIon {
 	margin-left: auto;
@@ -650,27 +721,36 @@ h1 a {
 }
 .custom-file-label {
 	display: inline-block;
-	
+	/* padding: 8px 12px; */
+	/* background-color: transparent; */
 	color: white;
 	cursor: pointer;
 	border: none;
-	
+	/* font-size: 16px; */
+	/* text-decoration: underline; */
 }
 
 .custom-file-label:hover {
 	color: #0056b3;
 }
 
-
+/* #messagesContainer {
+margin-bottom: 10px;
+} */
 #chat {
 	display: flex;
 	flex-direction: column; /* Stack items from top to bottom */
+	/* width: 60vw; */
 	height: 100%; /* Controls overall height of the chat */
+	/* background-color: rgb(176, 196, 222); */
 	overflow-y: auto; /* Show scrollbar when necessary */
 	position: relative; /* Ensures proper stacking and layout */
 	min-height: 0; /* Prevents overflow issues */
 	padding: 0; /* Optional padding around chat */
-	
+	overflow: hidden;
+	/* background: rgb(4,13,37);
+	background: linear-gradient(0deg, rgba(4,13,37,1) 40%, rgba(14,51,85,1) 85%); */
+	/* background: #000a00; */
 	background: #151b23;;
 	margin: 10px;
 	border: solid 1px #2d343c;
@@ -686,6 +766,7 @@ h1 a {
 	margin-top: 10px;
 	display: flex;
 	
+	/* background: blue; */
 }
 #receiverAvatar {
 	width: 40px;
@@ -734,8 +815,10 @@ h1 a {
 	transition: opacity 0.5s ease, visibility 0s linear 0s;  
 }
 .message {
+	/* background-color: white; Example background color */
 	padding: 10px; /* Example padding */
 	border-radius: 5px; /* Optional rounded corners */
+	/* No margin for spacing */
 }
 
 .bu:last-child {
@@ -743,9 +826,10 @@ h1 a {
 }
 
 .message {
-	
-	padding: 10px; 
-	border-radius: 5px; 
+	/* Style for individual messages */
+	/* background-color: white; Example background color */
+	padding: 10px; /* Example padding */
+	border-radius: 5px; /* Optional rounded corners */
 }
 
 
@@ -762,15 +846,21 @@ h1 a {
 
 #messages {
 	flex-grow: 1;
-	overflow-y: auto; 
+	overflow-y: auto; /* Enable vertical scrolling */
 	width: 100%;
 	display: flex;
 	flex-direction: column;
+	/* background: red; */
 }
 
 
 
 
+/* #inputAndIcons {
+display: flex;
+width: 100%;
+margin-bottom: 10px;
+} */
 
 #message {
 	border: none;
@@ -805,15 +895,16 @@ h1 a {
 
 
 #searchUsers.animate {
-	left: 0; 
-	opacity: 1; 
-	visibility: visible; 
+	left: 0; /* Move into view */
+	opacity: 1; /* Make visible */
+	visibility: visible; /* Ensure it's visible */
 }
 
 #content {
 	width: 100vw;
 	height: 100vh;
-	
+	/* background: #007BFF; */
+	/* z-index: 0; */
 	position: relative; /* Position for stacking context */
 }
 
@@ -885,7 +976,9 @@ h1 a {
 	
 	width: 100%;
 	justify-content: center;
-	
+	/* border-top: solid 1px #3f5efb;
+	box-shadow: 0px -4px 6px 0px rgba(63, 94, 251, 0.5); Adjusted shadow */
+	/* background: rgb(4,13,37); */
 	background: #000a00;
 	
 }
@@ -910,6 +1003,9 @@ h1 a {
 	animation: blinker 1s linear infinite;
 }
 
+/* #messagesContainer {
+margin-bottom: 10px;
+} */
 
 
 .message {
@@ -964,6 +1060,7 @@ h1 a {
 	radial-gradient(100% 100% at var(--_p) 0,#0000 99%,#000 102%) 
 	var(--_p) 100%/var(--t) var(--t) no-repeat,
 	linear-gradient(#000 0 0) padding-box;
+	/* background: linear-gradient(135deg,#FE6D00,#1384C5) border-box; */
 	color: #fff;
 	margin-bottom: 10px;
 	display: flex;
@@ -985,7 +1082,11 @@ h1 a {
 }
 
 
-
+/* #inputAndIcons {
+display: flex;
+width: 100%;
+margin-bottom: 10px;
+} */
 
 #message {
 	border: none;
@@ -1029,8 +1130,10 @@ h1 a {
 	z-index: 0;
 	display: flex;
 	flex-direction: column;
-	
+	/* background: rgb(4,13,37);
+	background: linear-gradient(0deg, rgba(4,13,37,1) 12%, rgba(16,82,144,1) 85%); */
 	background: #0d1117;
+	/* border-top: solid 1px #1cd679; */
 	
 }
 #friendsSearchBg {
@@ -1042,13 +1145,20 @@ h1 a {
 	
 	z-index: -11;
 	
-	
+	/* background: rgb(4,13,37);
+	background: linear-gradient(0deg, rgba(4,13,37,1) 12%, rgba(16,82,144,1) 85%); */
 	background: #0d1117;
 }
+/* #friendsContainer {
+height: 96%;
+overflow: hidden;
+scrollbar-gutter: stable;
 
+} */
 #friendsAndGroups {
 	height: 96%;
-	
+	/* overflow: hidden; */
+	/* scrollbar-gutter: stable; */
 	
 }
 #friendsAndGroups:hover {
@@ -1059,7 +1169,13 @@ h1 a {
 #groupsContainer, #friendsContainer {
 	background-color: transparent;
 }
+/* #friends.move-left {
+	left: +25vw; 
+}
 
+#friends.move-right {
+	left: 0;
+} */
 
 #searchUsers {
 	position: absolute;
@@ -1073,9 +1189,13 @@ h1 a {
 	z-index: 10;
 	display: flex;
 	flex-direction: column;
+	/* background: linear-gradient(0deg, rgba(4,13,37,1) 12%, rgba(16,82,144,1) 85%); */
 	background: #0d1117;
 }
-
+/* #friends {
+	transform: translateX(-100%); /* Start off-screen to the left */
+	/* transition: transform 0.5s ease, opacity 0.5s ease; */
+/* } */
 #searchUsers.move-left {
 	transform: translateX(0); /* Fully in view */
 }
@@ -1101,8 +1221,9 @@ h1 a {
 #content {
 	width: 100vw;
 	height: 100vh;
-	
-	position: relative; 
+	/* background: #007BFF; */
+	/* z-index: 0; */
+	position: relative; /* Position for stacking context */
 }
 
 #mainContent .modal, #createGroup .modal {
@@ -1110,13 +1231,17 @@ h1 a {
 	position: absolute; /* Absolute positioning within the parent */
 	left: 50%; /* Center horizontally */
 	top: 50%; /* Center vertically */
+	/* width: 55vw;
+	height: 20vh; */
 	background-color: rgba(0, 0, 0, 0.5);
 	z-index: 15;
+	
+	/* Use transform to align the center of the modal */
 	transform: translate(-50%, -50%) scale(0); /* Start hidden with scale 0 */
 	transition: transform 0.3s ease; /* Transition effect for scaling */
 }
 
-#mainContent .modal.show, #createGroup .modal.show, .modal.show{
+#mainContent .modal.show, #createGroup .modal.show{
 	display: flex; /* Show the modal */
 	transform: translate(-50%, -50%) scale(1); /* Grow modal */
 }
@@ -1126,10 +1251,16 @@ h1 a {
 	border-radius: 5px;
 }
 .modal-content {
+	/* background: rgb(63,94,251);
+	background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(59,193,247,1) 100%); */
 	background: #0d1117;
 	border: solid 1px #2d343c;
 	border-radius: 5px;
 	padding: 20px;
+	/* max-width: 100%; */
+	/* height: auto; Ensure content can grow */
+	/* height: 100%; Prevent overflow */
+	overflow-y: auto; /* Allow scrolling if content exceeds */
 	display: flex;
 	flex-direction: column;
 	align-content: center;
@@ -1160,25 +1291,28 @@ input[type="radio"], input[type="checkbox"] {
 	content: none;
 	outline: none;
 	margin: 0;
-	position: relative; 
+	position: relative; /* Add relative positioning */
 }
-input[type="checkbox"], input[type="radio"] {
-	appearance: none; /* Remove default checkbox/radio */
-	width: 20px;
-	height: 20px;
-	border: 1px solid #999;
-	display: inline-block;
-	position: relative;
-  }
-input[type="checkbox"]:checked::before, 
-input[type="radio"]:checked::before {
+
+/* Styles for checked state */
+input[type="radio"]:checked::before, input[type="checkbox"]:checked::before {
 	content: "\2713";
-	font-size: 16px;
-	color: black;
+	font-size: 16px; /* Match this to a size that fits within the input */
 	position: absolute;
 	top: 50%;
 	left: 50%;
-	transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%); /* Center the checkmark */
+	color: white !important;
+}
+
+
+/* Styles for checked state's label and icon */
+input[type="checkbox"]:checked + label::after {
+	content: "\2713";
+	position: absolute;
+	font-size: 16px;
+	color: green;
+	border: 1px solid #d3d3d3;
 }
 #friendsToGroup {
 	display: flex;
@@ -1187,8 +1321,8 @@ input[type="radio"]:checked::before {
 	align-items: center;
 }
 .svg-circle {
-	width: 16px;     
-	height: 16px;   
+	width: 16px;      /* Controls the width of the SVG */
+	height: 16px;     /* Controls the height of the SVG */
 	position: absolute;
 	bottom: 0;
 	right: 0;
@@ -1207,11 +1341,4 @@ input[type="radio"]:checked::before {
 }
 .noHeight {
 	max-height: 0px;
-}
-#searchInput {
-	width: 80%;
-	margin: 0 auto 0 auto;
-}
-input {
-	background: white;
 }

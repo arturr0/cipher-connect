@@ -1110,13 +1110,16 @@ h1 a {
 	position: absolute; /* Absolute positioning within the parent */
 	left: 50%; /* Center horizontally */
 	top: 50%; /* Center vertically */
+	
 	background-color: rgba(0, 0, 0, 0.5);
 	z-index: 15;
+	
+	
 	transform: translate(-50%, -50%) scale(0); /* Start hidden with scale 0 */
 	transition: transform 0.3s ease; /* Transition effect for scaling */
 }
 
-#mainContent .modal.show, #createGroup .modal.show, .modal.show{
+#mainContent .modal.show, #createGroup .modal.show{
 	display: flex; /* Show the modal */
 	transform: translate(-50%, -50%) scale(1); /* Grow modal */
 }
@@ -1126,10 +1129,12 @@ h1 a {
 	border-radius: 5px;
 }
 .modal-content {
+	
 	background: #0d1117;
 	border: solid 1px #2d343c;
 	border-radius: 5px;
 	padding: 20px;
+	
 	display: flex;
 	flex-direction: column;
 	align-content: center;
@@ -1162,23 +1167,26 @@ input[type="radio"], input[type="checkbox"] {
 	margin: 0;
 	position: relative; 
 }
-input[type="checkbox"], input[type="radio"] {
-	appearance: none; /* Remove default checkbox/radio */
-	width: 20px;
-	height: 20px;
-	border: 1px solid #999;
-	display: inline-block;
-	position: relative;
-  }
-input[type="checkbox"]:checked::before, 
-input[type="radio"]:checked::before {
+
+/* Styles for checked state */
+input[type="radio"]:checked::before, input[type="checkbox"]:checked::before {
 	content: "\2713";
-	font-size: 16px;
-	color: black;
+	font-size: 16px; 
 	position: absolute;
 	top: 50%;
 	left: 50%;
-	transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%); /* Center the checkmark */
+	color: white !important;
+}
+
+
+/* Styles for checked state's label and icon */
+input[type="checkbox"]:checked + label::after {
+	content: "\2713";
+	position: absolute;
+	font-size: 16px;
+	color: green;
+	border: 1px solid #d3d3d3;
 }
 #friendsToGroup {
 	display: flex;

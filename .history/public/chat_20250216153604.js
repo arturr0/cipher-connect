@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		// Trigger the animation
 		setTimeout(() => {
 			modal.classList.add('show');
-		}, 20); 
+		}, 10); 
 		
 		document.getElementById('confirmDelete').onclick = function() {
 			menuGroups.classList.add('dropdown-content');
