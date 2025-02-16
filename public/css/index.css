@@ -233,11 +233,11 @@ p {
 	#buttons {
 		display: flex;
 		margin: 20px 0;
-		width: 35vw;
+		width: 45vw;
 		justify-content: center;
 	}
 	button {
-		width: 18vw;
+		width: 24vw;
 		height: 3vh;
 		font-size: 1rem;
 	}
