@@ -4,7 +4,7 @@ const socket = io.connect(baseUrl);
 document.addEventListener('DOMContentLoaded', () => {
     const signal = new Audio('sound.mp3');
 
-    const searchInput = document.getElementById('search-input');
+    const searchInput = document.getElementById('searchInput');
     const findUsers = document.getElementById('findUsers');
     const receiverAvatar = document.getElementById('receiverAvatar');
     const chat = document.getElementById('message-container');
@@ -1664,6 +1664,7 @@ function loadImageAsync(src) {
     let searchUser = '';
 
     searchInput.addEventListener('input', () => {
+        console("search");
         searchUser = searchInput.value.trim();
         if (searchUser) {
             console.log('Input search user:', searchUser);

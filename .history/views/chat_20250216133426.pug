@@ -19,10 +19,9 @@ html(lang='en')
             }
     body
         div#mainContent
-            //- input(type="checkbox")
             #friendsSearchBg
             div#searchUsers
-                    input#search-input(type='text', placeholder='Find User')
+                    input#searchInput(type='text', placeholder='Find User')
                     div#users
             #friends
                 #friendsAndGroups
@@ -54,11 +53,10 @@ html(lang='en')
                             #receiverAvatar
                             #receiverName
                             i.icon-keyboard.hidden
-                        div#message-container
+                        div#messageContainer
                     div#inputAndIcons
                         #chatInput
                             textarea#message(autoresize='' style='margin: auto; min-height: 80px; max-height: 50vh; font-size: 16px;')
-                            //- #chatIcons
                 #accountContainer
                     #account
                         #avatarOrInitials

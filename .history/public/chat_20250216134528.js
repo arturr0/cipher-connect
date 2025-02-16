@@ -4,10 +4,10 @@ const socket = io.connect(baseUrl);
 document.addEventListener('DOMContentLoaded', () => {
     const signal = new Audio('sound.mp3');
 
-    const searchInput = document.getElementById('search-input');
+    const searchInput = document.getElementById('searchInput');
     const findUsers = document.getElementById('findUsers');
     const receiverAvatar = document.getElementById('receiverAvatar');
-    const chat = document.getElementById('message-container');
+    const chat = document.getElementById('messageContainer');
     const invCounter = document.getElementById('invCounter');
     const messCounter = document.getElementById('messCounter');
     const groupCounter = document.getElementById('groupCounter');
@@ -189,7 +189,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     document.getElementById("message").value = "";
                     document.getElementById("message").style.height = '80px';
                     console.log(messageSent);
-                    jQuery("#message-container").scrollTop(jQuery("#message-container")[0].scrollHeight);
+                    jQuery("#messageContainer").scrollTop(jQuery("#messageContainer")[0].scrollHeight);
                 }
             }
         });
@@ -376,7 +376,7 @@ document.addEventListener('DOMContentLoaded', () => {
             chat.appendChild(recDiv);
 
             // Scroll to the bottom of the chat
-            jQuery("#message-container").scrollTop(jQuery("#message-container")[0].scrollHeight);    
+            jQuery("#messageContainer").scrollTop(jQuery("#messageContainer")[0].scrollHeight);    
         }
         else {
             let existingMessage = document.querySelector(`.unreadMessages[group="${data.groupOfMessage}"]`);
@@ -499,7 +499,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 chat.appendChild(recDiv);
 
                 // Scroll to the bottom of the chat
-                jQuery("#message-container").scrollTop(jQuery("#message-container")[0].scrollHeight);
+                jQuery("#messageContainer").scrollTop(jQuery("#messageContainer")[0].scrollHeight);
             }
             else {
                 const sendDiv = document.createElement('div');
@@ -532,7 +532,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 
                 adjustMarginForScrollbar();
-                jQuery("#message-container").scrollTop(jQuery("#message-container")[0].scrollHeight);
+                jQuery("#messageContainer").scrollTop(jQuery("#messageContainer")[0].scrollHeight);
 
             }
             document.getElementById("messagesContent").addEventListener("transitionend", function(event) {
@@ -1664,12 +1664,15 @@ function loadImageAsync(src) {
     let searchUser = '';
 
     searchInput.addEventListener('input', () => {
+        console.log("search");
         searchUser = searchInput.value.trim();
         if (searchUser) {
             console.log('Input search user:', searchUser);
             socket.emit('findUsers', searchUser);
+            console.log("search");
         } else {
             usersDiv.innerHTML = '';
+            console.log("search");
         }
     });
 
@@ -1962,7 +1965,7 @@ function handleIncomingMessage(message) {
     chat.appendChild(recDiv);
 
     // Scroll to the bottom of the chat
-    jQuery("#message-container").scrollTop(jQuery("#message-container")[0].scrollHeight);
+    jQuery("#messageContainer").scrollTop(jQuery("#messageContainer")[0].scrollHeight);
 }
 
 function formatDateComparison(targetDate) {
@@ -2338,7 +2341,7 @@ socket.on('userTyping', ({ isTyping, sender }) => {
 
                 // Scroll down after ensuring the typing indicator is added
                 setTimeout(() => {
-                    jQuery("#message-container").scrollTop(jQuery("#message-container")[0].scrollHeight);
+                    jQuery("#messageContainer").scrollTop(jQuery("#messageContainer")[0].scrollHeight);
                 }, 0);
             }
         } else {
@@ -2457,7 +2460,7 @@ socket.on('messagesResponse', (decryptedMessages) => {
         if (message.senderUsername == username) {
             // chat.innerHTML += (`<div class="bubble left" style="word-break: break-word">${message.message}</div>`);
             // adjustMarginForScrollbar();
-            // jQuery("#message-container").scrollTop(jQuery("#message-container")[0].scrollHeight);
+            // jQuery("#messageContainer").scrollTop(jQuery("#messageContainer")[0].scrollHeight);
             const sendDiv = document.createElement('div');
             sendDiv.classList.add('bubble', 'left');
             sendDiv.style.wordBreak = 'break-word';
@@ -2488,11 +2491,11 @@ socket.on('messagesResponse', (decryptedMessages) => {
             
             
             adjustMarginForScrollbar();
-            jQuery("#message-container").scrollTop(jQuery("#message-container")[0].scrollHeight);
+            jQuery("#messageContainer").scrollTop(jQuery("#messageContainer")[0].scrollHeight);
         }
         else {
             // chat.innerHTML += (`<div class="bubble right" style="word-break: break-word">${message.message}</div>`);
-            // jQuery("#message-container").scrollTop(jQuery("#message-container")[0].scrollHeight);
+            // jQuery("#messageContainer").scrollTop(jQuery("#messageContainer")[0].scrollHeight);
             adjustMarginForScrollbar();
             const timeAndIcon = document.createElement('div');
             timeAndIcon.classList.add('timeAndIcon');
@@ -2525,7 +2528,7 @@ socket.on('messagesResponse', (decryptedMessages) => {
 
             // Append the message div to the chat container
             chat.appendChild(recDiv);
-            jQuery("#message-container").scrollTop(jQuery("#message-container")[0].scrollHeight);
+            jQuery("#messageContainer").scrollTop(jQuery("#messageContainer")[0].scrollHeight);
         }
         document.getElementById("messagesContent").addEventListener("transitionend", function(event) {
             const parent = event.target;

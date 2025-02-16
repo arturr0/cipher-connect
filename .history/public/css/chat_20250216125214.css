@@ -1342,3 +1342,10 @@ input[type="checkbox"]:checked + label::after {
 .noHeight {
 	max-height: 0px;
 }
+#searchInput {
+	width: 80%;
+	margin: 0 auto 0 auto;
+}
+input {
+	background: white;
+}
