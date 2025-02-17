@@ -1438,36 +1438,6 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 	});
 	
-	// Utility function to load an image with a timeout for better control
-	function loadImageAsync(src, timeout = 500) {
-		return new Promise((resolve, reject) => {
-			const img = new Image();
-			let timedOut = false;
-			console.log('img')
-			// Reject after timeout to prevent infinite waiting for slow-loading images
-			const timer = setTimeout(() => {
-				timedOut = true;
-				reject(new Error(`Image load timed out for ${src}`));
-			}, timeout);
-			
-			img.src = src;
-			
-			img.onload = () => {
-				if (!timedOut) {
-					clearTimeout(timer); // Clear the timeout if it loads in time
-					resolve(img);
-				}
-			};
-			
-			img.onerror = () => {
-				if (!timedOut) {
-					clearTimeout(timer);
-					reject(new Error(`Image failed to load for ${src}`));
-				}
-			};
-		});
-	}
-	
 	// Listen for 'foundUsers' event
 	socket.on('inviteProcessed', () => {
 		socket.emit('findUsers', searchUser);
