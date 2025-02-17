@@ -1612,9 +1612,18 @@ document.addEventListener('DOMContentLoaded', () => {
 			
 			updateProfileImage(profileContainer, user.profileImage, initials);
 		});
-		
 		usersDiv.appendChild(fragment);
 	});
+	
+	// Helper function to create a fallback avatar with the first character of the username
+	function appendFallbackAvatar(userDiv, username) {
+		const fallbackDiv = document.createElement('div');
+		fallbackDiv.classList.add('profile-fallback');
+		fallbackDiv.textContent = username.charAt(0).toUpperCase(); // Use the first character of the username
+		
+		// Append the fallback div instead of the image
+		userDiv.appendChild(fallbackDiv);
+	}
 	
 	socket.on('message', (data) => {
 		console.log(data);
