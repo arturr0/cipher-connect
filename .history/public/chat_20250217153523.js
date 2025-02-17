@@ -1015,43 +1015,30 @@ document.addEventListener('DOMContentLoaded', () => {
 	socket.off('friendsToGroup'); // Remove any existing listeners for this event
 	socket.on('friendsToGroup', handleFriendsToGroup);
 	
-	async function loadImageAsync(src, retries = 3) {
+	async function loadImageAsync(src, timeout = 5000) {
 		const img = new Image();
 		img.src = src;
 	
-		const loadImage = () => {
-			return new Promise((resolve, reject) => {
-				img.onload = async () => {
-					try {
-						if (!img.complete) {
-							// Ensure that the image is completely loaded
-							await img.decode();
-						}
-						resolve(img);
-					} catch (error) {
-						reject(new Error(`Image decode failed: ${src}`));
-					}
-				};
-	
-				img.onerror = () => reject(new Error(`Image failed to load: ${src}`));
-			});
-		};
-	
-		// Retry logic without setTimeout
-		const tryLoadImage = async () => {
-			try {
-				return await loadImage(); // Attempt to load image
-			} catch (error) {
-				if (retries > 0) {
-					console.log(`Retrying image load for ${src}. Retries left: ${retries}`);
-					return await loadImageAsync(src, retries - 1); // Retry recursively
-				} else {
-					throw error; // No retries left, throw the error
+		const loadPromise = new Promise((resolve, reject) => {
+			img.onload = async () => {
+				try {
+					await img.decode(); // Ensure the image is fully decoded
+					resolve(img);
+				} catch (error) {
+					reject(new Error(`Image decode failed: ${src}`));
 				}
-			}
-		};
+			};
 	
-		return tryLoadImage(); // Start loading the image
+			img.onerror = () => reject(new Error(`Image failed to load: ${src}`));
+		});
+	
+		// Timeout promise
+		const timeoutPromise = new Promise((_, reject) =>
+			setTimeout(() => reject(new Error(`Image load timed out: ${src}`)), timeout)
+		);
+	
+		// Race between loading and timeout
+		return Promise.race([loadPromise, timeoutPromise]);
 	}
 	
 	function updateProfileImage(container, imageSrc, initials) {
@@ -1070,6 +1057,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				initials.style.visibility = 'visible'; // Fallback if image fails
 			});
 	}
+	
 	
 	
 	const invCounter = document.getElementById('invCounter');

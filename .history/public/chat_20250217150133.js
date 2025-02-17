@@ -1015,43 +1015,13 @@ document.addEventListener('DOMContentLoaded', () => {
 	socket.off('friendsToGroup'); // Remove any existing listeners for this event
 	socket.on('friendsToGroup', handleFriendsToGroup);
 	
-	async function loadImageAsync(src, retries = 3) {
-		const img = new Image();
-		img.src = src;
-	
-		const loadImage = () => {
-			return new Promise((resolve, reject) => {
-				img.onload = async () => {
-					try {
-						if (!img.complete) {
-							// Ensure that the image is completely loaded
-							await img.decode();
-						}
-						resolve(img);
-					} catch (error) {
-						reject(new Error(`Image decode failed: ${src}`));
-					}
-				};
-	
-				img.onerror = () => reject(new Error(`Image failed to load: ${src}`));
-			});
-		};
-	
-		// Retry logic without setTimeout
-		const tryLoadImage = async () => {
-			try {
-				return await loadImage(); // Attempt to load image
-			} catch (error) {
-				if (retries > 0) {
-					console.log(`Retrying image load for ${src}. Retries left: ${retries}`);
-					return await loadImageAsync(src, retries - 1); // Retry recursively
-				} else {
-					throw error; // No retries left, throw the error
-				}
-			}
-		};
-	
-		return tryLoadImage(); // Start loading the image
+	function loadImageAsync(src) {
+		return new Promise((resolve, reject) => {
+			const img = new Image();
+			img.onload = () => resolve(img);
+			img.onerror = () => reject(new Error(`Image failed to load: ${src}`));
+			img.src = src;
+		});
 	}
 	
 	function updateProfileImage(container, imageSrc, initials) {
@@ -1061,13 +1031,22 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 	
 		loadImageAsync(imageSrc)
-			.then((img) => {
-				console.log('Image loaded:', img);
-				container.appendChild(img);
+			.then((userImage) => {
+				console.log('Image loaded:', userImage);
+				userImage.classList.add('profile-image');
+				userImage.alt = 'Profile Image';
+				initials.style.display = 'none';
+	
+				// Remove existing image before appending a new one
+				const existingImage = container.querySelector('img.profile-image');
+				if (existingImage) {
+					container.removeChild(existingImage);
+				}
+				container.appendChild(userImage);
 			})
 			.catch((error) => {
 				console.error(error.message);
-				initials.style.visibility = 'visible'; // Fallback if image fails
+				initials.style.visibility = 'visible';
 			});
 	}
 	

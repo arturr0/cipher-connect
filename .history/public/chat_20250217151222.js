@@ -1015,43 +1015,31 @@ document.addEventListener('DOMContentLoaded', () => {
 	socket.off('friendsToGroup'); // Remove any existing listeners for this event
 	socket.on('friendsToGroup', handleFriendsToGroup);
 	
-	async function loadImageAsync(src, retries = 3) {
-		const img = new Image();
-		img.src = src;
+	async function loadImageAsync(src) {
+		try {
+			// Check if the image is accessible before creating an <img> element
+			const response = await fetch(src, { method: 'HEAD' });
 	
-		const loadImage = () => {
-			return new Promise((resolve, reject) => {
-				img.onload = async () => {
-					try {
-						if (!img.complete) {
-							// Ensure that the image is completely loaded
-							await img.decode();
-						}
-						resolve(img);
-					} catch (error) {
-						reject(new Error(`Image decode failed: ${src}`));
-					}
-				};
-	
-				img.onerror = () => reject(new Error(`Image failed to load: ${src}`));
-			});
-		};
-	
-		// Retry logic without setTimeout
-		const tryLoadImage = async () => {
-			try {
-				return await loadImage(); // Attempt to load image
-			} catch (error) {
-				if (retries > 0) {
-					console.log(`Retrying image load for ${src}. Retries left: ${retries}`);
-					return await loadImageAsync(src, retries - 1); // Retry recursively
-				} else {
-					throw error; // No retries left, throw the error
-				}
+			if (!response.ok) {
+				throw new Error(`Image not found or inaccessible: ${src}`);
 			}
-		};
 	
-		return tryLoadImage(); // Start loading the image
+			return new Promise((resolve, reject) => {
+				const img = new Image();
+				
+				img.onload = () => resolve(img);
+				img.onerror = () => reject(new Error(`Image failed to load: ${src}`));
+	
+				img.src = src;
+	
+				// Resolve immediately if already cached
+				if (img.complete && img.naturalHeight !== 0) {
+					resolve(img);
+				}
+			});
+		} catch (error) {
+			return Promise.reject(error);
+		}
 	}
 	
 	function updateProfileImage(container, imageSrc, initials) {
@@ -1059,16 +1047,25 @@ document.addEventListener('DOMContentLoaded', () => {
 			initials.style.visibility = 'visible';
 			return;
 		}
-	
-		loadImageAsync(imageSrc)
-			.then((img) => {
-				console.log('Image loaded:', img);
-				container.appendChild(img);
-			})
-			.catch((error) => {
-				console.error(error.message);
-				initials.style.visibility = 'visible'; // Fallback if image fails
-			});
+		
+		loadImageAsync(user.profileImage)
+		.then((userImage) => {
+			userImage.alt = `${user.username}'s profile image`;
+			userImage.classList.add('profile-image');
+			initials.style.display = 'none';
+
+			const existingImg = profileContainer.querySelector('img.profile-image');
+			if (!existingImg) {
+				profileContainer.appendChild(userImage);
+			} else {
+				existingImg.replaceWith(userImage);
+			}
+		})
+		.catch((error) => {
+			console.error(error.message);
+			initials.style.visibility = 'visible';
+		});
+
 	}
 	
 	

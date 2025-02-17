@@ -1015,60 +1015,46 @@ document.addEventListener('DOMContentLoaded', () => {
 	socket.off('friendsToGroup'); // Remove any existing listeners for this event
 	socket.on('friendsToGroup', handleFriendsToGroup);
 	
-	async function loadImageAsync(src, retries = 3) {
-		const img = new Image();
-		img.src = src;
+	function loadImageAsync(src) {
+		return new Promise((resolve, reject) => {
+			const img = new Image();
 	
-		const loadImage = () => {
-			return new Promise((resolve, reject) => {
-				img.onload = async () => {
-					try {
-						if (!img.complete) {
-							// Ensure that the image is completely loaded
-							await img.decode();
-						}
-						resolve(img);
-					} catch (error) {
-						reject(new Error(`Image decode failed: ${src}`));
-					}
-				};
+			img.onload = () => resolve(img);
+			img.onerror = () => reject(new Error(`Image failed to load: ${src}`));
 	
-				img.onerror = () => reject(new Error(`Image failed to load: ${src}`));
-			});
-		};
+			img.src = src;
 	
-		// Retry logic without setTimeout
-		const tryLoadImage = async () => {
-			try {
-				return await loadImage(); // Attempt to load image
-			} catch (error) {
-				if (retries > 0) {
-					console.log(`Retrying image load for ${src}. Retries left: ${retries}`);
-					return await loadImageAsync(src, retries - 1); // Retry recursively
-				} else {
-					throw error; // No retries left, throw the error
-				}
+			// Ensure the image is fetched by forcing reloading (helps with caching issues)
+			if (img.complete && img.naturalHeight !== 0) {
+				resolve(img);
 			}
-		};
-	
-		return tryLoadImage(); // Start loading the image
+		});
 	}
+	
 	
 	function updateProfileImage(container, imageSrc, initials) {
 		if (!imageSrc) {
 			initials.style.visibility = 'visible';
 			return;
 		}
-	
+		
 		loadImageAsync(imageSrc)
-			.then((img) => {
-				console.log('Image loaded:', img);
-				container.appendChild(img);
-			})
-			.catch((error) => {
-				console.error(error.message);
-				initials.style.visibility = 'visible'; // Fallback if image fails
-			});
+		.then((userImage) => {
+			userImage.alt = `${user.username}'s profile image`;
+			userImage.classList.add('profile-image');
+			initials.style.display = 'none';
+
+			const existingImg = profileContainer.querySelector('img.profile-image');
+			if (!existingImg) {
+				profileContainer.appendChild(userImage);
+			} else {
+				existingImg.replaceWith(userImage);
+			}
+		})
+		.catch((error) => {
+			console.error(error.message);
+			initials.style.visibility = 'visible';
+		});
 	}
 	
 	

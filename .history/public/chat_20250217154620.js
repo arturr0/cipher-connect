@@ -1071,7 +1071,6 @@ document.addEventListener('DOMContentLoaded', () => {
 			});
 	}
 	
-	
 	const invCounter = document.getElementById('invCounter');
 	
 	socket.on('pendingInvitations', (pendingInvitations) => {
