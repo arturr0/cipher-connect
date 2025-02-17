@@ -656,7 +656,6 @@ document.addEventListener('DOMContentLoaded', () => {
 			
 			// Append userInfoDiv to userDiv
 			userDiv.appendChild(userInfoDiv);
-			userDiv.appendChild(userInfoDiv);
 			fragment.appendChild(userDiv);
 			
 			const sendButtons = document.querySelectorAll('.send');
@@ -1183,7 +1182,6 @@ document.addEventListener('DOMContentLoaded', () => {
 			
 			// Append userInfoDiv to userDiv
 			userDiv.appendChild(userInfoDiv);
-			userDiv.appendChild(userInfoDiv);
 			fragment.appendChild(userDiv);
 			
 			sendButton.addEventListener('click', async () => {
@@ -1368,7 +1366,6 @@ document.addEventListener('DOMContentLoaded', () => {
 			userInfoDiv.appendChild(buttonsDiv);
 			
 			// Append userInfoDiv to userDiv
-			userDiv.appendChild(userInfoDiv);
 			userDiv.appendChild(userInfoDiv);
 			fragment.appendChild(userDiv);
 			
@@ -1604,7 +1601,6 @@ document.addEventListener('DOMContentLoaded', () => {
 			userInfoDiv.appendChild(buttonsDiv);
 			
 			// Append userInfoDiv to userDiv
-			userDiv.appendChild(userInfoDiv);
 			userDiv.appendChild(userInfoDiv);
 			fragment.appendChild(userDiv);
 			
