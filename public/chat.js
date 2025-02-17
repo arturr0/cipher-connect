@@ -1047,8 +1047,8 @@ document.addEventListener('DOMContentLoaded', () => {
 			console.log('Image loaded:', img);
 			
 			// Apply styles and append the image
-			img.style.width = '100%';
-			img.style.height = '100%';
+			img.style.width = '40px';
+			img.style.height = '40px';
 			img.style.borderRadius = '50%';
 			img.classList.add('userAvatar');
 			container.appendChild(img); // Append the image to the container
@@ -1397,8 +1397,8 @@ document.addEventListener('DOMContentLoaded', () => {
 			
 			const img = new Image();
 			img.src = profileImage; // Use the emitted profile image path
-			img.style.width = '100%';
-			img.style.height = '100%';
+			img.style.width = '40px';
+			img.style.height = '40px';
 			img.style.borderRadius = '50%';
 			img.style.objectFit = 'cover';
 			
@@ -1424,8 +1424,8 @@ document.addEventListener('DOMContentLoaded', () => {
 		img.src = relativePath;
 		
 		// Set styles for the image
-		img.style.width = '100%'; // Make the image fill the div
-		img.style.height = '100%'; // Make the image fill the div
+		img.style.width = '40px'; // Make the image fill the div
+		img.style.height = '40px'; // Make the image fill the div
 		img.style.borderRadius = '50%'; // Apply border radius to the image
 		img.style.objectFit = 'cover'; // Optional: cover the div while maintaining aspect ratio
 		
