@@ -1,0 +1,262 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+html, body {
+	margin: 0; 
+	padding: 0; 
+	height: 100%; 
+	font-family: 'Roboto', sans-serif;
+	color: white;
+	font-size: 18px;
+	transition: background-color 0.3s ease-in-out;
+}
+* {
+	box-sizing: border-box;
+}
+h2 {
+	color: white;
+	z-index: 2;
+}
+.neonText {
+	color: #fff;
+	text-shadow:
+	0 0 7px #fff,
+	0 0 10px #fff,
+	0 0 21px #fff,
+	0 0 42px #0fa,
+	0 0 82px #0fa,
+	0 0 92px #0fa,
+	0 0 102px #0fa,
+	0 0 151px #0fa;
+}
+@keyframes pulsate {
+	100% {
+		text-shadow:
+		0 0 4px #fff,
+		0 0 11px #fff,
+		0 0 19px #fff,
+		0 0 40px #0fa,
+		0 0 80px #0fa,
+		0 0 90px #0fa,
+		0 0 100px #0fa,
+		0 0 150px #0fa;
+	}
+	0% {
+		text-shadow:
+		0 0 2px #fff,
+		0 0 4px #fff,
+		0 0 6px #fff,
+		0 0 10px #0fa,
+		0 0 45px #0fa,
+		0 0 55px #0fa,
+		0 0 70px #0fa,
+		0 0 80px #0fa;
+	}
+}
+.form-container {
+	display: flex;
+	align-items: center;
+	height: 100vh; /* Full viewport height for centering */
+	flex-direction: column;
+	background: #000a00;
+}
+#auth-form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background-color: white;
+	padding: 20px;
+	font-weight: bolder;
+	background: #000a00;
+	z-index: 1;
+}
+#info {
+	width: 100%;
+	text-align: center;
+}
+input {
+	color: white;
+	border: solid 1px #2d343c;
+}
+.input {
+	position: relative;
+}
+.input input {
+	outline: none;
+	background: #000a00;
+}
+.input label {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	transition: .3s;
+	pointer-events: none;
+	text-align: center;
+	transition: 0.3s ease-in-out;
+}
+.input input:focus {
+	border: 2px solid white;
+}
+input:focus ~ label,
+input:valid ~ label {
+	background: #000a00;
+	top: 0;
+	font-size: 16px;
+	padding: 0 10px;
+}
+.characters {
+	width: 100%;
+	font-size: 1rem;
+}
+button {
+	color: #fff;
+	background-color: #38D2D2;
+	background-image: radial-gradient(93% 87% at 87% 89%, rgba(0, 0, 0, 0.23) 0%, transparent 86.18%), radial-gradient(66% 66% at 26% 20%, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0) 69.79%, rgba(255, 255, 255, 0) 100%);
+	box-shadow: inset -3px -3px 9px rgba(255, 255, 255, 0.25), inset 0px 3px 9px rgba(255, 255, 255, 0.3), inset 0px 1px 1px rgba(255, 255, 255, 0.6), inset 0px -8px 36px rgba(0, 0, 0, 0.3), inset 0px 1px 5px rgba(255, 255, 255, 0.6), 2px 19px 31px rgba(0, 0, 0, 0.2);
+	border-radius: 14px;
+	border: 0;
+	user-select: none;
+	cursor: pointer;
+	opacity: 0.5;
+	transition: opacity 0.3s ease;
+	color: black;
+	font-weight: bolder;
+	font-size: 15px;
+}
+button.buttons.active {
+	opacity: 1; /* Change background color on hover */
+}
+button.buttons.active:hover {
+	opacity: 0.5; /* Change background color on hover */
+}
+.inactive {
+	opacity: 0.5;
+}
+#loginInfo, #passwordInfo, .icons {
+	display: flex;
+}
+#passwordInfo {
+	height: 18px;
+	margin: 20px;
+}
+.icons {
+	position: absolute;
+	top: 50%;
+	left: 100%;
+	transform: translate(-105%, -55%);
+}
+.icon-ok-circled2 {
+	display: none;
+	color: rgb(0,100,0);
+}
+.icon-cancel-circled2 {
+	color: red;
+}
+input::placeholder {
+	color: black; 
+	opacity: 1;  
+}
+input{
+	text-align: center;  /* Centers the text and placeholder */
+}
+i {
+	font-size: 20px;
+}
+p {
+	color: red;
+	margin: 0 3px 0 0; 
+}
+.characters {
+	display: flex;
+	margin-top: 2px;
+	align-self: center;
+}
+@media (hover: hover) and (pointer: fine) {
+	.pulsate {
+		animation: pulsate 1.5s infinite alternate;     
+	}
+	input {
+		margin: 5px 0;
+	}
+	button {
+		width: 6vw;
+		height: 32px;
+	}
+	input {
+		width: 210px;
+		height: 32px;
+	}
+	#auth-form {
+		width: 37vw;
+		justify-content: center;
+	}
+	.form-container { 
+		justify-content: center;
+	}
+	.input {
+		margin: 15px;
+	}
+	#buttons {
+		display: flex;
+		margin: 5px 0;
+	}
+}
+@media only screen and (max-width: 768px) and (orientation: portrait) and (pointer: coarse) {
+	.form-container {
+		align-items: center;
+	}
+	h2 {
+		margin-top: 30%;
+	}
+	#auth-form {
+		width: 100vw;
+	}
+	#info {
+		height: 6vh;
+		margin-bottom: 20px;
+	}
+	.input {
+		width: 50vw;
+		height: 4vh;
+	}
+	.input input {
+		background: #000a00;
+		width: 100%;
+		height: 100%;
+	}
+	input {
+		border: 2px solid white;
+		border: solid 4px white;
+		background: black;
+	}
+	#buttons {
+		display: flex;
+		margin: 20px 0;
+		width: 35vw;
+		justify-content: center;
+	}
+	button {
+		width: 18vw;
+		height: 3vh;
+		font-size: 2rem;
+	}
+	i {
+		/* font-size: 20px; */
+		font-size: 2.4rem;
+	}
+	.characters {
+		font-size: 2rem;
+	}
+	#sign-up-button {
+		margin-left: auto;
+	}
+	div.input:nth-child(2) {
+		margin-bottom: 10px;
+	}
+	div.input:nth-child(3) {
+		margin-bottom: 20px;
+		margin-top: 20px;
+	}
+}
+@media only screen and (max-width: 1200px) and (orientation: landscape) and (pointer: coarse) {
+}
