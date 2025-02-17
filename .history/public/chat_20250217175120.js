@@ -1009,52 +1009,65 @@ document.addEventListener('DOMContentLoaded', () => {
 	socket.off('friendsToGroup'); // Remove any existing listeners for this event
 	socket.on('friendsToGroup', handleFriendsToGroup);
 	
-	// Function to load the image asynchronously
-	async function loadImageAsync(src) {
+	async function loadImageAsync(src, retries = 3) {
 		const img = new Image();
 		img.src = src;
-
-		// Create a Promise to load the image
-		return new Promise((resolve, reject) => {
-			img.onload = async () => {
-				try {
-					if (!img.complete) {
-						// Ensure that the image is completely loaded
-						await img.decode();
+	
+		const loadImage = () => {
+			return new Promise((resolve, reject) => {
+				img.onload = async () => {
+					try {
+						if (!img.complete) {
+							// Ensure that the image is completely loaded
+							await img.decode();
+						}
+						resolve(img);
+					} catch (error) {
+						reject(new Error(`Image decode failed: ${src}`));
 					}
-					resolve(img); // Resolve with the img object
-				} catch (error) {
-					reject(new Error(`Image decode failed: ${src}`)); // Reject if decoding fails
+				};
+	
+				img.onerror = () => reject(new Error(`Image failed to load: ${src}`));
+			});
+		};
+	
+		// Retry logic without setTimeout
+		const tryLoadImage = async () => {
+			try {
+				return await loadImage(); // Attempt to load image
+			} catch (error) {
+				if (retries > 0) {
+					console.log(`Retrying image load for ${src}. Retries left: ${retries}`);
+					return await loadImageAsync(src, retries - 1); // Retry recursively
+				} else {
+					throw error; // No retries left, throw the error
 				}
-			};
-
-			img.onerror = () => reject(new Error(`Image failed to load: ${src}`)); // Reject on error
-		});
+			}
+		};
+	
+		return tryLoadImage(); // Start loading the image
 	}
-
-	// Function to update the profile image
-	async function updateProfileImage(container, imageSrc, initials) {
+	
+	function updateProfileImage(container, imageSrc, initials) {
 		if (!imageSrc) {
-			initials.style.display = 'flex'; // Show initials if no image
+			initials.style.display = 'flex';
 			return;
 		}
-
-		try {
-			const img = await loadImageAsync(imageSrc); // Await the image loading
-			console.log('Image loaded:', img);
-			
-			// Apply styles and append the image
-			img.style.width = '100%';
-			img.style.height = '100%';
-			img.style.borderRadius = '50%';
-			img.classList.add('userAvatar');
-			container.appendChild(img); // Append the image to the container
-		} catch (error) {
-			console.error(error.message); // Log any error that occurs
-			initials.style.display = 'flex'; // Show initials if the image fails to load
-		}
+	
+		loadImageAsync(imageSrc)
+			.then((img) => {
+				console.log('Image loaded:', img);
+				img.style.width = '100%';
+				img.style.height = '100%';
+				img.style.borderRadius = '50%';
+				img.classList.add('userAvatar')
+				container.appendChild(img);
+			})
+			.catch((error) => {
+				console.error(error.message);
+				initials.style.display = 'flex';
+			});
 	}
-
 	
 	
 	const invCounter = document.getElementById('invCounter');

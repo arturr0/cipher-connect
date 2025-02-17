@@ -300,7 +300,7 @@ button {
 	border-radius: 50%; /* Make it a circle */
 }
 .initials {
-	display: none; /* Flexbox for centering text */
+	display: flex; /* Flexbox for centering text */
 	align-items: center; /* Center vertically */
 	justify-content: center; /* Center horizontally */
 	width: 40px; 
