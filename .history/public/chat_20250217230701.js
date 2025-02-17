@@ -1172,29 +1172,28 @@ document.addEventListener('DOMContentLoaded', () => {
 				receiverElement.textContent = receiver;
  
 				const profileContainer = userDiv.querySelector('.profile-container');
-				console.log('profileContainer', profileContainer);
+console.log('profileContainer', profileContainer);
 
-				// Check for the presence of an img element
-				const img = profileContainer.querySelector('img.profile-image');
-				const initialsElement = profileContainer.querySelector('.initials');
-				console.log('img', img);
-				// Append the image or initials based on availability
-				if (profileContainer.contains(profileContainer?.querySelector('img'))) {
-					const userAvatar = document.createElement('img');
-					userAvatar.style.width = '40px';
-					userAvatar.style.height = '40px';
-					userAvatar.src = profileContainer?.querySelector('img').src;
-					userAvatar.id = 'avatar';
-					//receiverAvatar.appendChild(userAvatar);
-				} else if (initialsElement) {
-					const clonedInitials = initialsElement.cloneNode(true);
-					clonedInitials.classList.remove('initials');
-					clonedInitials.id = 'receiverInitials';
-					console.log('check');
+// Check for the presence of an img element
+const img = profileContainer.querySelector('img.profile-image');
+const initialsElement = profileContainer.querySelector('.initials');
+console.log('img', img);
 
-					clonedInitials.style.display = 'flex';
-					receiverAvatar.appendChild(clonedInitials);
-				}
+if (img) {
+    // Clone the image before appending
+    const clonedImg = img.cloneNode(true);
+    clonedImg.id = 'receiverImg'; // Set new ID if needed
+    receiverAvatar.appendChild(clonedImg);
+} else if (initialsElement) {
+    const clonedInitials = initialsElement.cloneNode(true);
+    clonedInitials.classList.remove('initials');
+    clonedInitials.id = 'receiverInitials';
+    console.log('check');
+
+    clonedInitials.style.display = 'flex';
+    receiverAvatar.appendChild(clonedInitials);
+}
+
 				
 				const messagesReqtype = 'button';
 				

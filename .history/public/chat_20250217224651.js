@@ -1180,12 +1180,11 @@ document.addEventListener('DOMContentLoaded', () => {
 				console.log('img', img);
 				// Append the image or initials based on availability
 				if (profileContainer.contains(profileContainer?.querySelector('img'))) {
-					const userAvatar = document.createElement('img');
-					userAvatar.style.width = '40px';
-					userAvatar.style.height = '40px';
-					userAvatar.src = profileContainer?.querySelector('img').src;
-					userAvatar.id = 'avatar';
-					//receiverAvatar.appendChild(userAvatar);
+					//const clonedImg = img.cloneNode();
+					console.log("contains", clonedImg)
+					clonedImg.classList.remove('profile-image');
+					clonedImg.id = 'receiverImg';
+					receiverAvatar.appendChild(profileContainer?.querySelector('img'));
 				} else if (initialsElement) {
 					const clonedInitials = initialsElement.cloneNode(true);
 					clonedInitials.classList.remove('initials');

@@ -1181,11 +1181,9 @@ document.addEventListener('DOMContentLoaded', () => {
 				// Append the image or initials based on availability
 				if (profileContainer.contains(profileContainer?.querySelector('img'))) {
 					const userAvatar = document.createElement('img');
-					userAvatar.style.width = '40px';
-					userAvatar.style.height = '40px';
 					userAvatar.src = profileContainer?.querySelector('img').src;
 					userAvatar.id = 'avatar';
-					//receiverAvatar.appendChild(userAvatar);
+					receiverAvatar.appendChild(userAvatar);
 				} else if (initialsElement) {
 					const clonedInitials = initialsElement.cloneNode(true);
 					clonedInitials.classList.remove('initials');

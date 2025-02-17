@@ -410,7 +410,6 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 		else {
 			const initials = document.createElement('div');
-			console.log('check');
 			initials.id = 'receiverInitials';
 			initials.textContent = groupName.charAt(0).toUpperCase();
 			receiverAvatar.appendChild(initials);
@@ -689,8 +688,6 @@ document.addEventListener('DOMContentLoaded', () => {
 				} else if (initialsElement) {
 					const clonedInitials = initialsElement.cloneNode(true);
 					clonedInitials.classList.remove('initials');
-					console.log('check');
-
 					clonedInitials.id = 'receiverInitials';
 					receiverAvatar.appendChild(clonedInitials);
 				}
@@ -1172,26 +1169,21 @@ document.addEventListener('DOMContentLoaded', () => {
 				receiverElement.textContent = receiver;
  
 				const profileContainer = userDiv.querySelector('.profile-container');
-				console.log('profileContainer', profileContainer);
-
+				
 				// Check for the presence of an img element
 				const img = profileContainer.querySelector('img.profile-image');
 				const initialsElement = profileContainer.querySelector('.initials');
-				console.log('img', img);
+				
 				// Append the image or initials based on availability
-				if (profileContainer.contains(profileContainer?.querySelector('img'))) {
-					const userAvatar = document.createElement('img');
-					userAvatar.style.width = '40px';
-					userAvatar.style.height = '40px';
-					userAvatar.src = profileContainer?.querySelector('img').src;
-					userAvatar.id = 'avatar';
-					//receiverAvatar.appendChild(userAvatar);
+				if (img) {
+					const clonedImg = img.cloneNode();
+					clonedImg.classList.remove('profile-image');
+					clonedImg.id = 'receiverImg';
+					receiverAvatar.appendChild(clonedImg);
 				} else if (initialsElement) {
 					const clonedInitials = initialsElement.cloneNode(true);
 					clonedInitials.classList.remove('initials');
 					clonedInitials.id = 'receiverInitials';
-					console.log('check');
-
 					clonedInitials.style.display = 'flex';
 					receiverAvatar.appendChild(clonedInitials);
 				}
@@ -1557,8 +1549,6 @@ document.addEventListener('DOMContentLoaded', () => {
 								clonedInitials.style.visibility = 'hidden';
 								console.log('clonedInitials', clonedInitials)
 								clonedInitials.id = 'receiverInitials';
-								console.log('check');
-
 								clonedInitials.style.display = 'flex';
 								receiverAvatar.appendChild(clonedInitials);
 							}
@@ -2052,8 +2042,6 @@ document.addEventListener('DOMContentLoaded', () => {
 			const initials = document.createElement('div');
 			console.log("initials", initials);
 			initials.id = 'receiverInitials';
-			console.log('check');
-
 			initials.style.display = 'flex';
 			initials.textContent = receiver.charAt(0).toUpperCase();
 			receiverAvatar.appendChild(initials);
