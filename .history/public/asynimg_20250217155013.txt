@@ -1,0 +1,11 @@
+PS C:\CIPHERCONNET\cipher-connect-final-chatjs-changes> git add .
+warning: in the working copy of 'public/chat.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of '.history/public/chat_20250217150133.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of '.history/public/chat_20250217151019.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of '.history/public/chat_20250217151222.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of '.history/public/chat_20250217151709.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of '.history/public/chat_20250217151904.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of '.history/public/chat_20250217153523.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of '.history/public/chat_20250217153736.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of '.history/public/chat_20250217154620.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of '.history/public/chat_20250217154846.js', LF will be replaced by CRLF the next time Git touches it
