@@ -208,7 +208,7 @@
 		margin-top: 0;
 		display: none;
 	}
-	.user .profile-container {
+	.user . {
 		margin-left: 0;
 	}
 }
@@ -279,7 +279,7 @@ button {
 	position: relative;
 }
 
-.profile-container {
+. {
 	position: relative; 
 	display: flex;
 	align-items: center; 
@@ -290,6 +290,8 @@ button {
 }
 .profile-container img {
 	object-fit: cover;
+	width: 40px;
+	height: 40px;
 }
 .loading-placeholder, .initials, .profile-image {
 	position: relative; /* Allow overlap without layout shift */
