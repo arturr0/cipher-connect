@@ -1527,7 +1527,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				receiver = sendButton.value;
 				group = null;
 				// Emit findUsers without awaiting the response
-				//socket.emit('findUsers', searchUser); // This might be adjusted based on your logic
+				socket.emit('findUsers', searchUser); // This might be adjusted based on your logic
 				
 				// Assume that the server will respond with found users
 				socket.once('foundUsers', (foundUsers) => {
