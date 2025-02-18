@@ -1397,8 +1397,8 @@ document.addEventListener('DOMContentLoaded', () => {
 			
 			const img = new Image();
 			img.src = profileImage; // Use the emitted profile image path
-			img.style.width = '40px';
-			img.style.height = '40px';
+			img.style.width = '100%';
+			img.style.height = '100%';
 			img.style.borderRadius = '50%';
 			img.style.objectFit = 'cover';
 			
@@ -1526,47 +1526,40 @@ document.addEventListener('DOMContentLoaded', () => {
 				isTypingVisible = false;
 				receiver = sendButton.value;
 				group = null;
-				// Emit findUsers without awaiting the response
-				//socket.emit('findUsers', searchUser); 
 				
-				const foundUser = foundUsers.find(u => u.username === receiver);
-				if (foundUser) {
-					
-					// Clear existing content in #receiverAvatar
-					receiverAvatar.innerHTML = ''; 
-					receiverAvatar.textContent = ''; 
-					receiverAvatar.textContent = ''; 
+				// Clear existing content in #receiverAvatar
+				receiverAvatar.innerHTML = ''; 
+				receiverAvatar.textContent = ''; 
+				receiverAvatar.textContent = ''; 
 
-					receiverElement.textContent = receiver;						
-					const profileContainer = userDiv.querySelector('.profile-container');
-					console.log(profileContainer);
-					if (profileContainer) {
-						const img = profileContainer.querySelector('img.profile-image');
-						const initialsElement = profileContainer.querySelector('.initials');
-						console.log('img', img)
-						console.log('initialsElement', initialsElement)
-						if (img) {
-							const clonedImg = img.cloneNode();
-							clonedImg.classList.remove('profile-image');
-							clonedImg.id = 'receiverImg';
-							receiverAvatar.appendChild(clonedImg);
-						} else if (initialsElement) {
-							const clonedInitials = initialsElement.cloneNode(true);
-							clonedInitials.style.visibility = 'hidden';
-							console.log('clonedInitials', clonedInitials)
-							clonedInitials.id = 'receiverInitials';
-							console.log('check');
+				receiverElement.textContent = receiver;						
+				const profileContainer = userDiv.querySelector('.profile-container');
+				console.log(profileContainer);
+				if (profileContainer) {
+					const img = profileContainer.querySelector('img.profile-image');
+					const initialsElement = profileContainer.querySelector('.initials');
+					console.log('img', img)
+					console.log('initialsElement', initialsElement)
+					if (img) {
+						const clonedImg = img.cloneNode();
+						clonedImg.classList.remove('profile-image');
+						clonedImg.id = 'receiverImg';
+						receiverAvatar.appendChild(clonedImg);
+					} else if (initialsElement) {
+						const clonedInitials = initialsElement.cloneNode(true);
+						clonedInitials.style.visibility = 'hidden';
+						console.log('clonedInitials', clonedInitials)
+						clonedInitials.id = 'receiverInitials';
+						console.log('check');
 
-							clonedInitials.style.display = 'flex';
-							receiverAvatar.appendChild(clonedInitials);
-						}
-					} else {
-						console.warn('Profile container not found.');
+						clonedInitials.style.display = 'flex';
+						receiverAvatar.appendChild(clonedInitials);
 					}
-					const messagesReqtype = 'button';
-					socket.emit('sendMeMessages', username, receiver, messagesReqtype);
+				} else {
+					console.warn('Profile container not found.');
 				}
-				
+				const messagesReqtype = 'button';
+				socket.emit('sendMeMessages', username, receiver, messagesReqtype);
 			});
 			
 			// Select all elements with the class 'send'
