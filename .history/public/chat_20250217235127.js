@@ -1099,13 +1099,13 @@ document.addEventListener('DOMContentLoaded', () => {
 			userDiv.classList.add('friends');
 			const profileContainer = document.createElement('div');
 			profileContainer.classList.add('profile-container');
-			userDiv.appendChild(profileContainer);
-
+			
 			// Create initials element but keep it hidden initially
 			const initials = document.createElement('div');
 			initials.classList.add('initials');
 			initials.textContent = friend.name.charAt(0).toUpperCase();
 			profileContainer.appendChild(initials);
+			userDiv.appendChild(profileContainer);
 			
 			const userInfoDiv = document.createElement('div');
 			userInfoDiv.classList.add('user-info');
@@ -1397,8 +1397,8 @@ document.addEventListener('DOMContentLoaded', () => {
 			
 			const img = new Image();
 			img.src = profileImage; // Use the emitted profile image path
-			img.style.width = '100%';
-			img.style.height = '100%';
+			img.style.width = '40px';
+			img.style.height = '40px';
 			img.style.borderRadius = '50%';
 			img.style.objectFit = 'cover';
 			
@@ -1526,40 +1526,49 @@ document.addEventListener('DOMContentLoaded', () => {
 				isTypingVisible = false;
 				receiver = sendButton.value;
 				group = null;
+				// Emit findUsers without awaiting the response
+				socket.emit('findUsers', searchUser); // This might be adjusted based on your logic
 				
-				// Clear existing content in #receiverAvatar
-				receiverAvatar.innerHTML = ''; 
-				receiverAvatar.textContent = ''; 
-				receiverAvatar.textContent = ''; 
+				// Assume that the server will respond with found users
+				socket.once('foundUsers', (foundUsers) => {
+					const foundUser = foundUsers.find(u => u.username === receiver);
+					if (foundUser) {
+						
+						// Clear existing content in #receiverAvatar
+						receiverAvatar.innerHTML = ''; 
+						receiverAvatar.textContent = ''; 
+						receiverAvatar.textContent = ''; 
 
-				receiverElement.textContent = receiver;						
-				const profileContainer = userDiv.querySelector('.profile-container');
-				console.log(profileContainer);
-				if (profileContainer) {
-					const img = profileContainer.querySelector('img.profile-image');
-					const initialsElement = profileContainer.querySelector('.initials');
-					console.log('img', img)
-					console.log('initialsElement', initialsElement)
-					if (img) {
-						const clonedImg = img.cloneNode();
-						clonedImg.classList.remove('profile-image');
-						clonedImg.id = 'receiverImg';
-						receiverAvatar.appendChild(clonedImg);
-					} else if (initialsElement) {
-						const clonedInitials = initialsElement.cloneNode(true);
-						clonedInitials.style.visibility = 'hidden';
-						console.log('clonedInitials', clonedInitials)
-						clonedInitials.id = 'receiverInitials';
-						console.log('check');
+						receiverElement.textContent = receiver;						
+						const profileContainer = userDiv.querySelector('.profile-container');
+						console.log(profileContainer);
+						if (profileContainer) {
+							const img = profileContainer.querySelector('img.profile-image');
+							const initialsElement = profileContainer.querySelector('.initials');
+							console.log('img', img)
+							console.log('initialsElement', initialsElement)
+							if (img) {
+								const clonedImg = img.cloneNode();
+								clonedImg.classList.remove('profile-image');
+								clonedImg.id = 'receiverImg';
+								receiverAvatar.appendChild(clonedImg);
+							} else if (initialsElement) {
+								const clonedInitials = initialsElement.cloneNode(true);
+								clonedInitials.style.visibility = 'hidden';
+								console.log('clonedInitials', clonedInitials)
+								clonedInitials.id = 'receiverInitials';
+								console.log('check');
 
-						clonedInitials.style.display = 'flex';
-						receiverAvatar.appendChild(clonedInitials);
+								clonedInitials.style.display = 'flex';
+								receiverAvatar.appendChild(clonedInitials);
+							}
+						} else {
+							console.warn('Profile container not found.');
+						}
+						const messagesReqtype = 'button';
+						socket.emit('sendMeMessages', username, receiver, messagesReqtype);
 					}
-				} else {
-					console.warn('Profile container not found.');
-				}
-				const messagesReqtype = 'button';
-				socket.emit('sendMeMessages', username, receiver, messagesReqtype);
+				});
 			});
 			
 			// Select all elements with the class 'send'

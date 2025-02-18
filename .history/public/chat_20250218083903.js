@@ -1099,13 +1099,13 @@ document.addEventListener('DOMContentLoaded', () => {
 			userDiv.classList.add('friends');
 			const profileContainer = document.createElement('div');
 			profileContainer.classList.add('profile-container');
-			userDiv.appendChild(profileContainer);
-
+			
 			// Create initials element but keep it hidden initially
 			const initials = document.createElement('div');
 			initials.classList.add('initials');
 			initials.textContent = friend.name.charAt(0).toUpperCase();
 			profileContainer.appendChild(initials);
+			userDiv.appendChild(profileContainer);
 			
 			const userInfoDiv = document.createElement('div');
 			userInfoDiv.classList.add('user-info');
@@ -1397,8 +1397,8 @@ document.addEventListener('DOMContentLoaded', () => {
 			
 			const img = new Image();
 			img.src = profileImage; // Use the emitted profile image path
-			img.style.width = '100%';
-			img.style.height = '100%';
+			img.style.width = '40px';
+			img.style.height = '40px';
 			img.style.borderRadius = '50%';
 			img.style.objectFit = 'cover';
 			

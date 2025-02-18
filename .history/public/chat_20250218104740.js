@@ -1099,6 +1099,8 @@ document.addEventListener('DOMContentLoaded', () => {
 			userDiv.classList.add('friends');
 			const profileContainer = document.createElement('div');
 			profileContainer.classList.add('profile-container');
+			profileContainer.style.marginLeft = '10px';
+			profileContainer.style.marginRight = '10px';
 			userDiv.appendChild(profileContainer);
 
 			// Create initials element but keep it hidden initially

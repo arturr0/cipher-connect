@@ -277,7 +277,6 @@ button {
 	justify-content: center; /* Center horizontally */
 	margin-top: 10px;
 	position: relative;
-	margin-left: 10px;
 }
 
 .profile-container {
@@ -287,7 +286,7 @@ button {
 	justify-content: center; 
 	width: 40px; 
 	height: 40px; 
-	/* margin: 0 auto; */
+	margin-left: 10px;
 }
 .profile-container img {
 	object-fit: cover;
@@ -326,9 +325,11 @@ button {
 }
 .user-info {
 	display: flex;
-	flex-direction: column;
-	padding-left: 10px;
+	flex-direction: column; 
+	
+	margin-left: 10px;
 }
+
 .buttons {
 	display: flex;
 	gap: 5px; 
@@ -1055,7 +1056,8 @@ h1 a {
 
 #friendsAndGroups {
 	height: 96%;
-	margin-left: 10px;
+	
+	
 }
 #friendsAndGroups:hover {
 	
@@ -1216,7 +1218,7 @@ input[type="radio"]:checked::before {
 }
 #searchInput {
 	width: 80%;
-	margin: 0 auto 10px auto;
+	margin: 0 auto 0 auto;
 }
 input {
 	background: white;

@@ -277,7 +277,6 @@ button {
 	justify-content: center; /* Center horizontally */
 	margin-top: 10px;
 	position: relative;
-	margin-left: 10px;
 }
 
 .profile-container {
@@ -287,12 +286,13 @@ button {
 	justify-content: center; 
 	width: 40px; 
 	height: 40px; 
-	/* margin: 0 auto; */
+	margin: 0 10px;
 }
 .profile-container img {
 	object-fit: cover;
 	width: 40px;
 	height: 40px;
+	margin: 0 10px;
 }
 .loading-placeholder, .initials, .profile-image {
 	position: relative; /* Allow overlap without layout shift */
@@ -326,8 +326,7 @@ button {
 }
 .user-info {
 	display: flex;
-	flex-direction: column;
-	padding-left: 10px;
+	flex-direction: column; 
 }
 .buttons {
 	display: flex;
@@ -1216,7 +1215,7 @@ input[type="radio"]:checked::before {
 }
 #searchInput {
 	width: 80%;
-	margin: 0 auto 10px auto;
+	margin: 0 auto 0 auto;
 }
 input {
 	background: white;

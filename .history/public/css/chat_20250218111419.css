@@ -327,7 +327,7 @@ button {
 .user-info {
 	display: flex;
 	flex-direction: column;
-	padding-left: 10px;
+	margin-left: 10px;
 }
 .buttons {
 	display: flex;
@@ -1216,7 +1216,7 @@ input[type="radio"]:checked::before {
 }
 #searchInput {
 	width: 80%;
-	margin: 0 auto 10px auto;
+	margin: 0 auto 0 auto;
 }
 input {
 	background: white;

@@ -1012,54 +1012,59 @@ document.addEventListener('DOMContentLoaded', () => {
 	socket.off('friendsToGroup'); // Remove any existing listeners for this event
 	socket.on('friendsToGroup', handleFriendsToGroup);
 	
-	// Function to load the image asynchronously
 	async function loadImageAsync(src) {
 		const img = new Image();
 		img.src = src;
-
-		// Create a Promise to load the image
+	
 		return new Promise((resolve, reject) => {
-			img.onload = async () => {
-				try {
-					if (!img.complete) {
-						// Ensure that the image is completely loaded
-						await img.decode();
-					}
-					resolve(img); // Resolve with the img object
-				} catch (error) {
-					reject(new Error(`Image decode failed: ${src}`)); // Reject if decoding fails
-				}
-			};
-
-			img.onerror = () => reject(new Error(`Image failed to load: ${src}`)); // Reject on error
+			img.onload = () => resolve(img);
+			img.onerror = () => reject(new Error(`Image failed to load: ${src}`));
 		});
 	}
-
-	// Function to update the profile image
+	
 	async function updateProfileImage(container, imageSrc, initials) {
 		if (!imageSrc) {
 			initials.style.display = 'flex'; // Show initials if no image
 			return;
 		}
-
+	
 		try {
-			const img = await loadImageAsync(imageSrc); // Await the image loading
+			const img = await loadImageAsync(imageSrc);
 			console.log('Image loaded:', img);
-			
+	
 			// Apply styles and append the image
 			img.style.width = '40px';
 			img.style.height = '40px';
 			img.style.borderRadius = '50%';
 			img.classList.add('userAvatar');
-			container.appendChild(img); // Append the image to the container
+			container.appendChild(img);
 		} catch (error) {
-			console.error(error.message); // Log any error that occurs
+			console.error(error.message);
 			initials.style.display = 'flex'; // Show initials if the image fails to load
 		}
 	}
-
 	
+	async function updateProfileImages(userDivs) {
+		const imagePromises = [];
 	
+		userDivs.forEach((userDiv) => {
+			const profileContainer = userDiv.querySelector('.profile-container');
+			const initials = profileContainer.querySelector('.initials'); // Assuming initials exist
+			const imageSrc = profileContainer.dataset.groupAvatar; // Using data attribute if available
+	
+			imagePromises.push(updateProfileImage(profileContainer, imageSrc, initials));
+		});
+	
+		await Promise.all(imagePromises); // Wait until all images are updated
+	}
+	
+	async function updateAllProfileImages(userDivs) {
+		userDivs.forEach((userDiv) => {
+			userDiv.style.display = 'flex';
+		});
+	
+		console.log('All images loaded, .user divs are now flex');
+	}
 	const invCounter = document.getElementById('invCounter');
 	
 	socket.on('pendingInvitations', (pendingInvitations) => {
@@ -1099,13 +1104,13 @@ document.addEventListener('DOMContentLoaded', () => {
 			userDiv.classList.add('friends');
 			const profileContainer = document.createElement('div');
 			profileContainer.classList.add('profile-container');
-			userDiv.appendChild(profileContainer);
-
+			
 			// Create initials element but keep it hidden initially
 			const initials = document.createElement('div');
 			initials.classList.add('initials');
 			initials.textContent = friend.name.charAt(0).toUpperCase();
 			profileContainer.appendChild(initials);
+			userDiv.appendChild(profileContainer);
 			
 			const userInfoDiv = document.createElement('div');
 			userInfoDiv.classList.add('user-info');
@@ -1591,10 +1596,13 @@ document.addEventListener('DOMContentLoaded', () => {
 				socket.emit('invite', invitedUser);
 			});
 			
-			updateProfileImage(profileContainer, user.profileImage, initials);
+			//updateProfileImage(profileContainer, user.profileImage, initials);
 		});
 		
 		usersDiv.appendChild(fragment);
+		const userDivs = document.querySelectorAll('.user');
+		await updateProfileImages(userDivs); // Load all images first
+		await updateAllProfileImages(userDivs); // Then, set .user divs to flex
 	});
 	
 	socket.on('message', (data) => {

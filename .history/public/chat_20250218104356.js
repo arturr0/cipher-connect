@@ -1099,13 +1099,13 @@ document.addEventListener('DOMContentLoaded', () => {
 			userDiv.classList.add('friends');
 			const profileContainer = document.createElement('div');
 			profileContainer.classList.add('profile-container');
-			userDiv.appendChild(profileContainer);
-
+			
 			// Create initials element but keep it hidden initially
 			const initials = document.createElement('div');
 			initials.classList.add('initials');
 			initials.textContent = friend.name.charAt(0).toUpperCase();
 			profileContainer.appendChild(initials);
+			userDiv.appendChild(profileContainer);
 			
 			const userInfoDiv = document.createElement('div');
 			userInfoDiv.classList.add('user-info');
