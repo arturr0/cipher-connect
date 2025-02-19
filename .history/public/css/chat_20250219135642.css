@@ -1111,35 +1111,36 @@ h1 a {
 	position: relative; 
 }
 
-#mainContent .modal {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 15;
-    transform: translate(-50%, -50%) scale(0);
-    opacity: 0;  /* Ensure it's hidden */
-    transition: transform 0.3s ease, opacity 0.3s ease; 
-    transform-origin: center;
-    will-change: transform, opacity;
+#mainContent .modal, #createGroup .modal {
+	/* visibility: hidden; Initially hidden */
+	position: absolute; /* Absolute positioning within the parent */
+	left: 50%; /* Center horizontally */
+	top: 50%; /* Center vertically */
+	background-color: rgba(0, 0, 0, 0.5);
+	z-index: 15;
+	transform: translate(-50%, -50%) scale(0); /* Start hidden with scale 0 */
+	transition: transform 0.3s ease; /* Transition effect for scaling */
 }
 
-#mainContent .modal.show {
-    transform: translate(-50%, -50%) scale(1);
-    opacity: 1; /* Make it visible */
+#mainContent .modal.show, #createGroup .modal.show, .modal.show{
+	/* visibility: visible; */
+	transform: translate(-50%, -50%) scale(1); /* Grow modal */
 }
-
-
+.modal {
+	max-height: 90vh;
+	min-width: 40vw;
+	border-radius: 5px;
+}
 .modal-content {
 	background: #0d1117;
 	border: solid 1px #2d343c;
-	/* border-radius: 5px; */
-	/* padding: 20px; */
-	/* display: flex;
+	border-radius: 5px;
+	padding: 20px;
+	display: flex;
 	flex-direction: column;
 	align-content: center;
-	align-items: center; */
-	/* min-width: 40vw; */
+	align-items: center;
+	min-width: 40vw;
 	text-align: center;
 }
 
