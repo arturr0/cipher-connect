@@ -76,7 +76,7 @@ const ENCRYPTION_KEY = Buffer.from(process.env.ENCRYPTION_KEY, 'hex'); // Ensure
 const IV_LENGTH = 16; // AES block size
 
 if (ENCRYPTION_KEY.length !== 32) {
-    throw new Error('ENCRYPTION_KEY must be 32 bytes long.');
+    throw new Error("ENCRYPTION_KEY must be 32 bytes long.");
 }
 
 function encrypt(text) {
@@ -511,13 +511,13 @@ io.on('connection', (socket) => {
         const encryptedMessage = encrypt(messageSent);
         
         if (typeof messageSent === 'string') {
-            console.log('string');
+            console.log("string");
         }
-        else console.log('not string');
+        else console.log("not string");
         
         db.get(`SELECT id FROM users WHERE username = ?`, [username], (err, sender) => {
             if (err || !sender) {
-                console.error('Sender not found or error:', err);
+                console.error("Sender not found or error:", err);
                 return;
             }
             
@@ -526,7 +526,7 @@ io.on('connection', (socket) => {
             // Fetch the group name from the groups table
             db.get(`SELECT name FROM groups WHERE id = ?`, [group], (err, groupInfo) => {
                 if (err || !groupInfo) {
-                    console.error('Group not found or error:', err);
+                    console.error("Group not found or error:", err);
                     return;
                 }
                 
@@ -535,7 +535,7 @@ io.on('connection', (socket) => {
                 // Fetch accepted group members
                 db.all(`SELECT invited AS recId FROM groupInvite WHERE groupId = ? AND accepted = 1`, [group], (err, members) => {
                     if (err) {
-                        console.error('Error fetching group members:', err);
+                        console.error("Error fetching group members:", err);
                         return;
                     }
 
@@ -546,7 +546,7 @@ io.on('connection', (socket) => {
                             // Check if the recipient has `groupRec` in users table matching `group`
                             db.get(`SELECT id FROM users WHERE id = ? AND groupRec = ?`, [recId, group], (err, userInGroup) => {
                                 if (err) {
-                                    console.error('Error checking user group:', err);
+                                    console.error("Error checking user's group:", err);
                                     return;
                                 }
 
@@ -559,14 +559,14 @@ io.on('connection', (socket) => {
                                         sendTime, 0,
                                         group // `toDelete` set to 0 for group members
                                     ], (err) => {
-                                        if (err) console.error('Error storing message:', err);
+                                        if (err) console.error("Error storing message:", err);
                                     });
                             });
                         } else {
                             // Only store if recipient does not have the group assigned
                             db.get(`SELECT id FROM users WHERE id = ? AND groupRec = ?`, [recId, group], (err, userInGroup) => {
                                 if (err) {
-                                    console.error('Error checking user group:', err);
+                                    console.error("Error checking user's group:", err);
                                     return;
                                 }
 
@@ -583,7 +583,7 @@ io.on('connection', (socket) => {
                                             1,
                                             group 
                                         ], (err) => {
-                                            if (err) console.error('Error setting toDelete:', err);
+                                            if (err) console.error("Error setting toDelete:", err);
                                         });
                                 }
                             });
@@ -1097,7 +1097,7 @@ io.on('connection', (socket) => {
             const founded = await findBlocked(searchUser, socket.id);
             socket.emit('foundUsers', founded);
         } catch (error) {
-            console.error('Error finding users:', error);
+            console.error("Error finding users:", error);
             socket.emit('searchError', { message: 'Failed to find users.' });
         }
     });
@@ -1594,7 +1594,7 @@ io.on('connection', (socket) => {
                 }
 
                 // Broadcast the new image to all users
-                socket.emit('avatar', relativePath);
+                socket.emit("avatar", relativePath);
             });
         });
     });
@@ -1604,7 +1604,7 @@ io.on('connection', (socket) => {
 
     socket.on('createGroup', ({ groupName, invited, username, avatar }) => {
         if (groupCreationStatus.get(socket.id)) {
-            console.log('Group creation already in progress, ignoring duplicate request.');
+            console.log("Group creation already in progress, ignoring duplicate request.");
             return;
         }
 
@@ -1651,13 +1651,13 @@ io.on('connection', (socket) => {
             queryValues = [username];
         }
 
-        console.log('Fetching user IDs for invited users and creator.');
+        console.log("Fetching user IDs for invited users and creator.");
         const userIds = {};
         const socketIds = {};
 
         db.all(findUsersSQL, queryValues, (err, rows) => {
             if (err) {
-                console.error('Error fetching user IDs:', err);
+                console.error("Error fetching user IDs:", err);
                 groupCreationStatus.delete(socket.id);
                 return;
             }
@@ -1667,10 +1667,10 @@ io.on('connection', (socket) => {
                 socketIds[row.username] = row.socketId;
             });
 
-            console.log('User IDs fetched: ', userIds);
+            console.log("User IDs fetched: ", userIds);
 
             if (!userIds[username]) {
-                console.error('Creator not found in users table.');
+                console.error("Creator not found in users table.");
                 groupCreationStatus.delete(socket.id);
                 return;
             }
@@ -1682,11 +1682,11 @@ io.on('connection', (socket) => {
                 const blockCheckSQL = `SELECT blocker, blocked FROM blocked WHERE 
                     blocker IN (${placeholders}) OR blocked IN (${placeholders})`;
 
-                console.log('Checking for block relationships.');
+                console.log("Checking for block relationships.");
 
                 db.all(blockCheckSQL, [...allUserIds, ...allUserIds], (err, blockRows) => {
                     if (err) {
-                        console.error('Error checking block status:', err);
+                        console.error("Error checking block status:", err);
                         groupCreationStatus.delete(socket.id);
                         return;
                     }
@@ -1725,26 +1725,26 @@ io.on('connection', (socket) => {
                     createGroup(validInvitedUsers, relativePath, userIds, socketIds);
                 });
             } else {
-                console.log('No invited users or block-check not needed, proceeding to group creation.');
+                console.log("No invited users or block-check not needed, proceeding to group creation.");
                 createGroup(invited, relativePath, userIds, socketIds);
             }
         });
 
         function createGroup(validInvitedUsers, relativePath, userIds, socketIds) {
             if (!validInvitedUsers || validInvitedUsers.length === 0) {
-                console.log('No valid invited users to add, only creating the group for the creator.');
+                console.log("No valid invited users to add, only creating the group for the creator.");
             }
 
             const insertGroupSQL = `INSERT INTO groups (creator, name, avatar) VALUES (?, ?, ?)`;
             db.run(insertGroupSQL, [userIds[username], groupName, relativePath], function (err) {
                 if (err) {
-                    console.error('Error inserting group:', err);
+                    console.error("Error inserting group:", err);
                     groupCreationStatus.delete(socket.id);
                     return;
                 }
 
                 const groupId = this.lastID;
-                console.log('Group created with ID: ', groupId);
+                console.log("Group created with ID: ", groupId);
 
                 const insertInviteSQL = `INSERT INTO groupInvite (inviting, invited, groupId, groupName, accepted) VALUES (?, ?, ?, ?, ?)`;
 
@@ -1768,7 +1768,7 @@ io.on('connection', (socket) => {
 
                 db.run(insertInviteSQL, [userIds[username], userIds[username], groupId, groupName, 1], err => {
                     if (err) {
-                        console.error('Error inserting creator invite:', err);
+                        console.error("Error inserting creator's invite:", err);
                     } else {
                         socket.join(`${groupId}`);
                         console.log(`Creator ${username} joined group room: ${groupId}`);
@@ -1985,5 +1985,4 @@ io.on('connection', (socket) => {
 
 });
     
-
 
