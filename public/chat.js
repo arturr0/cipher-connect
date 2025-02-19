@@ -1392,7 +1392,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	
 	socket.on('user info', ({ id, profileImage }) => {
 		console.log(`User ID: ${id}`);
-		if (profileImage != null) document.getElementById("initials").remove();
+		if (profileImage != null && document.getElementById("initials")) document.getElementById("initials").remove();
 		else {
 			document.getElementById("initials").classList.remove('display');
 			document.getElementById("initials").style.visibility = 'visible';
