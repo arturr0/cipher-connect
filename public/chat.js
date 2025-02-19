@@ -923,10 +923,10 @@ document.addEventListener('DOMContentLoaded', () => {
 			// File input listener
 			input.addEventListener('change', () => {
 				const file = input.files[0];
-				const maxFileSize = 2 * 1024 * 1024; // 1 MB in bytes
+				const maxFileSize = 1400 * 1024; // 1 MB in bytes
 				if (file.size > maxFileSize) {
-					alert(`File is too large. Max size is ${maxFileSize / 1024 / 1024} MB`);
-					console.error(`File is too large. Max size is ${maxFileSize / 1024 / 1024} MB`);
+					alert(`File is too large. Max size is 1,4 MB`);
+					console.error(`File is too large. Max size is 1,4 MB`);
 					return;
 				}
 				if (!file) {
@@ -1842,10 +1842,10 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 		
 		// Maximum allowed file size (1 MB for example)
-		const maxFileSize = 2 * 1024 * 1024; // 1 MB in bytes
+		const maxFileSize = 1400 * 1024; // 1 MB in bytes
 		if (file.size > maxFileSize) {
-			alert(`File is too large. Max size is ${maxFileSize / 1024 / 1024} MB`);
-			console.error(`File is too large. Max size is ${maxFileSize / 1024 / 1024} MB`);
+			alert(`File is too large. Max size is 1,4 MB`);
+			console.error(`File is too large. Max size is 1,4 MB`);
 			return;
 		}
 		
