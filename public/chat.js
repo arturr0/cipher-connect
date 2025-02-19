@@ -923,7 +923,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			// File input listener
 			input.addEventListener('change', () => {
 				const file = input.files[0];
-				const maxFileSize = 10 * 1024 * 1024; // 1 MB in bytes
+				const maxFileSize = 2 * 1024 * 1024; // 1 MB in bytes
 				if (file.size > maxFileSize) {
 					alert(`File is too large. Max size is ${maxFileSize / 1024 / 1024} MB`);
 					console.error(`File is too large. Max size is ${maxFileSize / 1024 / 1024} MB`);
@@ -1842,7 +1842,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 		
 		// Maximum allowed file size (1 MB for example)
-		const maxFileSize = 10 * 1024 * 1024; // 1 MB in bytes
+		const maxFileSize = 2 * 1024 * 1024; // 1 MB in bytes
 		if (file.size > maxFileSize) {
 			alert(`File is too large. Max size is ${maxFileSize / 1024 / 1024} MB`);
 			console.error(`File is too large. Max size is ${maxFileSize / 1024 / 1024} MB`);
