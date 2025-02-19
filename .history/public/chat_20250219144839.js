@@ -156,7 +156,7 @@ document.addEventListener('DOMContentLoaded', () => {
 					document.getElementById("message").style.height = '80px';
 					console.log(messageSent);
 					chat.scrollTo({
-						top: chat.scrollHeight,
+						top: document.getElementById("messageContainer").scrollHeight,
 						behavior: "smooth"
 					});
 				}
@@ -343,10 +343,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			chat.appendChild(recDiv);
 			
 			// Scroll to the bottom of the chat
-			chat.scrollTo({
-				top: chat.scrollHeight,
-				behavior: "smooth"
-			});
+			jQuery("#messageContainer").scrollTop(jQuery("#messageContainer")[0].scrollHeight);    
 		}
 		else {
 			let existingMessage = document.querySelector(`.unreadMessages[group="${data.groupOfMessage}"]`);
@@ -1650,7 +1647,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		
 		// Scroll to the bottom of the chat
 		chat.scrollTo({
-			top: chat.scrollHeight,
+			top: document.getElementById("messageContainer").scrollHeight,
 			behavior: "smooth"
 		});	}
 	
@@ -1942,7 +1939,7 @@ document.addEventListener('DOMContentLoaded', () => {
 					// Scroll down after ensuring the typing indicator is added
 					setTimeout(() => {
 						chat.scrollTo({
-							top: chat.scrollHeight,
+							top: document.getElementById("messageContainer").scrollHeight,
 							behavior: "smooth"
 						});					
 					}, 0);
