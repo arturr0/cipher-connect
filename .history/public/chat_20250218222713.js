@@ -28,13 +28,13 @@ document.addEventListener('DOMContentLoaded', () => {
 	deleteAccount.addEventListener('click', () => {
 		
 		const modal = document.getElementById('deleteModal');
-		// modal.style.visibility = 'visible'; 
+		 
 		
 		// Trigger the animation
 		setTimeout(() => {
 			modal.classList.add('show');
-		}, 20); 
-		
+		}, 1000); 
+		modal.style.visibility = 'visible';
 		document.getElementById('confirmDelete').onclick = function() {
 			menuGroups.classList.add('dropdown-content');
 			menuGroups.classList.add('dropdown');

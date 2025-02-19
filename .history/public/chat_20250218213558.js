@@ -28,33 +28,33 @@ document.addEventListener('DOMContentLoaded', () => {
 	deleteAccount.addEventListener('click', () => {
 		
 		const modal = document.getElementById('deleteModal');
-		// modal.style.visibility = 'visible'; 
+		modal.style.visibility = 'visible'; 
 		
 		// Trigger the animation
 		setTimeout(() => {
 			modal.classList.add('show');
 		}, 20); 
 		
-		document.getElementById('confirmDelete').onclick = function() {
-			menuGroups.classList.add('dropdown-content');
-			menuGroups.classList.add('dropdown');
-			menuInvitation.classList.add('dropdown-content');
-			menuInvitation.classList.add('dropdown');
-			menuMessages.classList.add('dropdown-content');
-			menuMessages.classList.add('dropdown');
-			modal.classList.remove('show'); 
-			socket.emit('delete', username);
-		};
+		// document.getElementById('confirmDelete').onclick = function() {
+		// 	menuGroups.classList.add('dropdown-content');
+		// 	menuGroups.classList.add('dropdown');
+		// 	menuInvitation.classList.add('dropdown-content');
+		// 	menuInvitation.classList.add('dropdown');
+		// 	menuMessages.classList.add('dropdown-content');
+		// 	menuMessages.classList.add('dropdown');
+		// 	modal.classList.remove('show'); 
+		// 	socket.emit('delete', username);
+		// };
 		
-		document.getElementById('cancelDelete').onclick = function() {
-			menuGroups.classList.add('dropdown-content');
-			menuGroups.classList.add('dropdown');
-			menuInvitation.classList.add('dropdown-content');
-			menuInvitation.classList.add('dropdown');
-			menuMessages.classList.add('dropdown-content');
-			menuMessages.classList.add('dropdown');
-			modal.classList.remove('show'); 
-		};
+		// document.getElementById('cancelDelete').onclick = function() {
+		// 	menuGroups.classList.add('dropdown-content');
+		// 	menuGroups.classList.add('dropdown');
+		// 	menuInvitation.classList.add('dropdown-content');
+		// 	menuInvitation.classList.add('dropdown');
+		// 	menuMessages.classList.add('dropdown-content');
+		// 	menuMessages.classList.add('dropdown');
+		// 	modal.classList.remove('show'); 
+		// };
 		
 	});
 	

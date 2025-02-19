@@ -1111,8 +1111,8 @@ h1 a {
 	position: relative; 
 }
 
-#mainContent .modal, #createGroup .modal {
-	/* visibility: hidden; Initially hidden */
+#mainContent .modal {
+	visibility: hidden; /* Initially hidden */
 	position: absolute; /* Absolute positioning within the parent */
 	left: 50%; /* Center horizontally */
 	top: 50%; /* Center vertically */
@@ -1122,8 +1122,8 @@ h1 a {
 	transition: transform 0.3s ease; /* Transition effect for scaling */
 }
 
-#mainContent .modal.show, #createGroup .modal.show, .modal.show{
-	visibility: visible;
+#mainContent .modal.show {
+	display: flex; /* Show the modal */
 	transform: translate(-50%, -50%) scale(1); /* Grow modal */
 }
 .modal {

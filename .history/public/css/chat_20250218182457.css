@@ -252,7 +252,7 @@ button {
 	align-self: center;
 }
 #users {
-	display: flex;
+	display: none;
 	flex-direction: column;
 	overflow-y: auto;
 	height: 90%;
@@ -1112,7 +1112,7 @@ h1 a {
 }
 
 #mainContent .modal, #createGroup .modal {
-	/* visibility: hidden; Initially hidden */
+	visibility: hidden; /* Initially hidden */
 	position: absolute; /* Absolute positioning within the parent */
 	left: 50%; /* Center horizontally */
 	top: 50%; /* Center vertically */
@@ -1123,7 +1123,7 @@ h1 a {
 }
 
 #mainContent .modal.show, #createGroup .modal.show, .modal.show{
-	visibility: visible;
+	display: flex; /* Show the modal */
 	transform: translate(-50%, -50%) scale(1); /* Grow modal */
 }
 .modal {

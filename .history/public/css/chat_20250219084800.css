@@ -1122,8 +1122,8 @@ h1 a {
 	transition: transform 0.3s ease; /* Transition effect for scaling */
 }
 
-#mainContent .modal.show, #createGroup .modal.show, .modal.show{
-	visibility: visible;
+#mainContent .modal.show {
+	display: flex; /* Show the modal */
 	transform: translate(-50%, -50%) scale(1); /* Grow modal */
 }
 .modal {
@@ -1136,7 +1136,7 @@ h1 a {
 	border: solid 1px #2d343c;
 	border-radius: 5px;
 	padding: 20px;
-	display: flex;
+	/* display: flex; */
 	flex-direction: column;
 	align-content: center;
 	align-items: center;

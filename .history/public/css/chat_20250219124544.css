@@ -1122,7 +1122,8 @@ h1 a {
 	transition: transform 0.3s ease; /* Transition effect for scaling */
 }
 
-#mainContent .modal.show, #createGroup .modal.show, .modal.show{
+#mainContent .modal.show {
+	/* display: flex; Show the modal */
 	visibility: visible;
 	transform: translate(-50%, -50%) scale(1); /* Grow modal */
 }

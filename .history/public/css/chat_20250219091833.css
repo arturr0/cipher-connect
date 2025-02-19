@@ -36,8 +36,6 @@
 		z-index: 20;
 		animation: setOverflow 0s ease 0.3s forwards;
 	}
-	
-	
 	.dropdown-container:hover .dropdown-content {
 		max-height: 200px;
 		visibility: visible;
@@ -1111,8 +1109,8 @@ h1 a {
 	position: relative; 
 }
 
-#mainContent .modal, #createGroup .modal {
-	/* visibility: hidden; Initially hidden */
+#mainContent .modal {
+	visibility: hidden; 
 	position: absolute; /* Absolute positioning within the parent */
 	left: 50%; /* Center horizontally */
 	top: 50%; /* Center vertically */
@@ -1122,29 +1120,20 @@ h1 a {
 	transition: transform 0.3s ease; /* Transition effect for scaling */
 }
 
-#mainContent .modal.show, #createGroup .modal.show, .modal.show{
-	visibility: visible;
+#mainContent .modal.show {
+	/* display: flex; Show the modal */
 	transform: translate(-50%, -50%) scale(1); /* Grow modal */
+	visibility: visible;
+	transition: transform 0.3s ease;
+	position: absolute; /* Absolute positioning within the parent */
+	left: 50%; /* Center horizontally */
+	top: 50%; /* Center vertically */
 }
 .modal {
-	max-height: 90vh;
-	min-width: 40vw;
+	/* max-height: 90vh; */
+	/* min-width: 40vw; */
 	border-radius: 5px;
 }
-.modal-content {
-	background: #0d1117;
-	border: solid 1px #2d343c;
-	border-radius: 5px;
-	padding: 20px;
-	display: flex;
-	flex-direction: column;
-	align-content: center;
-	align-items: center;
-	min-width: 40vw;
-	text-align: center;
-}
-
-
 .modal button {
 	margin: 10px;
 	padding: 8px 16px;

@@ -28,12 +28,12 @@ document.addEventListener('DOMContentLoaded', () => {
 	deleteAccount.addEventListener('click', () => {
 		
 		const modal = document.getElementById('deleteModal');
-		// modal.style.visibility = 'visible'; 
+		modal.style.visibility = 'visible'; 
 		
 		// Trigger the animation
 		setTimeout(() => {
 			modal.classList.add('show');
-		}, 20); 
+		}, 10); 
 		
 		document.getElementById('confirmDelete').onclick = function() {
 			menuGroups.classList.add('dropdown-content');

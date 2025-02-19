@@ -24,37 +24,47 @@ document.addEventListener('DOMContentLoaded', () => {
 	const menuInvitation = document.getElementById('invitationContent');
 	const menuGroups = document.getElementById('groupsContent');
 	const deleteAccount = document.getElementById('deleteAccount');
-	
+// 	const modal = document.getElementById('deleteModal');
+
+// modal.addEventListener('transitionstart', () => {
+//     console.log('Transition started:', modal.getBoundingClientRect());
+// });
+
+// modal.addEventListener('transitionend', () => {
+//     console.log('Transition ended:', modal.getBoundingClientRect());
+// });
 	deleteAccount.addEventListener('click', () => {
 		
 		const modal = document.getElementById('deleteModal');
-		// modal.style.visibility = 'visible'; 
+    modal.style.visibility = 'visible';
+
+    // Ensure visibility change is applied first
+    requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+            modal.classList.add('show'); // Now animation always works
+        });
+    });
+    //modal.classList.add('show');  // Now animation works
+		// document.getElementById('confirmDelete').onclick = function() {
+		// 	menuGroups.classList.add('dropdown-content');
+		// 	menuGroups.classList.add('dropdown');
+		// 	menuInvitation.classList.add('dropdown-content');
+		// 	menuInvitation.classList.add('dropdown');
+		// 	menuMessages.classList.add('dropdown-content');
+		// 	menuMessages.classList.add('dropdown');
+		// 	modal.classList.remove('show'); 
+		// 	socket.emit('delete', username);
+		// };
 		
-		// Trigger the animation
-		setTimeout(() => {
-			modal.classList.add('show');
-		}, 20); 
-		
-		document.getElementById('confirmDelete').onclick = function() {
-			menuGroups.classList.add('dropdown-content');
-			menuGroups.classList.add('dropdown');
-			menuInvitation.classList.add('dropdown-content');
-			menuInvitation.classList.add('dropdown');
-			menuMessages.classList.add('dropdown-content');
-			menuMessages.classList.add('dropdown');
-			modal.classList.remove('show'); 
-			socket.emit('delete', username);
-		};
-		
-		document.getElementById('cancelDelete').onclick = function() {
-			menuGroups.classList.add('dropdown-content');
-			menuGroups.classList.add('dropdown');
-			menuInvitation.classList.add('dropdown-content');
-			menuInvitation.classList.add('dropdown');
-			menuMessages.classList.add('dropdown-content');
-			menuMessages.classList.add('dropdown');
-			modal.classList.remove('show'); 
-		};
+		// document.getElementById('cancelDelete').onclick = function() {
+		// 	menuGroups.classList.add('dropdown-content');
+		// 	menuGroups.classList.add('dropdown');
+		// 	menuInvitation.classList.add('dropdown-content');
+		// 	menuInvitation.classList.add('dropdown');
+		// 	menuMessages.classList.add('dropdown-content');
+		// 	menuMessages.classList.add('dropdown');
+		// 	modal.classList.remove('show'); 
+		// };
 		
 	});
 	

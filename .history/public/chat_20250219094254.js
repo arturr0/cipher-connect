@@ -24,17 +24,27 @@ document.addEventListener('DOMContentLoaded', () => {
 	const menuInvitation = document.getElementById('invitationContent');
 	const menuGroups = document.getElementById('groupsContent');
 	const deleteAccount = document.getElementById('deleteAccount');
-	
+// 	const modal = document.getElementById('deleteModal');
+
+// modal.addEventListener('transitionstart', () => {
+//     console.log('Transition started:', modal.getBoundingClientRect());
+// });
+
+// modal.addEventListener('transitionend', () => {
+//     console.log('Transition ended:', modal.getBoundingClientRect());
+// });
 	deleteAccount.addEventListener('click', () => {
 		
 		const modal = document.getElementById('deleteModal');
-		// modal.style.visibility = 'visible'; 
-		
-		// Trigger the animation
-		setTimeout(() => {
-			modal.classList.add('show');
-		}, 20); 
-		
+    modal.style.visibility = 'visible';
+
+    // Ensure visibility change is applied first
+    requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+            modal.classList.add('show'); // Now animation always works
+        });
+    });
+    modal.classList.add('show');  // Now animation works
 		document.getElementById('confirmDelete').onclick = function() {
 			menuGroups.classList.add('dropdown-content');
 			menuGroups.classList.add('dropdown');

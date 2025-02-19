@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	deleteAccount.addEventListener('click', () => {
 		
 		const modal = document.getElementById('deleteModal');
-		// modal.style.visibility = 'visible'; 
+		modal.style.visibility = 'visible'; 
 		
 		// Trigger the animation
 		setTimeout(() => {
@@ -1457,146 +1457,126 @@ document.addEventListener('DOMContentLoaded', () => {
 	socket.on('foundUsers', async (founded) => {
 		console.log('Found users:', founded);
 		
-		// Clear previous user list
-		usersDiv.innerHTML = ''; // Clear the previous list
+		const usersDiv = document.getElementById('users'); // Make sure you have a reference to this div
+		//const loadingMessage = document.getElementById('loading');
 		
+		// Clear previous user list
+		usersDiv.innerHTML = ''; 
 		const fragment = document.createDocumentFragment();
 		
-		// Loop over the found users
-		founded.forEach((user) => {
-			const userDiv = document.createElement('div');
-			userDiv.classList.add('user');
-			
-			const profileContainer = document.createElement('div');
-			profileContainer.classList.add('profile-container');
-			
-			// Create initials element but keep it hidden initially
-			const initials = document.createElement('div');
-			initials.classList.add('initials');
-			initials.textContent = user.username.charAt(0).toUpperCase();
-			profileContainer.appendChild(initials);
-			
-			userDiv.appendChild(profileContainer);
-			
-			const userInfoDiv = document.createElement('div');
-			userInfoDiv.classList.add('user-info');
-			userInfoDiv.style.width = '100px';
-			const usernameText = document.createElement('div');
-			usernameText.classList.add('username');
-			usernameText.textContent = user.username;
-			userInfoDiv.appendChild(usernameText);
-			
-			const buttonsDiv = document.createElement('div');
-			buttonsDiv.classList.add('buttons');
-			// Create buttons and append to buttonsDiv...
-			const inviteButton = document.createElement('button');
-			inviteButton.classList.add('invite');
-			inviteButton.value = user.username;
-			const inviteIcon = document.createElement('i');
-			inviteIcon.classList.add('icon-user-plus');
-			inviteButton.appendChild(inviteIcon);
-			if (user.isFriend != 1) buttonsDiv.appendChild(inviteButton);
-			
-			// Create send message button
-			const sendButton = document.createElement('button');
-			sendButton.classList.add('send');
-			sendButton.value = user.username;
-			const sendIcon = document.createElement('i');
-			sendIcon.classList.add('icon-chat');
-			sendButton.appendChild(sendIcon);
-			buttonsDiv.appendChild(sendButton);
-			
-			// Create block button
-			const blockButton = document.createElement('button');
-			blockButton.classList.add('block');
-			blockButton.value = user.username;
-			const blockIcon = document.createElement('i');
-			blockIcon.classList.add('icon-block-1');
-			blockButton.appendChild(blockIcon);
-			buttonsDiv.appendChild(blockButton);
-			
-			// Append buttons to userInfoDiv
-			userInfoDiv.appendChild(buttonsDiv);
-			
-			// Append userInfoDiv to userDiv
-			userDiv.appendChild(userInfoDiv);
-			fragment.appendChild(userDiv);
-			
-			sendButton.addEventListener('click', async () => {
-				isTypingVisible = false;
-				receiver = sendButton.value;
-				group = null;
-				
-				// Clear existing content in #receiverAvatar
-				receiverAvatar.innerHTML = ''; 
-				receiverAvatar.textContent = ''; 
-				receiverAvatar.textContent = ''; 
-
-				receiverElement.textContent = receiver;						
-				const profileContainer = userDiv.querySelector('.profile-container');
-				console.log(profileContainer);
-				if (profileContainer) {
-					const img = profileContainer.querySelector('img.profile-image');
-					const initialsElement = profileContainer.querySelector('.initials');
-					console.log('img', img)
-					console.log('initialsElement', initialsElement)
-					if (img) {
-						const clonedImg = img.cloneNode();
-						clonedImg.classList.remove('profile-image');
-						clonedImg.id = 'receiverImg';
-						receiverAvatar.appendChild(clonedImg);
-					} else if (initialsElement) {
-						const clonedInitials = initialsElement.cloneNode(true);
-						clonedInitials.style.visibility = 'hidden';
-						console.log('clonedInitials', clonedInitials)
-						clonedInitials.id = 'receiverInitials';
-						console.log('check');
-
-						clonedInitials.style.display = 'flex';
-						receiverAvatar.appendChild(clonedInitials);
-					}
-				} else {
-					console.warn('Profile container not found.');
-				}
-				const messagesReqtype = 'button';
-				socket.emit('sendMeMessages', username, receiver, messagesReqtype);
-			});
-			
-			// Select all elements with the class 'send'
-			const sendButtons = document.querySelectorAll('.send');
-			
-			blockButton.addEventListener('click', () => {
-				blockButton.disabled = true; 
-				const blockedUser = blockButton.value;
-				if (receiver == blockedUser) {
-					receiver = '';
-					receiverAvatar.innerHTML = ''; 
-					receiverAvatar.textContent = ''; 
-					receiverElement.textContent = '';
-					chat.innerHTML = '';
-				}
-				socket.emit('block', blockedUser, (response) => {
-					if (response.success) {
-						socket.emit('findUsers', searchUser);
-						console.log(response.message);
-					} else {
-						console.error('Failed to block user:', response.error);
-					}
-				});
-			});
-			inviteButton.addEventListener('click', () => {
-				const invitedUser = inviteButton.value;
-				console.log('Inviting user:', invitedUser); 
-				inviteButton.disabled = true; // Disable button to prevent multiple invites
-				socket.emit('invite', invitedUser);
-			});
-			
-			updateProfileImage(profileContainer, user.profileImage, initials);
-		});
+		// Show "Searching..." message
+		//loadingMessage.style.display = 'block';
+		//loadingMessage.innerText = 'Searching...';
 		
+		// Process each found user
+		const elements = [];
+		founded.forEach(user => {
+		  const userDiv = document.createElement('div');
+		  userDiv.classList.add('user');
+		  
+		  const profileContainer = document.createElement('div');
+		  profileContainer.classList.add('profile-container');
+		  
+		  // Create initials element if no profile image
+		  const initials = document.createElement('div');
+		  initials.classList.add('initials');
+		  initials.textContent = user.username.charAt(0).toUpperCase();
+		  profileContainer.appendChild(initials);
+	  
+		  // Add the profile image if it exists
+		  if (user.profileImage) {
+			const img = document.createElement('img');
+			img.src = user.profileImage;
+			img.alt = `${user.username} Profile`;
+			img.classList.add('profile-image');
+			profileContainer.appendChild(img);
+		  }
+	  
+		  userDiv.appendChild(profileContainer);
+		  
+		  const userInfoDiv = document.createElement('div');
+		  userInfoDiv.classList.add('user-info');
+		  const usernameText = document.createElement('div');
+		  usernameText.classList.add('username');
+		  usernameText.textContent = user.username;
+		  userInfoDiv.appendChild(usernameText);
+		  
+		  const buttonsDiv = document.createElement('div');
+		  buttonsDiv.classList.add('buttons');
+		  
+		  // Create invite button (only if the user is not a friend)
+		  const inviteButton = document.createElement('button');
+		  inviteButton.classList.add('invite');
+		  inviteButton.value = user.username;
+		  inviteButton.innerHTML = `<i class="icon-user-plus"></i>`;
+		  if (user.isFriend !== 1) {
+			buttonsDiv.appendChild(inviteButton);
+		  }
+		  
+		  // Create send message button
+		  const sendButton = document.createElement('button');
+		  sendButton.classList.add('send');
+		  sendButton.value = user.username;
+		  sendButton.innerHTML = `<i class="icon-chat"></i>`;
+		  buttonsDiv.appendChild(sendButton);
+		  
+		  // Create block button
+		  const blockButton = document.createElement('button');
+		  blockButton.classList.add('block');
+		  blockButton.value = user.username;
+		  blockButton.innerHTML = `<i class="icon-block-1"></i>`;
+		  buttonsDiv.appendChild(blockButton);
+		  
+		  userInfoDiv.appendChild(buttonsDiv);
+		  userDiv.appendChild(userInfoDiv);
+		  fragment.appendChild(userDiv);
+	  
+		  // Set up event listeners for send, block, and invite buttons
+		  sendButton.addEventListener('click', () => {
+			receiver = sendButton.value;
+			// Logic for sending a message
+			console.log(`Sending message to ${receiver}`);
+		  });
+	  
+		  blockButton.addEventListener('click', () => {
+			blockButton.disabled = true;
+			const blockedUser = blockButton.value;
+			socket.emit('block', blockedUser, (response) => {
+			  if (response.success) {
+				socket.emit('findUsers', searchUser);
+			  } else {
+				console.error('Failed to block user:', response.error);
+			  }
+			});
+		  });
+	  
+		  inviteButton.addEventListener('click', () => {
+			const invitedUser = inviteButton.value;
+			socket.emit('invite', invitedUser);
+		  });
+	  
+		  // Store image loading promises
+		  if (user.profileImage) {
+			const img = profileContainer.querySelector('img');
+			elements.push(
+			  new Promise(resolve => {
+				img.onload = resolve;
+				img.onerror = resolve; // Avoid blocking on broken images
+			  })
+			);
+		  } else {
+			elements.push(Promise.resolve());
+		  }
+		});
+	  
+		// Wait for all images to load before updating the UI
+		await Promise.all(elements);
+		
+		// Hide the loading message and append the results to the users div
+		loadingMessage.style.display = 'none';
 		usersDiv.appendChild(fragment);
-	});
-	
+	  });
+	  
 	socket.on('message', (data) => {
 		console.log(data);
 		signal.play();

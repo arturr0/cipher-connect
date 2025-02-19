@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	deleteAccount.addEventListener('click', () => {
 		
 		const modal = document.getElementById('deleteModal');
-		// modal.style.visibility = 'visible'; 
+		modal.style.visibility = 'visible'; 
 		
 		// Trigger the animation
 		setTimeout(() => {
@@ -1012,29 +1012,6 @@ document.addEventListener('DOMContentLoaded', () => {
 	socket.off('friendsToGroup'); // Remove any existing listeners for this event
 	socket.on('friendsToGroup', handleFriendsToGroup);
 	
-	// Function to load the image asynchronously
-	async function loadImageAsync(src) {
-		const img = new Image();
-		img.src = src;
-
-		// Create a Promise to load the image
-		return new Promise((resolve, reject) => {
-			img.onload = async () => {
-				try {
-					if (!img.complete) {
-						// Ensure that the image is completely loaded
-						await img.decode();
-					}
-					resolve(img); // Resolve with the img object
-				} catch (error) {
-					reject(new Error(`Image decode failed: ${src}`)); // Reject if decoding fails
-				}
-			};
-
-			img.onerror = () => reject(new Error(`Image failed to load: ${src}`)); // Reject on error
-		});
-	}
-
 	// Function to update the profile image
 	async function updateProfileImage(container, imageSrc, initials) {
 		if (!imageSrc) {
@@ -1058,6 +1035,69 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 	}
 
+	// Function to load the image asynchronously
+	async function loadImageAsync(src) {
+		const img = new Image();
+		img.src = src;
+
+		// Create a Promise to load the image
+		return new Promise((resolve, reject) => {
+			img.onload = async () => {
+				try {
+					if (!img.complete) {
+						// Ensure that the image is completely loaded
+						await img.decode();
+					}
+					resolve(img); // Resolve with the img object
+				} catch (error) {
+					reject(new Error(`Image decode failed: ${src}`)); // Reject if decoding fails
+				}
+			};
+
+			img.onerror = () => reject(new Error(`Image failed to load: ${src}`)); // Reject on error
+		});
+	}
+
+	
+	// async function loadImageAsync(src) {
+	// 	const img = new Image();
+	// 	img.src = src;
+	
+	// 	return new Promise((resolve, reject) => {
+	// 		img.onload = async () => {
+	// 			try {
+	// 				if (!img.complete) {
+	// 					await img.decode();
+	// 				}
+	// 				resolve(img);
+	// 			} catch (error) {
+	// 				reject(new Error(`Image decode failed: ${src}`));
+	// 			}
+	// 		};
+	// 		img.onerror = () => reject(new Error(`Image failed to load: ${src}`));
+	// 	});
+	// }
+	
+	async function updateSearchedProfileImage(container, imageSrc, initials) {
+		if (!imageSrc) {
+			initials.style.display = 'flex';
+			return Promise.resolve(); // Resolve immediately if there's no image
+		}
+	
+		try {
+			const img = await loadImageAsync(imageSrc);
+			console.log('Image loaded:', img);
+	
+			img.style.width = '40px';
+			img.style.height = '40px';
+			img.style.borderRadius = '50%';
+			img.classList.add('userAvatar');
+			container.appendChild(img);
+		} catch (error) {
+			console.error(error.message);
+			initials.style.display = 'flex';
+		}
+	}
 	
 	
 	const invCounter = document.getElementById('invCounter');
@@ -1454,9 +1494,10 @@ document.addEventListener('DOMContentLoaded', () => {
 		socket.emit('findUsers', searchUser);
 		console.log('Find users after invite:', searchUser);
 	});
+	
 	socket.on('foundUsers', async (founded) => {
 		console.log('Found users:', founded);
-		
+		const imageLoadPromises = [];
 		// Clear previous user list
 		usersDiv.innerHTML = ''; // Clear the previous list
 		
@@ -1591,10 +1632,16 @@ document.addEventListener('DOMContentLoaded', () => {
 				socket.emit('invite', invitedUser);
 			});
 			
-			updateProfileImage(profileContainer, user.profileImage, initials);
+			imageLoadPromises.push(updateSearchedProfileImage(profileContainer, user.profileImage, initials));
 		});
 		
 		usersDiv.appendChild(fragment);
+		
+		// Wait for all images to load before making .user divs flex
+		await Promise.all(imageLoadPromises);
+		document.querySelectorAll('.user').forEach(user => {
+			user.style.display = 'flex';
+		});
 	});
 	
 	socket.on('message', (data) => {

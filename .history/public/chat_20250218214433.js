@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		socket.emit('give me friends to group', username);
 		const modal = document.getElementById('createGroup');
 		modal.style.visibility = 'visible'; // Make it visible immediately
-		
+		void modal.offsetWidth;
 		// Trigger the animation
 		setTimeout(() => {
 			modal.classList.add('show');
@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	deleteAccount.addEventListener('click', () => {
 		
 		const modal = document.getElementById('deleteModal');
-		// modal.style.visibility = 'visible'; 
+		modal.style.visibility = 'visible'; 
 		
 		// Trigger the animation
 		setTimeout(() => {

@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	deleteAccount.addEventListener('click', () => {
 		
 		const modal = document.getElementById('deleteModal');
-		// modal.style.visibility = 'visible'; 
+		modal.style.visibility = 'visible'; 
 		
 		// Trigger the animation
 		setTimeout(() => {
@@ -155,7 +155,10 @@ document.addEventListener('DOMContentLoaded', () => {
 					document.getElementById("message").value = "";
 					document.getElementById("message").style.height = '80px';
 					console.log(messageSent);
-					jQuery("#messageContainer").scrollTop(jQuery("#messageContainer")[0].scrollHeight);
+					chat.scrollTo({
+						top: chat.scrollHeight,
+						behavior: "smooth"
+					});
 				}
 			}
 		});
@@ -340,7 +343,10 @@ document.addEventListener('DOMContentLoaded', () => {
 			chat.appendChild(recDiv);
 			
 			// Scroll to the bottom of the chat
-			jQuery("#messageContainer").scrollTop(jQuery("#messageContainer")[0].scrollHeight);    
+			chat.scrollTo({
+    top: document.getElementById("messageContainer").scrollHeight,
+    behavior: "smooth"
+});    
 		}
 		else {
 			let existingMessage = document.querySelector(`.unreadMessages[group="${data.groupOfMessage}"]`);
@@ -467,7 +473,10 @@ document.addEventListener('DOMContentLoaded', () => {
 				chat.appendChild(recDiv);
 				
 				// Scroll to the bottom of the chat
-				jQuery("#messageContainer").scrollTop(jQuery("#messageContainer")[0].scrollHeight);
+				chat.scrollTo({
+    top: document.getElementById("messageContainer").scrollHeight,
+    behavior: "smooth"
+});
 			}
 			else {
 				const sendDiv = document.createElement('div');
@@ -500,7 +509,10 @@ document.addEventListener('DOMContentLoaded', () => {
 				
 				
 				adjustMarginForScrollbar();
-				jQuery("#messageContainer").scrollTop(jQuery("#messageContainer")[0].scrollHeight);
+				chat.scrollTo({
+    top: document.getElementById("messageContainer").scrollHeight,
+    behavior: "smooth"
+});
 				
 			}
 			document.getElementById("messagesContent").addEventListener("transitionend", function(event) {
@@ -1643,7 +1655,10 @@ document.addEventListener('DOMContentLoaded', () => {
 		chat.appendChild(recDiv);
 		
 		// Scroll to the bottom of the chat
-		jQuery("#messageContainer").scrollTop(jQuery("#messageContainer")[0].scrollHeight);
+		chat.scrollTo({
+    top: document.getElementById("messageContainer").scrollHeight,
+    behavior: "smooth"
+});
 	}
 	
 	function formatDateComparison(targetDate) {
@@ -1933,7 +1948,10 @@ document.addEventListener('DOMContentLoaded', () => {
 					
 					// Scroll down after ensuring the typing indicator is added
 					setTimeout(() => {
-						jQuery("#messageContainer").scrollTop(jQuery("#messageContainer")[0].scrollHeight);
+						chat.scrollTo({
+    top: document.getElementById("messageContainer").scrollHeight,
+    behavior: "smooth"
+});
 					}, 0);
 				}
 			} else {
@@ -2083,7 +2101,10 @@ document.addEventListener('DOMContentLoaded', () => {
 				
 				
 				adjustMarginForScrollbar();
-				jQuery("#messageContainer").scrollTop(jQuery("#messageContainer")[0].scrollHeight);
+				chat.scrollTo({
+    top: document.getElementById("messageContainer").scrollHeight,
+    behavior: "smooth"
+});
 			}
 			else {
 				adjustMarginForScrollbar();
@@ -2118,7 +2139,10 @@ document.addEventListener('DOMContentLoaded', () => {
 				
 				// Append the message div to the chat container
 				chat.appendChild(recDiv);
-				jQuery("#messageContainer").scrollTop(jQuery("#messageContainer")[0].scrollHeight);
+				chat.scrollTo({
+    top: document.getElementById("messageContainer").scrollHeight,
+    behavior: "smooth"
+});
 			}
 			document.getElementById("messagesContent").addEventListener("transitionend", function(event) {
 				const parent = event.target;

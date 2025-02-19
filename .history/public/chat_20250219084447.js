@@ -25,15 +25,16 @@ document.addEventListener('DOMContentLoaded', () => {
 	const menuGroups = document.getElementById('groupsContent');
 	const deleteAccount = document.getElementById('deleteAccount');
 	
-	deleteAccount.addEventListener('click', () => {
+	document.getElementById('deleteAccount').addEventListener('click', () => {
 		
 		const modal = document.getElementById('deleteModal');
-		// modal.style.visibility = 'visible'; 
-		
+		modal.style.visibility = 'visible'; 
+		modal.classList.add('show');
+
 		// Trigger the animation
-		setTimeout(() => {
-			modal.classList.add('show');
-		}, 20); 
+		// setTimeout(() => {
+		// 	modal.classList.add('show');
+		// }, 20); 
 		
 		document.getElementById('confirmDelete').onclick = function() {
 			menuGroups.classList.add('dropdown-content');

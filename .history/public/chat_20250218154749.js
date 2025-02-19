@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	deleteAccount.addEventListener('click', () => {
 		
 		const modal = document.getElementById('deleteModal');
-		// modal.style.visibility = 'visible'; 
+		modal.style.visibility = 'visible'; 
 		
 		// Trigger the animation
 		setTimeout(() => {
@@ -1012,29 +1012,6 @@ document.addEventListener('DOMContentLoaded', () => {
 	socket.off('friendsToGroup'); // Remove any existing listeners for this event
 	socket.on('friendsToGroup', handleFriendsToGroup);
 	
-	// Function to load the image asynchronously
-	async function loadImageAsync(src) {
-		const img = new Image();
-		img.src = src;
-
-		// Create a Promise to load the image
-		return new Promise((resolve, reject) => {
-			img.onload = async () => {
-				try {
-					if (!img.complete) {
-						// Ensure that the image is completely loaded
-						await img.decode();
-					}
-					resolve(img); // Resolve with the img object
-				} catch (error) {
-					reject(new Error(`Image decode failed: ${src}`)); // Reject if decoding fails
-				}
-			};
-
-			img.onerror = () => reject(new Error(`Image failed to load: ${src}`)); // Reject on error
-		});
-	}
-
 	// Function to update the profile image
 	async function updateProfileImage(container, imageSrc, initials) {
 		if (!imageSrc) {
@@ -1058,6 +1035,69 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 	}
 
+	//old
+	// async function loadImageAsync(src) {
+	// 	const img = new Image();
+	// 	img.src = src;
+	
+	// 	return new Promise((resolve, reject) => {
+	// 		img.onload = async () => {
+	// 			try {
+	// 				if (!img.complete) {
+	// 					await img.decode();
+	// 				}
+	// 				resolve(img);
+	// 			} catch (error) {
+	// 				reject(new Error(`Image decode failed: ${src}`));
+	// 			}
+	// 		};
+	// 		img.onerror = () => reject(new Error(`Image failed to load: ${src}`));
+	// 	});
+	// }
+	
+	// Function to load the image asynchronously
+	async function loadImageAsync(src) {
+		const img = new Image();
+		img.src = src;
+
+		// Create a Promise to load the image
+		return new Promise((resolve, reject) => {
+			img.onload = async () => {
+				try {
+					if (!img.complete) {
+						// Ensure that the image is completely loaded
+						await img.decode();
+					}
+					resolve(img); // Resolve with the img object
+				} catch (error) {
+					reject(new Error(`Image decode failed: ${src}`)); // Reject if decoding fails
+				}
+			};
+
+			img.onerror = () => reject(new Error(`Image failed to load: ${src}`)); // Reject on error
+		});
+	}
+	
+	async function updateSearchedProfileImage(container, imageSrc, initials) {
+		if (!imageSrc) {
+			initials.style.display = 'flex';
+			return Promise.resolve(); // Resolve immediately if there's no image
+		}
+	
+		try {
+			const img = await loadImageAsync(imageSrc);
+			console.log('Image loaded:', img);
+	
+			img.style.width = '40px';
+			img.style.height = '40px';
+			img.style.borderRadius = '50%';
+			img.classList.add('userAvatar');
+			container.appendChild(img);
+		} catch (error) {
+			console.error(error.message);
+			initials.style.display = 'flex';
+		}
+	}
 	
 	
 	const invCounter = document.getElementById('invCounter');
@@ -1454,41 +1494,54 @@ document.addEventListener('DOMContentLoaded', () => {
 		socket.emit('findUsers', searchUser);
 		console.log('Find users after invite:', searchUser);
 	});
+	
 	socket.on('foundUsers', async (founded) => {
 		console.log('Found users:', founded);
-		
+		const imageLoadPromises = [];
+	
 		// Clear previous user list
-		usersDiv.innerHTML = ''; // Clear the previous list
-		
+		usersDiv.innerHTML = '';
+	
 		const fragment = document.createDocumentFragment();
-		
-		// Loop over the found users
+	
 		founded.forEach((user) => {
 			const userDiv = document.createElement('div');
 			userDiv.classList.add('user');
+			userDiv.style.display = 'flex'; // Ensure Flexbox is applied before images load
+			userDiv.style.alignItems = 'center';
+			userDiv.style.gap = '10px';
+			userDiv.style.opacity = '0'; // Hide initially
 			
 			const profileContainer = document.createElement('div');
 			profileContainer.classList.add('profile-container');
+			profileContainer.style.display = 'flex';
+			profileContainer.style.alignItems = 'center';
+			profileContainer.style.justifyContent = 'center';
+			profileContainer.style.width = '40px';
+			profileContainer.style.height = '40px';
+			profileContainer.style.borderRadius = '50%';
+			profileContainer.style.overflow = 'hidden';
 			
-			// Create initials element but keep it hidden initially
 			const initials = document.createElement('div');
 			initials.classList.add('initials');
 			initials.textContent = user.username.charAt(0).toUpperCase();
 			profileContainer.appendChild(initials);
-			
+	
 			userDiv.appendChild(profileContainer);
-			
+	
 			const userInfoDiv = document.createElement('div');
 			userInfoDiv.classList.add('user-info');
 			userInfoDiv.style.width = '100px';
+	
 			const usernameText = document.createElement('div');
 			usernameText.classList.add('username');
 			usernameText.textContent = user.username;
 			userInfoDiv.appendChild(usernameText);
-			
+	
 			const buttonsDiv = document.createElement('div');
 			buttonsDiv.classList.add('buttons');
-			// Create buttons and append to buttonsDiv...
+			
+			// Invite button
 			const inviteButton = document.createElement('button');
 			inviteButton.classList.add('invite');
 			inviteButton.value = user.username;
@@ -1496,8 +1549,8 @@ document.addEventListener('DOMContentLoaded', () => {
 			inviteIcon.classList.add('icon-user-plus');
 			inviteButton.appendChild(inviteIcon);
 			if (user.isFriend != 1) buttonsDiv.appendChild(inviteButton);
-			
-			// Create send message button
+	
+			// Send message button
 			const sendButton = document.createElement('button');
 			sendButton.classList.add('send');
 			sendButton.value = user.username;
@@ -1505,8 +1558,8 @@ document.addEventListener('DOMContentLoaded', () => {
 			sendIcon.classList.add('icon-chat');
 			sendButton.appendChild(sendIcon);
 			buttonsDiv.appendChild(sendButton);
-			
-			// Create block button
+	
+			// Block button
 			const blockButton = document.createElement('button');
 			blockButton.classList.add('block');
 			blockButton.value = user.username;
@@ -1514,64 +1567,45 @@ document.addEventListener('DOMContentLoaded', () => {
 			blockIcon.classList.add('icon-block-1');
 			blockButton.appendChild(blockIcon);
 			buttonsDiv.appendChild(blockButton);
-			
-			// Append buttons to userInfoDiv
+	
 			userInfoDiv.appendChild(buttonsDiv);
-			
-			// Append userInfoDiv to userDiv
 			userDiv.appendChild(userInfoDiv);
 			fragment.appendChild(userDiv);
-			
-			sendButton.addEventListener('click', async () => {
+	
+			// Event listeners
+			sendButton.addEventListener('click', () => {
 				isTypingVisible = false;
 				receiver = sendButton.value;
 				group = null;
-				
-				// Clear existing content in #receiverAvatar
-				receiverAvatar.innerHTML = ''; 
-				receiverAvatar.textContent = ''; 
-				receiverAvatar.textContent = ''; 
-
-				receiverElement.textContent = receiver;						
+	
+				receiverAvatar.innerHTML = '';
+				receiverElement.textContent = receiver;
+	
 				const profileContainer = userDiv.querySelector('.profile-container');
-				console.log(profileContainer);
-				if (profileContainer) {
-					const img = profileContainer.querySelector('img.profile-image');
-					const initialsElement = profileContainer.querySelector('.initials');
-					console.log('img', img)
-					console.log('initialsElement', initialsElement)
-					if (img) {
-						const clonedImg = img.cloneNode();
-						clonedImg.classList.remove('profile-image');
-						clonedImg.id = 'receiverImg';
-						receiverAvatar.appendChild(clonedImg);
-					} else if (initialsElement) {
-						const clonedInitials = initialsElement.cloneNode(true);
-						clonedInitials.style.visibility = 'hidden';
-						console.log('clonedInitials', clonedInitials)
-						clonedInitials.id = 'receiverInitials';
-						console.log('check');
-
-						clonedInitials.style.display = 'flex';
-						receiverAvatar.appendChild(clonedInitials);
-					}
-				} else {
-					console.warn('Profile container not found.');
+				const img = profileContainer.querySelector('img.profile-image');
+				const initialsElement = profileContainer.querySelector('.initials');
+	
+				if (img) {
+					const clonedImg = img.cloneNode();
+					clonedImg.classList.remove('profile-image');
+					clonedImg.id = 'receiverImg';
+					receiverAvatar.appendChild(clonedImg);
+				} else if (initialsElement) {
+					const clonedInitials = initialsElement.cloneNode(true);
+					clonedInitials.id = 'receiverInitials';
+					clonedInitials.style.display = 'flex';
+					receiverAvatar.appendChild(clonedInitials);
 				}
-				const messagesReqtype = 'button';
-				socket.emit('sendMeMessages', username, receiver, messagesReqtype);
+	
+				socket.emit('sendMeMessages', username, receiver, 'button');
 			});
-			
-			// Select all elements with the class 'send'
-			const sendButtons = document.querySelectorAll('.send');
-			
+	
 			blockButton.addEventListener('click', () => {
-				blockButton.disabled = true; 
+				blockButton.disabled = true;
 				const blockedUser = blockButton.value;
 				if (receiver == blockedUser) {
 					receiver = '';
-					receiverAvatar.innerHTML = ''; 
-					receiverAvatar.textContent = ''; 
+					receiverAvatar.innerHTML = '';
 					receiverElement.textContent = '';
 					chat.innerHTML = '';
 				}
@@ -1584,18 +1618,56 @@ document.addEventListener('DOMContentLoaded', () => {
 					}
 				});
 			});
+	
 			inviteButton.addEventListener('click', () => {
-				const invitedUser = inviteButton.value;
-				console.log('Inviting user:', invitedUser); 
-				inviteButton.disabled = true; // Disable button to prevent multiple invites
-				socket.emit('invite', invitedUser);
+				inviteButton.disabled = true;
+				socket.emit('invite', inviteButton.value);
 			});
-			
-			updateProfileImage(profileContainer, user.profileImage, initials);
+	
+			// Load profile image
+			imageLoadPromises.push(updateSearchedProfileImage(profileContainer, user.profileImage, initials));
 		});
-		
+	
 		usersDiv.appendChild(fragment);
+	
+		// Wait for all images to load before fully displaying users
+		await Promise.all(imageLoadPromises);
+		document.querySelectorAll('.user').forEach(user => {
+			user.style.opacity = '1';
+		});
 	});
+	
+	// Function to load the image asynchronously
+	async function loadsearchedImageAsync(src) {
+		return new Promise((resolve, reject) => {
+			const img = new Image();
+			img.src = src;
+			img.onload = () => resolve(img);
+			img.onerror = () => reject(new Error(`Failed to load image: ${src}`));
+		});
+	}
+	
+	async function updateSearchedProfileImage(container, imageSrc, initials) {
+		if (!imageSrc) {
+			initials.style.display = 'flex';
+			return;
+		}
+	
+		try {
+			const img = await loadsearchedImageAsync(imageSrc);
+			img.style.width = '40px';
+			img.style.height = '40px';
+			img.style.borderRadius = '50%';
+			img.classList.add('userAvatar');
+			container.appendChild(img);
+			initials.style.display = 'none';
+		} catch (error) {
+			console.error(error.message);
+			initials.style.display = 'flex';
+		}
+	}
+	
+	
 	
 	socket.on('message', (data) => {
 		console.log(data);

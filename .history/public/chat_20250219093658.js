@@ -24,11 +24,19 @@ document.addEventListener('DOMContentLoaded', () => {
 	const menuInvitation = document.getElementById('invitationContent');
 	const menuGroups = document.getElementById('groupsContent');
 	const deleteAccount = document.getElementById('deleteAccount');
-	
+	const modal = document.getElementById('deleteModal');
+
+// modal.addEventListener('transitionstart', () => {
+//     console.log('Transition started:', modal.getBoundingClientRect());
+// });
+
+// modal.addEventListener('transitionend', () => {
+//     console.log('Transition ended:', modal.getBoundingClientRect());
+// });
 	deleteAccount.addEventListener('click', () => {
 		
 		const modal = document.getElementById('deleteModal');
-		// modal.style.visibility = 'visible'; 
+		modal.style.visibility = 'visible'; 
 		
 		// Trigger the animation
 		setTimeout(() => {

@@ -1112,7 +1112,7 @@ h1 a {
 }
 
 #mainContent .modal, #createGroup .modal {
-	/* visibility: hidden; Initially hidden */
+	visibility: hidden; /* Initially hidden */
 	position: absolute; /* Absolute positioning within the parent */
 	left: 50%; /* Center horizontally */
 	top: 50%; /* Center vertically */
@@ -1123,7 +1123,7 @@ h1 a {
 }
 
 #mainContent .modal.show, #createGroup .modal.show, .modal.show{
-	visibility: visible;
+	display: flex; /* Show the modal */
 	transform: translate(-50%, -50%) scale(1); /* Grow modal */
 }
 .modal {
@@ -1149,10 +1149,10 @@ h1 a {
 	margin: 10px;
 	padding: 8px 16px;
 }
-.modalButtons {
+/* .modalButtons {
 	display: inline-block;
 	margin: 0 auto;
-}
+} */
 #scrolledFriends {
 	overflow: auto;
 	max-height: 50vh;

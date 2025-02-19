@@ -13,11 +13,9 @@ document.addEventListener('DOMContentLoaded', () => {
 		socket.emit('give me friends to group', username);
 		const modal = document.getElementById('createGroup');
 		modal.style.visibility = 'visible'; // Make it visible immediately
-		
+		void modal.offsetWidth;
 		// Trigger the animation
-		setTimeout(() => {
-			modal.classList.add('show');
-		}, 10); 
+		
 	});
 	
 	const menuMessages = document.getElementById('messagesContent');
@@ -26,37 +24,37 @@ document.addEventListener('DOMContentLoaded', () => {
 	const deleteAccount = document.getElementById('deleteAccount');
 	
 	deleteAccount.addEventListener('click', () => {
-		
 		const modal = document.getElementById('deleteModal');
-		// modal.style.visibility = 'visible'; 
-		
-		// Trigger the animation
-		setTimeout(() => {
-			modal.classList.add('show');
-		}, 20); 
-		
+	
+		// Ensure modal is reset before showing
+		modal.style.display = 'flex';
+		modal.style.visibility = 'hidden'; // Prevent flash
+		modal.classList.remove('show'); // Reset animation class
+	
+		// Force a repaint to register the change
+		void modal.offsetWidth; 
+	
+		// Apply visibility and animation
+		modal.style.visibility = 'visible';
+		modal.classList.add('show');
+	
 		document.getElementById('confirmDelete').onclick = function() {
-			menuGroups.classList.add('dropdown-content');
-			menuGroups.classList.add('dropdown');
-			menuInvitation.classList.add('dropdown-content');
-			menuInvitation.classList.add('dropdown');
-			menuMessages.classList.add('dropdown-content');
-			menuMessages.classList.add('dropdown');
-			modal.classList.remove('show'); 
+			closeModal(modal);
 			socket.emit('delete', username);
 		};
-		
+	
 		document.getElementById('cancelDelete').onclick = function() {
-			menuGroups.classList.add('dropdown-content');
-			menuGroups.classList.add('dropdown');
-			menuInvitation.classList.add('dropdown-content');
-			menuInvitation.classList.add('dropdown');
-			menuMessages.classList.add('dropdown-content');
-			menuMessages.classList.add('dropdown');
-			modal.classList.remove('show'); 
+			closeModal(modal);
 		};
-		
 	});
+	
+	function closeModal(modal) {
+		modal.classList.remove('show'); 
+		setTimeout(() => {
+			modal.style.display = 'none';
+		}, 300); // Matches transition duration
+	}
+	
 	
 	const createGroupBtn = document.getElementById('sendGroup');
 	let avatar = null;

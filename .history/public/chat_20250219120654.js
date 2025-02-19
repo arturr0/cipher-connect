@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	deleteAccount.addEventListener('click', () => {
 		
 		const modal = document.getElementById('deleteModal');
-		// modal.style.visibility = 'visible'; 
+		modal.style.visibility = 'visible'; 
 		
 		// Trigger the animation
 		setTimeout(() => {
@@ -1922,31 +1922,41 @@ document.addEventListener('DOMContentLoaded', () => {
 	let isTypingVisible = false; // Flag to track typing indicator visibility
 	
 	// Listen for 'userTyping' event from the server
+	const messageContainer = document.getElementById('messageContainer');
+
+	function isUserAtBottom() {
+		return messageContainer.scrollTop + messageContainer.clientHeight >= messageContainer.scrollHeight - 5;
+	}
+	
+	messageContainer.addEventListener('scroll', () => {
+		// No need for a global flag, always check dynamically when needed
+	});
+	
 	socket.on('userTyping', ({ isTyping, sender }) => {
 		if (sender === receiver) {
 			if (isTyping) {
-				console.log("typing show");
+				console.log('typing show');
+	
 				if (!isTypingVisible) {
-					// Show typing indicator and scroll only once
 					showTypingIndicator();
 					isTypingVisible = true;
-					
-					// Scroll down after ensuring the typing indicator is added
-					setTimeout(() => {
-						jQuery("#messageContainer").scrollTop(jQuery("#messageContainer")[0].scrollHeight);
-					}, 0);
+	
+					// 🔥 Scroll only if the user is at the bottom
+					if (isUserAtBottom()) {
+						setTimeout(() => {
+							messageContainer.scrollTop = messageContainer.scrollHeight;
+						}, 0);
+					}
 				}
 			} else {
-				console.log("typing hide");
+				console.log('typing hide');
 				if (isTypingVisible) {
-					// Hide typing indicator and update flag
 					hideTypingIndicator();
 					isTypingVisible = false;
 				}
 			}
 		}
 	});
-	
 	function showTypingIndicator() {
 		// If the typing bubble doesn't exist, create it
 		if (!typingBubble) {

@@ -273,11 +273,35 @@ button {
 
 .user {
 	display: flex;
+	visibility: hidden;
 	align-items: center; /* Center vertically */
 	justify-content: center; /* Center horizontally */
 	margin-top: 10px;
 	position: relative;
 	margin-left: 10px;
+	transition: visibility 0s 0.5s; 
+}
+.userAvatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #ccc;  /* Placeholder color */
+    object-fit: cover; /* Ensure the image fills the circular container without stretching */
+    visibility: hidden; /* Hide the image until it’s fully loaded */
+    transition: visibility 0.3s ease-in-out; /* Smooth visibility transition */
+}
+
+.userAvatar.loaded {
+    visibility: visible; /* Show the image once loaded */
+}
+
+.lazy-load {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out; /* Smooth transition for loading visibility */
+}
+
+.lazy-load.visible {
+    opacity: 1; /* Make user div visible once loaded */
 }
 
 .profile-container {
@@ -1112,7 +1136,7 @@ h1 a {
 }
 
 #mainContent .modal, #createGroup .modal {
-	/* visibility: hidden; Initially hidden */
+	visibility: hidden; /* Initially hidden */
 	position: absolute; /* Absolute positioning within the parent */
 	left: 50%; /* Center horizontally */
 	top: 50%; /* Center vertically */
@@ -1123,7 +1147,7 @@ h1 a {
 }
 
 #mainContent .modal.show, #createGroup .modal.show, .modal.show{
-	visibility: visible;
+	display: flex; /* Show the modal */
 	transform: translate(-50%, -50%) scale(1); /* Grow modal */
 }
 .modal {
