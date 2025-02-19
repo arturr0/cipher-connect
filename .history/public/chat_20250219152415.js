@@ -408,6 +408,10 @@ document.addEventListener('DOMContentLoaded', () => {
  		
 		if (groupAvatar) {
 			// Check for the presence of an img element
+
+			initials.classList.add('displayGroupInitials');
+			initials.classList.remove('hideGroupInitials');
+
 			const img = document.createElement('img');
 			img.id = 'receiverImg';
 			img.src = groupAvatar;

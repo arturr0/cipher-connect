@@ -419,9 +419,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			console.log('check');
 			initials.id = 'receiverInitials';
 			initials.textContent = groupName.charAt(0).toUpperCase();
-			
 			initials.classList.add('displayGroupInitials');
-			initials.classList.remove('hideGroupInitials');
 			receiverAvatar.appendChild(initials);
 		}
 		
@@ -701,8 +699,6 @@ document.addEventListener('DOMContentLoaded', () => {
 					console.log('check');
 
 					clonedInitials.id = 'receiverInitials';
-					clonedInitials.classList.add('displayGroupInitials');
-					clonedInitials.classList.remove('hideGroupInitials');
 					receiverAvatar.appendChild(clonedInitials);
 				}
 			});

@@ -710,6 +710,7 @@ h1 a {
 	width: 40px;
 	height: 40px;
 	border-radius: 50%;
+	display: none;
 	justify-content: center;
 	align-items: center;
 	background: rgb(63,94,251);
@@ -718,11 +719,8 @@ h1 a {
 	font-weight: bold; /* Make initials bold */
 	color: white; /* Change color as needed */
 }
-.displayGroupInitials {
+#displayGroupInitials {
 	display: flex;
-}
-.hideGroupInitials {
-	display: none;
 }
 #receiverName {
 	margin-top: auto;
