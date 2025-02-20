@@ -44,9 +44,7 @@ const io = require('socket.io')(server, {
 
 app.use('/uploads', express.static(uploadsDir)); // Serve images from the uploads directory
 //app.use('/uploads', express.static('uploads'));
-app.use(require('express-fileupload')({
-    limits: { fileSize: 67 * 1024 } 
-}));
+
 // Create uploads directory if it doesn't exist
 if (!fs.existsSync(uploadsDir)) {
     fs.mkdirSync(uploadsDir);
