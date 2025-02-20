@@ -38,14 +38,14 @@ app.set('view engine', 'pug');
 
 // Handle file upload route
 const io = require('socket.io')(server, { 
-    maxHttpBufferSize: 200 * 1024,
+    maxHttpBufferSize: 98 * 1024,
     debug: true  // Enable verbose logging
 });
 
 app.use('/uploads', express.static(uploadsDir)); // Serve images from the uploads directory
 //app.use('/uploads', express.static('uploads'));
 app.use(require('express-fileupload')({
-    limits: { fileSize: 200 * 1024 } 
+    limits: { fileSize: 98 * 1024 } 
 }));
 // Create uploads directory if it doesn't exist
 if (!fs.existsSync(uploadsDir)) {
