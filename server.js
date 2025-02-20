@@ -38,7 +38,7 @@ app.set('view engine', 'pug');
 
 // Handle file upload route
 const io = require('socket.io')(server, { 
-    maxHttpBufferSize: 67 * 1024,
+    maxHttpBufferSize: 47 * 1024,
     debug: true  // Enable verbose logging
 });
 
